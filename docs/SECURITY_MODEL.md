@@ -5,33 +5,33 @@
 
 ## Objective
 
-Um agente comprometido não deve conseguir ultrapassar a autoridade explicitamente concedida.
+A compromised agent must not exceed the authority explicitly granted to it.
 
 ## Threats
 
 ### Compromised agent
-Mitigação: policy program, spending caps, exact intent, program-controlled funds.
+Mitigation: on-chain policy, spending caps, exact intent, and program-controlled funds.
 
 ### Prompt injection
-Mitigação: policy enforcement acontece fora do reasoning do modelo. O LLM pode ser enganado; o program não interpreta linguagem natural.
+Mitigation: policy enforcement does not depend on the model's reasoning. An LLM can be misled; the program does not interpret natural language.
 
 ### Modified amount
-Mitigação: action hash.
+Mitigation: `action_hash`.
 
 ### Modified recipient
-Mitigação: recipient bound to intent.
+Mitigation: recipient bound to the intent.
 
 ### Replay
-Mitigação: one-time usage, nonce, consumed state.
+Mitigation: use count (`max_uses`), nonce, and consumed state.
 
 ### Expired approval
-Mitigação: `expires_at`.
+Mitigation: `expires_at`.
 
-### Agent edits own limits
-Mitigação: policy authority exclusiva do human/admin.
+### Agent edits its own limits
+Mitigation: only the policy's human authority can change the policy.
 
-### Backend compromised
-Backend não deve poder emitir autorização humana sozinho.
+### Compromised backend
+The backend must not be able to issue human authorization on its own.
 
 ## Invariant
 
@@ -41,12 +41,12 @@ must never be able to increase
 AGENT_AUTHORITY
 ```
 
-Somente human/admin authority amplia policy.
+Only the policy's human authority can expand the policy.
 
 ## Warning
 
-Hackathon code deve exibir: **NOT AUDITED. DEVNET DEMONSTRATION ONLY.**
+Hackathon code must display: **NOT AUDITED. DEVNET DEMONSTRATION ONLY.**
 
 ## Privacy
 
-Preferir `action_hash` a dados semânticos sensíveis on-chain.
+Prefer `action_hash` over sensitive semantic data on-chain.

@@ -3,11 +3,11 @@
 
 # PULSO × Solana — On-chain Architecture
 
-## Visão
+## Overview
 
 ```text
 Human
-  ↓ biometric/sign
+  ↓ wallet signature
 PULSO App
   ↓ exact approval
 Solana
@@ -20,15 +20,17 @@ Solana
     USDC / SPL / Programs
 ```
 
+For the current account fields, checks, events, and error codes, see [Policy and Intent Specification](POLICY_AND_INTENT_SPEC.md), which documents the reference implementation. The account sketches below are conceptual; they are not a substitute for that specification.
+
 ## AgentPolicy PDA
 
-Seed conceitual:
+Conceptual seeds:
 
 ```text
 ["policy", human_pubkey, agent_pubkey]
 ```
 
-Campos:
+Core fields:
 
 ```rust
 pub struct AgentPolicy {
@@ -44,10 +46,14 @@ pub struct AgentPolicy {
 }
 ```
 
+The current implementation also stores the daily-window counter and start time, and a permanent agent-revocation flag.
+
 ## IntentAuthorization PDA
 
+Current seeds:
+
 ```text
-["intent", authority, intent_hash]
+["intent", authority, action_hash]
 ```
 
 ```rust
@@ -64,28 +70,28 @@ pub struct IntentAuthorization {
 }
 ```
 
+The current implementation also has a `RecipientApproval` PDA for a human-approved destination token account.
+
 ## Action hash
 
-Deve vincular version, chain, program, instruction, agent, asset, amount, recipient, constraints, nonce e expiration.
+The canonical hash binds the version, chain, program, instruction, authority, agent, mint, amount, recipient, `max_uses`, nonce, and expiration. It uses a fixed 216-byte preimage; the exact order and encoding are defined in the [Policy and Intent Specification](POLICY_AND_INTENT_SPEC.md).
 
 ## Lifecycle
 
-Dentro da policy: execute automaticamente.
+An action within the policy can execute automatically. An action above an approval threshold or to a new recipient that requires approval needs a human-signed intent.
 
-Fora da policy: `HUMAN_INTENT_REQUIRED`.
+After human approval, the agent repeats exactly the same action. The program checks policy status, limits, hash, validity, and use count before allowing the transfer.
 
-Depois da aprovação humana, o agent repete exatamente a mesma ação. O program verifica hash, validade, uso e authority antes de permitir.
+## Enforcement in the MVP
 
-## Enforcement no MVP
+For the hackathon, the most demonstrable path is a **program-controlled demo vault** on devnet. This provides real on-chain enforcement and prevents the agent from simply ignoring the backend.
 
-Para hackathon, o caminho mais demonstrável é um **program-controlled demo vault** em devnet. Isso garante enforcement real e evita que o agente simplesmente ignore o backend.
+The demo must state clearly: **prototype architecture ≠ audited production custody**.
 
-A demo deve deixar explícito: **prototype architecture ≠ audited production custody**.
+## Privacy
 
-## Privacidade
-
-Não colocar nome, CPF, endereço, prompt ou histórico pessoal on-chain. Armazenar pubkeys, hashes, limites, timestamps e status.
+Do not put names, CPF numbers, postal addresses, prompts, or personal history on-chain. Store public keys, hashes, limits, timestamps, and status.
 
 ## Framework
 
-Para velocidade: **Anchor + Rust**.
+For speed: **Anchor + Rust**.

@@ -1,13 +1,13 @@
-> **NOT AUDITED · DEVNET DEMONSTRATION ONLY.** Prototype architecture, not production custody.
+> **NOT AUDITED · DEVNET DEMONSTRATION ONLY.** Prototype design, not production custody.
 > Published spec — see the [README](../README.md) for context.
 
 # PULSO Agent Wallet
 
-## Conceito
+## Concept
 
-Uma wallet para agentes que não recebem autoridade irrestrita sobre fundos.
+A wallet for agents that do not receive unrestricted authority over funds.
 
-Modelo tradicional:
+Traditional model:
 
 ```text
 agent has private key
@@ -17,7 +17,7 @@ agent can sign
 agent can spend
 ```
 
-Modelo PULSO:
+PULSO model:
 
 ```text
 agent requests action
@@ -27,7 +27,7 @@ policy evaluated
 autonomous OR human-gated OR forbidden
 ```
 
-## Exemplo
+## Example
 
 ```text
 PULSO AGENT WALLET
@@ -52,7 +52,7 @@ FORBIDDEN
 × unlimited delegation
 ```
 
-## SDK conceitual
+## Conceptual SDK
 
 ```ts
 const result = await pulso.execute({
@@ -67,8 +67,8 @@ if (result.status === "HUMAN_INTENT_REQUIRED") {
 }
 ```
 
-## x402 future
+## Future: x402
 
-Pequenos pagamentos de API podem ocorrer automaticamente dentro do budget; valores acima da policy exigem aprovação humana.
+Small API payments can happen automatically within the budget; amounts above the policy require human approval.
 
-O diferencial não é swap, portfolio ou UI. É **programmable delegated authority**.
+The differentiator is not swaps, portfolios, or UI. It is **programmable delegated authority**.

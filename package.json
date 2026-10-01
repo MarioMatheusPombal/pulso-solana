@@ -1,0 +1,14 @@
+{
+  "name": "pulso-solana",
+  "private": true,
+  "packageManager": "pnpm@12.8.1",
+  "scripts": {
+    "build": "anchor build --arch v0",
+    "test": "anchor build --arch v0 && anchor test --skip-build",
+    "demo": "pnpm --filter @pulso/agent-demo demo",
+    "test:sdk": "pnpm --filter @pulso/sdk test",
+    "test:app": "pnpm --filter @pulso/app test",
+    "test:e2e": "pnpm --filter @pulso/sdk test:e2e && pnpm --filter @pulso/agent-demo test:e2e",
+    "idl": "anchor build --arch v0 && cp target/idl/pulso.json target/types/pulso.ts sdk/src/idl/"
+  }
+}

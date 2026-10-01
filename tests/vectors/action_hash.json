@@ -1,0 +1,90 @@
+{
+  "version": "PULSO_INTENT_V1",
+  "preimage_len": 216,
+  "vectors": [
+    {
+      "name": "base",
+      "program_id": "7rkj3PDx98aZBVR7yt1cLJFmasQJQR5ihs5NpJuWoeGT",
+      "instruction": 1,
+      "authority": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+      "agent": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+      "mint": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+      "amount": "1000000",
+      "recipient": "GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq",
+      "max_uses": 1,
+      "nonce": "000102030405060708090a0b0c0d0e0f",
+      "expires_at": "1893456000",
+      "hash": "100561e1ef2c9651a4f61cbfee187ff73b0b3b582431ddcc4fe3f1afd9dbe10a"
+    },
+    {
+      "name": "amount_changed",
+      "program_id": "7rkj3PDx98aZBVR7yt1cLJFmasQJQR5ihs5NpJuWoeGT",
+      "instruction": 1,
+      "authority": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+      "agent": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+      "mint": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+      "amount": "1000001",
+      "recipient": "GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq",
+      "max_uses": 1,
+      "nonce": "000102030405060708090a0b0c0d0e0f",
+      "expires_at": "1893456000",
+      "hash": "9f40e31264a8cb0ee4e9ff653c742a3e908566e815ec358bd0f4b5aeac540671"
+    },
+    {
+      "name": "recipient_changed",
+      "program_id": "7rkj3PDx98aZBVR7yt1cLJFmasQJQR5ihs5NpJuWoeGT",
+      "instruction": 1,
+      "authority": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+      "agent": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+      "mint": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+      "amount": "1000000",
+      "recipient": "LbUiWL3xVV8hTFYBVdbTNrpDo41NKS6o3LHHuDzjfcY",
+      "max_uses": 1,
+      "nonce": "000102030405060708090a0b0c0d0e0f",
+      "expires_at": "1893456000",
+      "hash": "3e35bafb60c8b94d3162c5de8be5637d39217a917c932053f7674fe963619cd5"
+    },
+    {
+      "name": "max_uses_and_nonce_changed",
+      "program_id": "7rkj3PDx98aZBVR7yt1cLJFmasQJQR5ihs5NpJuWoeGT",
+      "instruction": 1,
+      "authority": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+      "agent": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+      "mint": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+      "amount": "1000000",
+      "recipient": "GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq",
+      "max_uses": 3,
+      "nonce": "ffffffffffffffffffffffffffffffff",
+      "expires_at": "1893456000",
+      "hash": "f3e6b0e4c8b383b549ad0137b3a2a5f286290f8f8695c45936fd554fc035d764"
+    },
+    {
+      "name": "max_amount_and_negative_expiry",
+      "program_id": "7rkj3PDx98aZBVR7yt1cLJFmasQJQR5ihs5NpJuWoeGT",
+      "instruction": 1,
+      "authority": "4vJ9JU1bJJE96FWSJKvHsmmFADCg4gpZQff4P3bkLKi",
+      "agent": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+      "mint": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+      "amount": "18446744073709551615",
+      "recipient": "GgBaCs3NCBuZN12kCJgAW63ydqohFkHEdfdEXBPzLHq",
+      "max_uses": 1,
+      "nonce": "000102030405060708090a0b0c0d0e0f",
+      "expires_at": "-1",
+      "hash": "862a8c0727e816c158ca97156ee688f7db37ad8290248865c31ac755875831d6"
+    },
+    {
+      "name": "zero_pubkeys_and_zero_values",
+      "program_id": "7rkj3PDx98aZBVR7yt1cLJFmasQJQR5ihs5NpJuWoeGT",
+      "instruction": 1,
+      "authority": "11111111111111111111111111111111",
+      "agent": "11111111111111111111111111111111",
+      "mint": "11111111111111111111111111111111",
+      "amount": "0",
+      "recipient": "11111111111111111111111111111111",
+      "max_uses": 0,
+      "nonce": "00000000000000000000000000000000",
+      "expires_at": "0",
+      "hash": "5e483105552b716b6de00e8aa0720c6f4b0ef9596b7dfb88c86dde7517f40986"
+    }
+  ]
+}
