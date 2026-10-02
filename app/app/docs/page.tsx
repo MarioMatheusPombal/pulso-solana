@@ -18,7 +18,7 @@ export default function DocsPage() {
       <header className="docs-heading">
         <p className="eyebrow">REFERENCE · PREVIEW</p>
         <h1>Integration notes</h1>
-        <p className="lead">PULSO is the authorization boundary between an AI agent and the action it wants to take. Policy lives on-chain. The human decides what crosses it.</p>
+        <p className="lead">PULSO is the authorization boundary between an AI agent and the action it wants to take. Policy lives on-chain. The human decides what crosses it. Teams building agents and payment products on Solana are the first intended users.</p>
         <p className="preview-stamp"><span aria-hidden="true">✳</span> Installation guide in preparation</p>
       </header>
 
@@ -78,6 +78,7 @@ export default function DocsPage() {
             <details><summary>Can an agent bypass the approval screen?</summary><p>The screen is not the enforcement boundary. The on-chain program checks the policy and authorization when the action executes.</p></details>
             <details><summary>Does PULSO guard every action from an agent wallet?</summary><p>PULSO enforces policy on actions routed through a PULSO-enabled program and its scoped vault. Unrelated programs and assets outside that policy remain outside this gate.</p></details>
             <details><summary>Is there an MCP server I can install today?</summary><p>This preview does not publish a server package or endpoint. The MCP integration guide is still in preparation.</p></details>
+            <details><summary>Is PULSO available as a paid or managed service?</summary><p>Not yet. Today there is a devnet demonstration. A managed service, organization dashboard and packaged SDK are planned and not available. To discuss a devnet pilot, use the <a href="/waitlist">pilot request</a> page.</p></details>
             <details><summary>Where should I start while the guide is being written?</summary><p>Read the policy and intent specification and security model. The links above lead to the current project documents.</p></details>
           </section>
         </article>

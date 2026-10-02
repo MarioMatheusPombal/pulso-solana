@@ -151,6 +151,8 @@ if (result.status === "HUMAN_INTENT_REQUIRED") {
 
 You built the agent. You should not have to build your own authorization system.
 
+The SDK is part of this demonstration; it is not published to npm. Inside the repository it resolves as a workspace package.
+
 ## Quickstart
 
 ### Prerequisites
@@ -223,9 +225,21 @@ It is not an AI agent, a shopping agent, a procurement tool, a recommendation en
 
 **PULSO is the authorization layer an AI agent has to pass through.** Authorization, not recommendation. Enforcement, not commerce.
 
+## Where this is going
+
+PULSO is being built as a B2B product: human authorization for AI agents, aimed at teams that build agents and payment products on Solana. The path is a devnet sandbox, then paid pilots with hands-on integration support, then a managed service.
+
+| | |
+|:--|:--|
+| **Available today** | This repository: a reproducible devnet and localnet demonstration. The Anchor program, the TypeScript SDK source in `sdk/`, the agent demo (scenarios A–F) and the approval app. |
+| **Integration interfaces** | The on-chain program and its IDL, the [policy and intent spec](docs/POLICY_AND_INTENT_SPEC.md), and the SDK source. The SDK is not published to a package registry, and there is no MCP server. |
+| **Planned, not available** | A managed commercial service. It is not offered, has no date, and no billing, mainnet, custody, multi-approver or SLA exists. |
+
+If you build agents or payments on Solana and want to try PULSO in a devnet pilot or as a design partner, open an issue in this repository.
+
 ## License
 
-[Apache-2.0](LICENSE).
+[Apache-2.0](LICENSE). The license covers the code of this published demonstration in this repository. The planned managed service is a separate commercial product and is not part of this repository.
 
 <div align="center">
 <br>

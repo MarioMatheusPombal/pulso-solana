@@ -8,7 +8,7 @@
 
 NOT AUDITED · DEVNET DEMONSTRATION ONLY
 
-TypeScript SDK for PULSO. Today it builds and hashes an intent on the client, byte for byte
+TypeScript SDK for PULSO, part of the devnet demonstration in this repository (not published to a package registry; a managed service is planned, not available). Today it builds and hashes an intent on the client, byte for byte
 the same as the on-chain program (`programs/pulso/src/action_hash.rs`, shared vectors in
 `tests/vectors/action_hash.json`). Runs in Node and in the browser.
 

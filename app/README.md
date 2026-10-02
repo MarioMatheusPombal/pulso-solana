@@ -8,7 +8,7 @@
 
 Web app for PULSO policy and approval: create a policy, watch the agent wallet,
 and approve or deny the exact action an agent asked for.
-The landing page is at `/`, policy configuration is at `/policy`, and integration notes are previewed at `/docs` (`/integration` redirects there). A public-facing waitlist is available at `/waitlist`.
+The landing page is at `/`, policy configuration is at `/policy`, and integration notes are previewed at `/docs` (`/integration` redirects there). A pilot-interest form (the waitlist) is available at `/waitlist`. The copy positions PULSO as human authorization for teams building agents and payment products on Solana; managed service, dashboard, SDK packaging and mainnet are described only as planned.
 
 **NOT AUDITED · DEVNET DEMONSTRATION ONLY**
 
@@ -39,7 +39,7 @@ Page `/`: product landing page with links to policy setup and Docs.
 
 Page `/policy`: create a policy and its vault (`create_policy` + `create_vault`, one transaction), then show the policy read back from the chain.
 
-Page `/waitlist`: product one-liner, local demo video, devnet warning and accessible email capture. `POST /api/waitlist` trims and lowercases email addresses, validates them, and deduplicates normalized values. Entries are persisted as JSON at `app/.data/waitlist.json` by default; set `PULSO_WAITLIST_FILE` to an absolute path on a persistent disk in hosted deployments. No Google account, external form service, or secret is required. The file contains personal data and is ignored by Git; keep its filesystem access limited to the app operator.
+Page `/waitlist`: devnet pilot request, product one-liner, local demo video, devnet warning and accessible email capture. `POST /api/waitlist` trims and lowercases email addresses, validates them, and deduplicates normalized values. Entries are persisted as JSON at `app/.data/waitlist.json` by default; set `PULSO_WAITLIST_FILE` to an absolute path on a persistent disk in hosted deployments. No Google account, external form service, or secret is required. The file contains personal data and is ignored by Git; keep its filesystem access limited to the app operator.
 
 Export the collected list locally, without exposing email addresses through a public endpoint:
 

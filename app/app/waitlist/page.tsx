@@ -2,7 +2,7 @@ import { WaitlistForm } from "../../components/WaitlistForm";
 
 export const metadata = {
   title: "PULSO — Give agents money without giving them unlimited power",
-  description: "Human-granted authorization for AI agents on Solana.",
+  description: "Human-granted authorization for AI agents on Solana. Request a devnet pilot.",
 };
 
 export default function WaitlistPage() {
@@ -11,8 +11,8 @@ export default function WaitlistPage() {
       <section className="waitlist-hero" aria-labelledby="waitlist-title">
         <span className="eyebrow">HUMAN AUTHORIZATION FOR AI AGENTS</span>
         <h1 id="waitlist-title">Give agents money without giving them unlimited power</h1>
-        <p className="lead">PULSO gives autonomous agents a wallet while keeping authority in human hands. Every action stays inside the limits you set.</p>
-        <a className="btn primary waitlist-cta" href="#join">Get early access</a>
+        <p className="lead">PULSO gives autonomous agents a wallet while keeping authority in human hands. Every action stays inside the limits you set. Devnet pilots are planned with teams building agents and payment products on Solana.</p>
+        <a className="btn primary waitlist-cta" href="#join">Request a devnet pilot</a>
       </section>
 
       <section className="panel waitlist-demo" aria-labelledby="demo-title">
@@ -32,9 +32,9 @@ export default function WaitlistPage() {
 
       <section className="waitlist-signup" id="join" aria-labelledby="join-title">
         <div>
-          <span className="eyebrow">EARLY ACCESS</span>
-          <h2 id="join-title">Follow the build</h2>
-          <p className="lead">Get occasional updates as we bring human authorization to agent wallets.</p>
+          <span className="eyebrow">DEVNET PILOT</span>
+          <h2 id="join-title">Talk to us about a pilot</h2>
+          <p className="lead">Leave your email to register interest. Managed service and dashboard are planned, not available today.</p>
         </div>
         <WaitlistForm />
       </section>

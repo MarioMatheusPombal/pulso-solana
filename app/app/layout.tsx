@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
             <nav aria-label="Project links">
               <a href="/docs">Docs</a>
-              <a href={REPO}>Source</a>
+              <a href={REPO}>Demo source</a>
               <a href={`${REPO}/blob/main/docs/POLICY_AND_INTENT_SPEC.md`}>Spec</a>
               <a href={`${REPO}/blob/main/docs/SECURITY_MODEL.md`}>Security model</a>
             </nav>

@@ -27,7 +27,7 @@ export function Header() {
         <Link href="/policy" aria-current={current("/policy")}>Policy</Link>
         <Link href="/wallet" aria-current={current("/wallet")}>Agent wallet</Link>
         <Link href="/approvals" aria-current={current("/approvals")}>Approvals</Link>
-        <Link href="/waitlist" aria-current={current("/waitlist")}>Waitlist</Link>
+        <Link href="/waitlist" aria-current={current("/waitlist")}>Pilot</Link>
         <Link href="/docs" aria-current={current("/docs")}>Docs</Link>
       </nav>
       <div className="header-actions">

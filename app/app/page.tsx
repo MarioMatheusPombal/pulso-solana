@@ -8,10 +8,10 @@ export default function Home() {
         <div className="landing-copy">
           <p className="field-note">A human authorization layer for AI agents</p>
           <h1 id="landing-title">Give the agent<br />a wallet.<br /><span>Keep the authority.</span></h1>
-          <p className="landing-deck">Agents can act. People set the limits, review the exact action, and decide what gets signed.</p>
+          <p className="landing-deck">Agents can act. People set the limits, review the exact action, and decide what gets signed. Built for teams shipping agents and payment products on Solana.</p>
           <div className="landing-actions">
-            <Link className="btn primary" href="/policy">Configure policy</Link>
-            <Link className="landing-docs-link" href="/docs">Read docs <span aria-hidden="true">↗</span></Link>
+            <Link className="btn primary" href="/policy">Try the devnet demo</Link>
+            <Link className="landing-docs-link" href="/waitlist">Request a devnet pilot <span aria-hidden="true">↗</span></Link>
           </div>
           <p className="landing-note">Policy enforcement lives on-chain. The human’s private key stays in their wallet.</p>
         </div>

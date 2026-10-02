@@ -22,7 +22,7 @@ export function WaitlistForm() {
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Could not join the waitlist.");
       setEmail("");
-      setMessage("Thanks. You’re on the waitlist.");
+      setMessage("Thanks. Pilot interest registered.");
     } catch (cause) {
       setError(true);
       setMessage(cause instanceof Error ? cause.message : "Could not join the waitlist. Try again.");
@@ -48,10 +48,10 @@ export function WaitlistForm() {
           aria-describedby="waitlist-privacy waitlist-message"
         />
         <button className="btn primary" type="submit" disabled={busy}>
-          {busy ? "Saving…" : "Join waitlist"}
+          {busy ? "Saving…" : "Request pilot"}
         </button>
       </div>
-      <p id="waitlist-privacy" className="hint">We’ll use your email only to share PULSO updates. No Google account needed.</p>
+      <p id="waitlist-privacy" className="hint">We’ll use your email only to reply about PULSO pilots and updates. No Google account needed.</p>
       <p id="waitlist-message" className={error ? "error" : "success"} role="status" aria-live="polite">
         {message}
       </p>

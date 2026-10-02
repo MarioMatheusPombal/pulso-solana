@@ -6,6 +6,8 @@
 
 # PULSO agent demo — cenários A–F
 
+Demonstração reproduzível em localnet/devnet. Não é um serviço gerenciado: ele é planejado e ainda não está disponível.
+
 Com `pnpm`, Anchor, Cargo via rustup e Solana CLI instalados, rode `scripts/demo.sh` na raiz do repositório. O script instala as dependências travadas, constrói o programa para SBF v0 e executa A–F. O modo completo exige a porta RPC local `8899` livre; se já houver um validador respondendo, ele aborta antes do cenário e deixa esse processo intacto. Os validadores locais que o demo iniciar são reiniciados entre A/B, C, D e E para manter o estado isolado; F manipula o Clock do LiteSVM e não envia uma transação RPC.
 
 O comando para no primeiro erro e marca cada resultado como `PASS`. Em A/B, 5 USDC executa abaixo do limite e 100 USDC pausa até a fixture local registrar a autorização humana. C tenta alterar o valor autorizado de 100 para 150 USDC; D altera o destinatário; E envia replays concorrentes e sequenciais para uma autorização de uso único; F tenta executar com o Clock em `expires_at + 1`.
