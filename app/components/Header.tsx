@@ -2,52 +2,35 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const WalletMultiButton = dynamic(() => import("@solana/wallet-adapter-react-ui").then((m) => m.WalletMultiButton), {
   ssr: false,
 });
 
 export function Header() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const path = usePathname();
 
-  useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem("pulso-theme");
-      if (saved === "dark" || saved === "light") {
-        setTheme(saved);
-        document.documentElement.dataset.theme = saved;
-      }
-    } catch { /* Theme still works when storage is unavailable. */ }
-  }, []);
-
-  function toggleTheme() {
-    const next = theme === "light" ? "dark" : "light";
-    setTheme(next);
-    document.documentElement.dataset.theme = next;
-    try { window.localStorage.setItem("pulso-theme", next); } catch { /* Keep the in-memory selection. */ }
-  }
+  const current = (href: string) => ((href === "/" ? path === "/" : path.startsWith(href)) ? "page" : undefined);
 
   return (
     <header className="top">
-      <Link href="/" className="brand" aria-label="PULSO, Human Intent Protocol home">
-        <span className="brand-name">PULSO</span>
-        <span className="brand-subtitle">HUMAN INTENT PROTOCOL</span>
+      <Link href="/" className="brand" aria-label="PULSO, human authorization for AI agents: home">
+        <img className="guardian guardian-header-chalk" src="/assets/chalk-v1/guardian-chalk.webp" alt="" width="46" height="46" />
+        <span className="brand-text">
+          <span className="brand-name">PULSO</span>
+          <span className="brand-subtitle">HUMAN AUTHORIZATION FOR AI AGENTS</span>
+        </span>
       </Link>
       <nav aria-label="Main navigation">
-        <Link href="/">Policy</Link>
-        <Link href="/approvals">Approvals</Link>
+        <Link href="/" aria-current={current("/")}>Home</Link>
+        <Link href="/policy" aria-current={current("/policy")}>Policy</Link>
+        <Link href="/wallet" aria-current={current("/wallet")}>Agent wallet</Link>
+        <Link href="/approvals" aria-current={current("/approvals")}>Approvals</Link>
+        <Link href="/waitlist" aria-current={current("/waitlist")}>Waitlist</Link>
+        <Link href="/docs" aria-current={current("/docs")}>Docs</Link>
       </nav>
       <div className="header-actions">
-        <button
-          className="theme-toggle"
-          type="button"
-          aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-          aria-pressed={theme === "dark"}
-          onClick={toggleTheme}
-        >
-          {theme === "light" ? "Dark theme" : "Light theme"}
-        </button>
         <WalletMultiButton />
       </div>
     </header>

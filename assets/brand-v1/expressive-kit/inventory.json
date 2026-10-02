@@ -1,0 +1,578 @@
+{
+  "status": "ready-for-review",
+  "sourceMasters": {
+    "mark": {
+      "path": "../raster-v2/guardian-mark-transparent.png",
+      "sha256": "0ffdc95228e0c16084b1c7858111320cb06ada4d8a674f50a6a5cd42d635837a",
+      "width": 1254,
+      "height": 1254,
+      "channels": 4
+    },
+    "heart": {
+      "path": "../raster-v2/guardian-heart-transparent.png",
+      "sha256": "bcac5183d5d880366785f5e6e3b66dda659e6bb08c6b6306fbed32416eb175a5",
+      "width": 1254,
+      "height": 1254,
+      "channels": 4
+    },
+    "mono": {
+      "path": "../raster-v2/guardian-mark-monochrome-transparent.png",
+      "sha256": "bf1fc2ed7e3903eba65e8b8a6d77748992a378c62a97a35338e140a4d583f3bc",
+      "width": 1254,
+      "height": 1254,
+      "channels": 4
+    }
+  },
+  "notice": "NOT AUDITED · DEVNET DEMONSTRATION ONLY",
+  "assets": [
+    {
+      "path": "logos/guardian-heart-transparent-master.png",
+      "bytes": 895482,
+      "sha256": "bcac5183d5d880366785f5e6e3b66dda659e6bb08c6b6306fbed32416eb175a5",
+      "width": 1254,
+      "height": 1254,
+      "channels": 4
+    },
+    {
+      "path": "logos/guardian-mark-amber.png",
+      "bytes": 438463,
+      "sha256": "c52aa7e767924b1cd2380ab59a790c59dddbc2dda0350f7d50bd667ff3d299b6",
+      "width": 1024,
+      "height": 1024,
+      "channels": 4
+    },
+    {
+      "path": "logos/guardian-mark-amber.svg",
+      "bytes": 1725687,
+      "sha256": "de0d9622582615a2b46f8e8c782bcb253be87052216d988060ee8711814071bf"
+    },
+    {
+      "path": "logos/guardian-mark-dark.png",
+      "bytes": 419882,
+      "sha256": "8e2d593cda13e9cdf26c7a5d7aa65f51ee363c95ab2fdd00b551594f96b5ec44",
+      "width": 1024,
+      "height": 1024,
+      "channels": 4
+    },
+    {
+      "path": "logos/guardian-mark-dark.svg",
+      "bytes": 1725686,
+      "sha256": "56f8364040384baa4d64e2a6035453c2808407612d9ee011afe876bef3e26b52"
+    },
+    {
+      "path": "logos/guardian-mark-light.png",
+      "bytes": 435807,
+      "sha256": "5816ce73001c535f445cf6d75240a34b5c1fd77469761bb01b4db31e91db12ba",
+      "width": 1024,
+      "height": 1024,
+      "channels": 4
+    },
+    {
+      "path": "logos/guardian-mark-light.svg",
+      "bytes": 1725687,
+      "sha256": "1821fad286a22f14cea348be8482b50e74f7b7080adb31a3bba51dcdc79101d4"
+    },
+    {
+      "path": "logos/guardian-mark-mono-amber.png",
+      "bytes": 462171,
+      "sha256": "7059367c2d5d202021c04816ad5001c988cc76b24a6a7bf1bb5bf4ca359acf4c",
+      "width": 1024,
+      "height": 1024,
+      "channels": 4
+    },
+    {
+      "path": "logos/guardian-mark-mono-amber.svg",
+      "bytes": 1942960,
+      "sha256": "3fc4e169f1fc57829cf1f5b236e95c93b00c62711df9b340a6dcf47e316f901e"
+    },
+    {
+      "path": "logos/guardian-mark-mono-dark.png",
+      "bytes": 441967,
+      "sha256": "726706be18514648d84f59b981a5f821046fc43b419fee48e62d954cd9060a28",
+      "width": 1024,
+      "height": 1024,
+      "channels": 4
+    },
+    {
+      "path": "logos/guardian-mark-mono-dark.svg",
+      "bytes": 1942959,
+      "sha256": "30cb2d7a5414ff5f3fee0461457e25bdcc2c9f051f36a2a4bb1f843f455f1e32"
+    },
+    {
+      "path": "logos/guardian-mark-mono-light.png",
+      "bytes": 452969,
+      "sha256": "a5c42986e0c3bd13b74b861b26dc376785fd83c791db06cb810be292b2e3d778",
+      "width": 1024,
+      "height": 1024,
+      "channels": 4
+    },
+    {
+      "path": "logos/guardian-mark-mono-light.svg",
+      "bytes": 1942960,
+      "sha256": "2628ac8e33be8656a0631ec05474fc26ecf6aa9a973f7e3b5aed6a9f14d9d461"
+    },
+    {
+      "path": "logos/guardian-mark-monochrome-transparent-master.png",
+      "bytes": 874604,
+      "sha256": "bf1fc2ed7e3903eba65e8b8a6d77748992a378c62a97a35338e140a4d583f3bc",
+      "width": 1254,
+      "height": 1254,
+      "channels": 4
+    },
+    {
+      "path": "logos/guardian-mark-transparent-master.png",
+      "bytes": 775197,
+      "sha256": "0ffdc95228e0c16084b1c7858111320cb06ada4d8a674f50a6a5cd42d635837a",
+      "width": 1254,
+      "height": 1254,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-horizontal-dark.png",
+      "bytes": 166677,
+      "sha256": "063ed99a94e20a1a49c3ddc9875cdac6f7a4602423141c426c8ab839c0d51e6c",
+      "width": 1600,
+      "height": 500,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-horizontal-dark.svg",
+      "bytes": 1726365,
+      "sha256": "4af6eb6ed0411f290e40d8eb3db9cd80ee6e675ec3d20ac29a2561d71d6696ff"
+    },
+    {
+      "path": "lockups/guardian-horizontal-light.png",
+      "bytes": 171717,
+      "sha256": "8ee5ca6ea0c703dc4dc80df929d8a27805a54be20dd828fbdfa0324f0592724c",
+      "width": 1600,
+      "height": 500,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-horizontal-light.svg",
+      "bytes": 1726366,
+      "sha256": "6f3be2726587d79971dd9c604595c3be0f6352bf468ad8303093796691a625e8"
+    },
+    {
+      "path": "lockups/guardian-horizontal-transparent-color.png",
+      "bytes": 161430,
+      "sha256": "bd1013015b8ee2fa2a73908878451f6b0ce5add4ebe7693b5459ead5d394c53c",
+      "width": 1600,
+      "height": 500,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-horizontal-transparent-color.svg",
+      "bytes": 1726322,
+      "sha256": "3ae53bb5841daedaf7ccbf4cdb29264266b04e4232073b89e64240ab2298ecf2"
+    },
+    {
+      "path": "lockups/guardian-horizontal-transparent-white.png",
+      "bytes": 162009,
+      "sha256": "9cc5d8ff8dd7f85f8874bd9314654a3ecaaa940e3f6ac0a1c0ba2326ec223af3",
+      "width": 1600,
+      "height": 500,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-horizontal-transparent-white.svg",
+      "bytes": 1726322,
+      "sha256": "64c729e6ca825d43014a8275b88959dd303632d37eba1077f62119dcceecd72e"
+    },
+    {
+      "path": "lockups/guardian-stacked-dark.png",
+      "bytes": 259744,
+      "sha256": "4d04f46419bb1e3a67671fdd98b7510306e7bcaa3f26295b040b94d8198b2f62",
+      "width": 1000,
+      "height": 1000,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-stacked-dark.svg",
+      "bytes": 1726212,
+      "sha256": "b50d9be2c6d0fb3ac3c626e110db43c6d01274677f8230d81eb055a6086273bd"
+    },
+    {
+      "path": "lockups/guardian-stacked-light.png",
+      "bytes": 269620,
+      "sha256": "30a721fdc284f6e774eebc422f172366a3fc1f22e985d0048ff123a8267c30ca",
+      "width": 1000,
+      "height": 1000,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-stacked-light.svg",
+      "bytes": 1726213,
+      "sha256": "4dcc6a92256145226123dd81867f161e147b1447948d10b133a036d570442c22"
+    },
+    {
+      "path": "lockups/guardian-stacked-transparent-color.png",
+      "bytes": 258534,
+      "sha256": "6229fb3fdbc30936972180b1e5292acd657be292774b5be20929a50c9f412080",
+      "width": 1000,
+      "height": 1000,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-stacked-transparent-color.svg",
+      "bytes": 1726168,
+      "sha256": "63c41d695d6889b7164736d00c95c3a0abef9e9a0c7d928a53a614e5104b23d2"
+    },
+    {
+      "path": "lockups/guardian-stacked-transparent-white.png",
+      "bytes": 258671,
+      "sha256": "b755ea25c50a2d978c1c6c26e9fed95d6c6ed477a10382f5dbe84a4a386cc35a",
+      "width": 1000,
+      "height": 1000,
+      "channels": 4
+    },
+    {
+      "path": "lockups/guardian-stacked-transparent-white.svg",
+      "bytes": 1726168,
+      "sha256": "21c31887815ac3b6d4e6c1fd327c4f9837fb4e7198e98b05d0f07c191d0d7708"
+    },
+    {
+      "path": "avatars/guardian-avatar-amber-512.png",
+      "bytes": 122501,
+      "sha256": "21864dfa21471d35d018583562ddefe3fa86b0bd19d1d0149ac572b198c29552",
+      "width": 512,
+      "height": 512,
+      "channels": 4
+    },
+    {
+      "path": "avatars/guardian-avatar-amber-512.svg",
+      "bytes": 1725689,
+      "sha256": "a1e7134e0faa9d01af64e1b5b58b2d6ce1d3627cab087c219330e28dde8b032c"
+    },
+    {
+      "path": "avatars/guardian-avatar-dark-512.png",
+      "bytes": 128159,
+      "sha256": "6f43ec73d6547c4e51ebf356fd70e4db33b575c8a9041bd5423d05a61398e5ce",
+      "width": 512,
+      "height": 512,
+      "channels": 4
+    },
+    {
+      "path": "avatars/guardian-avatar-dark-512.svg",
+      "bytes": 1725738,
+      "sha256": "01bed123b3e44e67bce53385e80a4a69f6a67b09f463c760299a2da8577c475a"
+    },
+    {
+      "path": "avatars/guardian-avatar-light-512.png",
+      "bytes": 121843,
+      "sha256": "2ef852c5924eda72a8cbd2068343f2abfb3de7fe538a72a322a3efb29791725b",
+      "width": 512,
+      "height": 512,
+      "channels": 4
+    },
+    {
+      "path": "avatars/guardian-avatar-light-512.svg",
+      "bytes": 1725689,
+      "sha256": "122d935026399e3a8f2ddbda445e0ddd6485fe1c021224c4c662b7c5353681eb"
+    },
+    {
+      "path": "avatars/guardian-avatar-mono-512.png",
+      "bytes": 126545,
+      "sha256": "4b2fda209f63da62d08ab4485970d03073ad2f2bc0fa612097247821c69d0077",
+      "width": 512,
+      "height": 512,
+      "channels": 4
+    },
+    {
+      "path": "avatars/guardian-avatar-mono-512.svg",
+      "bytes": 1942956,
+      "sha256": "c181f1f6faf797f2427053ac585a887212d038356985e59e6e7c50eb88680059"
+    },
+    {
+      "path": "avatars/guardian-avatar-mono-dark-512.png",
+      "bytes": 132983,
+      "sha256": "9bee7a4faf85f41e278863a6def1e72d634d2999c50407b60f9816491e08f674",
+      "width": 512,
+      "height": 512,
+      "channels": 4
+    },
+    {
+      "path": "avatars/guardian-avatar-mono-dark-512.svg",
+      "bytes": 1943011,
+      "sha256": "fc24c46dfbeeeaf69f0dbd061e9ce3e03e0fba57378a20c663afbb46b3c8a515"
+    },
+    {
+      "path": "avatars/guardian-avatar-transparent-512.png",
+      "bytes": 119714,
+      "sha256": "e1736f751689f13bddff8793e562866dbf0adc32cf2c42b42048dc39fcbe882d",
+      "width": 512,
+      "height": 512,
+      "channels": 4
+    },
+    {
+      "path": "avatars/guardian-avatar-transparent-512.svg",
+      "bytes": 1725639,
+      "sha256": "8665e019cd39d6f86ec0938a332387cba1b616f4075c3f964e380e6ee3b2aa73"
+    },
+    {
+      "path": "favicons/favicon-128.png",
+      "bytes": 12858,
+      "sha256": "8c494c642819436a0bad60cac3ca74db7ccbff85498d0a471c3a520f7d8c89cf",
+      "width": 128,
+      "height": 128,
+      "channels": 4
+    },
+    {
+      "path": "favicons/favicon-128.svg",
+      "bytes": 1725685,
+      "sha256": "734c4ef0e90a17e9eb23c5ae9b4f3c0347bac274c3042574684319779a3402b0"
+    },
+    {
+      "path": "favicons/favicon-16.png",
+      "bytes": 456,
+      "sha256": "3b002aa91f7ea179838a4364bc04b6ce0dc7516fc5f0d0b48329ae30f401f7ef",
+      "width": 16,
+      "height": 16,
+      "channels": 4
+    },
+    {
+      "path": "favicons/favicon-16.svg",
+      "bytes": 1725675,
+      "sha256": "226fae7280b16a2a1527967b8836fa7ac0adaa0e498b5dd11752db656f973294"
+    },
+    {
+      "path": "favicons/favicon-180.png",
+      "bytes": 22382,
+      "sha256": "ae7c96eb3999e79473956f90806060846bee67ac0cf0dffd70a92b97a247922a",
+      "width": 180,
+      "height": 180,
+      "channels": 4
+    },
+    {
+      "path": "favicons/favicon-180.svg",
+      "bytes": 1725685,
+      "sha256": "6b5459fb7107acd74b5e6035357c8bae6452b2fe1dd14f16e7704e46267d6704"
+    },
+    {
+      "path": "favicons/favicon-192.png",
+      "bytes": 24716,
+      "sha256": "d6436c09a9cde3b332765a9d2a3f774617c2c955c72f7b49ff393e71ba9e5a0c",
+      "width": 192,
+      "height": 192,
+      "channels": 4
+    },
+    {
+      "path": "favicons/favicon-192.svg",
+      "bytes": 1725685,
+      "sha256": "f06bd7276764334bb53142b999b23ad456e8359a627fa23ffdf5e68f33d22c61"
+    },
+    {
+      "path": "favicons/favicon-32.png",
+      "bytes": 1388,
+      "sha256": "6789cf5107aeddd4272ad37e72cdc98c23f5dec0eabed9d5f9ff75a080c78200",
+      "width": 32,
+      "height": 32,
+      "channels": 4
+    },
+    {
+      "path": "favicons/favicon-32.svg",
+      "bytes": 1725675,
+      "sha256": "56617f62d4e7a7f7000288a2b6834ea26a1c174de9d5f8e16a2fd524ddcb3c26"
+    },
+    {
+      "path": "favicons/favicon-48.png",
+      "bytes": 2587,
+      "sha256": "d037622c77609476e9f7dbcaf96bf5af0c50c68990685b564b67ed06a25169dc",
+      "width": 48,
+      "height": 48,
+      "channels": 4
+    },
+    {
+      "path": "favicons/favicon-48.svg",
+      "bytes": 1725676,
+      "sha256": "38b14f61a502ce249bf159a9869c30ed9885fab291c4ae52ab8055d6e38ce332"
+    },
+    {
+      "path": "favicons/favicon-512.png",
+      "bytes": 142582,
+      "sha256": "5c3b1ff7d49533ce2136c5abd9d73ae5cfaa2f2b175c9b2fa58278726a86f0e9",
+      "width": 512,
+      "height": 512,
+      "channels": 4
+    },
+    {
+      "path": "favicons/favicon-512.svg",
+      "bytes": 1725688,
+      "sha256": "99e8ea497dfa18b7fb4887dfc351f54c4a24e9aa715b19f2e7b004cba8a95892"
+    },
+    {
+      "path": "favicons/favicon-64.png",
+      "bytes": 4023,
+      "sha256": "e7586c66457a48c4d3e1f48855dd8e8e0b27e00008a733c654e3855b34db386e",
+      "width": 64,
+      "height": 64,
+      "channels": 4
+    },
+    {
+      "path": "favicons/favicon-64.svg",
+      "bytes": 1725676,
+      "sha256": "59f894bd3e3d54da2d56fde9d7316ad64b7b4a62b955c1c589c2918d5dcb4ea9"
+    },
+    {
+      "path": "favicons/favicon.ico",
+      "bytes": 4485,
+      "sha256": "00bf889734c0b8054d23fbf562d81c21e59a7891798dc1c0e845111024c0b5fd"
+    },
+    {
+      "path": "campaigns/banner-dark.png",
+      "bytes": 105374,
+      "sha256": "205c21386898fa6e7ec254d4a5516cce03ac994863d22bb2b03604a410b2458d",
+      "width": 1500,
+      "height": 500,
+      "channels": 4
+    },
+    {
+      "path": "campaigns/banner-dark.svg",
+      "bytes": 1726504,
+      "sha256": "784602dc7e107c285d852f277520d2ce37bc573cb166e6bcf22ff0dc3e943a82"
+    },
+    {
+      "path": "campaigns/banner-light.png",
+      "bytes": 116156,
+      "sha256": "942fbf4c75a1be3192d65198f2e6d035e384b6f349435a28d6795b6f3157c542",
+      "width": 1500,
+      "height": 500,
+      "channels": 4
+    },
+    {
+      "path": "campaigns/banner-light.svg",
+      "bytes": 1726547,
+      "sha256": "421bbc084098210d302f4f12dcefe19bc7cc1d75853d1cb0e3f8fd5a06973288"
+    },
+    {
+      "path": "campaigns/launch-dark.png",
+      "bytes": 142873,
+      "sha256": "9a46cfa081f3982f383b8279f7d9d770ce45894a5431fc9df17ab6f9e9be91b8",
+      "width": 1200,
+      "height": 630,
+      "channels": 4
+    },
+    {
+      "path": "campaigns/launch-dark.svg",
+      "bytes": 1993480,
+      "sha256": "86e6d1667ea531699deafe1690f0d018200ffb68a33fc3d376d4a5f50593cd0b"
+    },
+    {
+      "path": "campaigns/launch-light.png",
+      "bytes": 146024,
+      "sha256": "317406fede8b7b3229dec46a4c3506d8941a58a0dffbf99ec62adbe74af4001d",
+      "width": 1200,
+      "height": 630,
+      "channels": 4
+    },
+    {
+      "path": "campaigns/launch-light.svg",
+      "bytes": 1993387,
+      "sha256": "ebd5f69f81b565301a2dc7f94be18431c21be209ab1b8e8daf40414219a658ba"
+    },
+    {
+      "path": "campaigns/square-dark.png",
+      "bytes": 153190,
+      "sha256": "417d59b07ee751f4f65e3932c6e5215d52af779e81d10760f60fef96eafecdd8",
+      "width": 1080,
+      "height": 1080,
+      "channels": 4
+    },
+    {
+      "path": "campaigns/square-dark.svg",
+      "bytes": 1993484,
+      "sha256": "6edc68b321403515dae38a7761edc418a57653a7160bc9e82e8b670eb34a2598"
+    },
+    {
+      "path": "campaigns/square-light.png",
+      "bytes": 158926,
+      "sha256": "cb9b1c7d8598fcf2114bb938c3308e34e30577e0fac21bd06bedefe9ae34a385",
+      "width": 1080,
+      "height": 1080,
+      "channels": 4
+    },
+    {
+      "path": "campaigns/square-light.svg",
+      "bytes": 1993480,
+      "sha256": "a3116877747efcf08b56e7a4781ceaa4fc7f8fb84c429d0e902e295fada9fe0a"
+    },
+    {
+      "path": "campaigns/story-dark.png",
+      "bytes": 261702,
+      "sha256": "c17d25ef0fc673fe8baac1a684185ad53cc77fcf05b98c9d429eafbf5d2133f2",
+      "width": 1080,
+      "height": 1920,
+      "channels": 4
+    },
+    {
+      "path": "campaigns/story-dark.svg",
+      "bytes": 1993541,
+      "sha256": "dd52e150f0ddaf717c43c623ff5c86d95276e97d65c9d474b2cbca451bc1a19a"
+    },
+    {
+      "path": "campaigns/story-light.png",
+      "bytes": 272114,
+      "sha256": "f3911a293047c2beb1c40a032e624021d17517bc1b64dd4cccbc929e88239b5c",
+      "width": 1080,
+      "height": 1920,
+      "channels": 4
+    },
+    {
+      "path": "campaigns/story-light.svg",
+      "bytes": 1993505,
+      "sha256": "56749dbf1be79634d97f919606bd7893a6ac4655b00abed6beeef68cb9d07169"
+    },
+    {
+      "path": "video/closing-heart.png",
+      "bytes": 319776,
+      "sha256": "46f17c90d9b9b5be7b29de04e4a3a48723ad045fdccf00ae4e6568f3d32cadc7",
+      "width": 1920,
+      "height": 1080,
+      "channels": 4
+    },
+    {
+      "path": "video/closing-heart.svg",
+      "bytes": 1993463,
+      "sha256": "8b6a2723df20aedff15c15cbdf544399d56bfe3e5678feca03f58f6b7df0c817"
+    },
+    {
+      "path": "video/opening-head.png",
+      "bytes": 298156,
+      "sha256": "97a2956950467ef3a3ec230c0957a0eb815ccc69ccab6e8b1f7f0645f84c0dea",
+      "width": 1920,
+      "height": 1080,
+      "channels": 4
+    },
+    {
+      "path": "video/opening-head.svg",
+      "bytes": 1726570,
+      "sha256": "743cc8cf6ddd54d5221a7be46d5562e5fece73cb27f5b98f0047f5179d4b884d"
+    },
+    {
+      "path": "contact/campaign-overview.png",
+      "bytes": 182819,
+      "sha256": "6c0eefc18e46f72d4541b0be169caf1832c5f2f128ede0b6ff4d4ddaa90ba7df",
+      "width": 2000,
+      "height": 1300,
+      "channels": 4
+    },
+    {
+      "path": "contact/campaign-overview.svg",
+      "bytes": 4404444,
+      "sha256": "9898dae40b3a3e985de82309f870d4baf82f1cd2be9babae269a82c399b2e6a4"
+    },
+    {
+      "path": "contact/contact-sheet.png",
+      "bytes": 477969,
+      "sha256": "cf9df2a4582eb44300aa5b2bddf73bc0503f80e75821eb1f6ddbc2666a419240",
+      "width": 2000,
+      "height": 1980,
+      "channels": 4
+    },
+    {
+      "path": "contact/contact-sheet.svg",
+      "bytes": 10122022,
+      "sha256": "15fd1c5358f56fcf0bdb0b2c7bb4f89cac2a1a9c8b215742efef66dba111d0b6"
+    }
+  ]
+}

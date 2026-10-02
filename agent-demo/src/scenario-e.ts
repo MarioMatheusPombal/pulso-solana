@@ -2,7 +2,7 @@ import anchor from "@anchor-lang/core";
 import { getAccount, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { ComputeBudgetProgram, Connection, PublicKey } from "@solana/web3.js";
 import { PULSO_ERRORS, PulsoClient, findIntentPda, getProgram } from "@pulso/sdk";
-import { sendConfirmedFailure, sendConfirmedTransaction } from "./confirmed-failure.js";
+import { reportConfirmed, sendConfirmedFailure, sendConfirmedTransaction } from "./confirmed-failure.js";
 import { loadKeypair, usdc, type DemoAddresses } from "./setup.js";
 
 const { BN } = anchor;
@@ -28,12 +28,13 @@ export interface ScenarioEResult {
 export async function runScenarioE(
   addresses: DemoAddresses,
   log: (line: string) => void = () => {},
+  activityUrl?: string,
 ): Promise<ScenarioEResult> {
   const connection = new Connection(addresses.rpcUrl, "confirmed");
   const human = loadKeypair(addresses.cluster, "human");
   const agent = loadKeypair(addresses.cluster, "agent");
   const recipient = new PublicKey(addresses.merchantTokenAccount);
-  const client = new PulsoClient({ connection, agent, human: human.publicKey });
+  const client = new PulsoClient({ connection, agent, human: human.publicKey, activityUrl });
   const pending = await client.execute({ amount: usdc(100), recipient });
   if (pending.status !== "HUMAN_INTENT_REQUIRED") throw new Error(`Scenario E expected human approval for 100 USDC; got ${pending.status}`);
 
@@ -83,6 +84,10 @@ export async function runScenarioE(
   );
   if (concurrent.some((item) => item.signature === sequentialReplay.signature)) throw new Error("Scenario E sequential replay must have a distinct signature");
 
+  const report = (status: "rejected" | "executed", signature: string, code?: string) => reportConfirmed(activityUrl, { status, authority: human.publicKey, agent: agent.publicKey, policy: client.policy, amount: pending.intent.fields.amount, recipient, actionHash: pending.intent.actionHash, signature, code });
+  await report("executed", successes[0]!.signature);
+  await report("rejected", failures[0]!.signature, PULSO_ERRORS.IntentAlreadyUsed.message);
+  await report("rejected", sequentialReplay.signature, PULSO_ERRORS.IntentAlreadyUsed.message);
   const vaultAfter = (await getAccount(connection, client.vault)).amount;
   const recipientAfter = (await getAccount(connection, recipient)).amount;
   const intentAfter = await program.account.intentAuthorization.fetch(intentPda);

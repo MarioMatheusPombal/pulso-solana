@@ -1,3 +1,9 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MarioMatheusPombal/pulso-solana/main/assets/readme/docbar-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MarioMatheusPombal/pulso-solana/main/assets/readme/docbar-light.svg">
+  <img src="https://raw.githubusercontent.com/MarioMatheusPombal/pulso-solana/main/assets/readme/docbar-dark.svg" alt="PULSO: human authorization for AI agents. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
+</picture>
+
 # PULSO agent demo — cenários A–F
 
 Com `pnpm`, Anchor, Cargo via rustup e Solana CLI instalados, rode `scripts/demo.sh` na raiz do repositório. O script instala as dependências travadas, constrói o programa para SBF v0 e executa A–F. O modo completo exige a porta RPC local `8899` livre; se já houver um validador respondendo, ele aborta antes do cenário e deixa esse processo intacto. Os validadores locais que o demo iniciar são reiniciados entre A/B, C, D e E para manter o estado isolado; F manipula o Clock do LiteSVM e não envia uma transação RPC.

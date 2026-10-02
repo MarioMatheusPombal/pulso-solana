@@ -1,0 +1,2517 @@
+{
+  "status": "ready-for-review",
+  "notice": "NOT AUDITED · DEVNET DEMONSTRATION ONLY",
+  "distinctMediaFileCount": 152,
+  "sourceManifests": [
+    "assets.json",
+    "poses/manifest.json"
+  ],
+  "countsByType": {
+    "poster-png": 64,
+    "animated-svg": 64,
+    "gif-loop": 8,
+    "mp4-h264": 8,
+    "pose-png": 8
+  },
+  "countsByFamily": {
+    "backgrounds": 16,
+    "light-fields": 16,
+    "loops": 32,
+    "orbits": 16,
+    "particles": 16,
+    "poses": 8,
+    "pulse-motifs": 16,
+    "trails": 16,
+    "transitions": 16
+  },
+  "assets": [
+    {
+      "path": "backgrounds/amber-aurora-poster.png",
+      "title": "amber aurora · 2",
+      "family": "backgrounds",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 17927,
+      "sha256": "bb1574fc74802b2d11d136a7db605b7e1ffffcbe9082017f28e1ab1deb05725b",
+      "motionPeriodSeconds": {
+        "min": 8,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "backgrounds/amber-aurora.svg",
+      "title": "amber aurora · 2",
+      "family": "backgrounds",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 1464,
+      "sha256": "3c851d469b96e5d57113b85cf149227d3c44cedb503162326fbc8f147dac690c",
+      "motionPeriodSeconds": {
+        "min": 8,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "backgrounds/amber-aurora-poster.png"
+    },
+    {
+      "path": "backgrounds/contour-waves-poster.png",
+      "title": "contour waves · 4",
+      "family": "backgrounds",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 25873,
+      "sha256": "b8a28604dc58e495bac38002c47ebf599db0cc7eb5717605e55e6b00d1913cbc",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "backgrounds/contour-waves.svg",
+      "title": "contour waves · 4",
+      "family": "backgrounds",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 4022,
+      "sha256": "a3fcce8aa2a4a3df31e9b0610a1609a97c61d682bb18a346e28f8468fab966b8",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "backgrounds/contour-waves-poster.png"
+    },
+    {
+      "path": "backgrounds/crosshatch-flow-poster.png",
+      "title": "crosshatch flow · 8",
+      "family": "backgrounds",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 34400,
+      "sha256": "2987f19136948aec089292ae9829b9d9bb7054ee2e4c273276439ad78b66e0da",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "backgrounds/crosshatch-flow.svg",
+      "title": "crosshatch flow · 8",
+      "family": "backgrounds",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 7551,
+      "sha256": "7e6781f499f95115cef6b53bf49ce84b3c4e5679cc8e511d9af47e7988df617c",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "backgrounds/crosshatch-flow-poster.png"
+    },
+    {
+      "path": "backgrounds/dot-matrix-poster.png",
+      "title": "dot matrix · 6",
+      "family": "backgrounds",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 9558,
+      "sha256": "f54e4aa8004dfcc6129e3af406a26b41dd4f45ef84002ce348a1cae5bb6beb66",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "backgrounds/dot-matrix.svg",
+      "title": "dot matrix · 6",
+      "family": "backgrounds",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 89668,
+      "sha256": "6d69f5334bb95040efad9af5e69ff96802c9bba26f8f6e18bb9b8d1f25799166",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json",
+      "posterPath": "backgrounds/dot-matrix-poster.png"
+    },
+    {
+      "path": "backgrounds/halftone-drift-poster.png",
+      "title": "halftone drift · 3",
+      "family": "backgrounds",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 34400,
+      "sha256": "2987f19136948aec089292ae9829b9d9bb7054ee2e4c273276439ad78b66e0da",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "backgrounds/halftone-drift.svg",
+      "title": "halftone drift · 3",
+      "family": "backgrounds",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 7550,
+      "sha256": "3ef7abd44b20147238bdeb0e86290f4de87c612df1a29f7c64a6bd7329f8edf4",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "backgrounds/halftone-drift-poster.png"
+    },
+    {
+      "path": "backgrounds/quiet-grid-poster.png",
+      "title": "quiet grid · 1",
+      "family": "backgrounds",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 10885,
+      "sha256": "f4a4c653022c90ef1e36e6f10e1813f026d50926a2e02c3fb96959d87a52f49d",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "backgrounds/quiet-grid.svg",
+      "title": "quiet grid · 1",
+      "family": "backgrounds",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 68349,
+      "sha256": "936bf9884e8a9fa4bba56a290c097ebeb0f895ecae7214e5d1a8806d015f3554",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "backgrounds/quiet-grid-poster.png"
+    },
+    {
+      "path": "backgrounds/slow-tide-poster.png",
+      "title": "slow tide · 7",
+      "family": "backgrounds",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 25873,
+      "sha256": "b8a28604dc58e495bac38002c47ebf599db0cc7eb5717605e55e6b00d1913cbc",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "backgrounds/slow-tide.svg",
+      "title": "slow tide · 7",
+      "family": "backgrounds",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 4018,
+      "sha256": "cef4b23833f1bd61000bfde2a5ee0732573c75d8b9d7c1dbfd1cd6f3d3d04ab6",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "backgrounds/slow-tide-poster.png"
+    },
+    {
+      "path": "backgrounds/soft-diagonal-poster.png",
+      "title": "soft diagonal · 5",
+      "family": "backgrounds",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 25873,
+      "sha256": "b8a28604dc58e495bac38002c47ebf599db0cc7eb5717605e55e6b00d1913cbc",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "backgrounds/soft-diagonal.svg",
+      "title": "soft diagonal · 5",
+      "family": "backgrounds",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 4022,
+      "sha256": "515b20e9e5a34de99486a0fd3f5c7d1772ddac5466447440ac65a49267bb4d90",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "backgrounds/soft-diagonal-poster.png"
+    },
+    {
+      "path": "effects/amber-aura-poster.png",
+      "title": "amber aura · 1",
+      "family": "light-fields",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 15921,
+      "sha256": "c1e5ed042752030d72331524f2f46d41b04cbdbb5a3f6afc57afd36719f55ec0",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/amber-aura.svg",
+      "title": "amber aura · 1",
+      "family": "light-fields",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1206,
+      "sha256": "a00f143e15adc80224ea3b8372b881ad3231048bbc6b1de7eefe8c6a6b765d31",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/amber-aura-poster.png"
+    },
+    {
+      "path": "effects/coral-aura-poster.png",
+      "title": "coral aura · 2",
+      "family": "light-fields",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 25746,
+      "sha256": "27ee0696fe52c6047e89e704f8bd5db4456237dfbad95de7828c621f20b20a3d",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/coral-aura.svg",
+      "title": "coral aura · 2",
+      "family": "light-fields",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 1209,
+      "sha256": "774290ce5d46c509a746cabcc29a9b07c706caa2fcc34523d6db33e0f9f1651e",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/coral-aura-poster.png"
+    },
+    {
+      "path": "effects/guardian-halo-poster.png",
+      "title": "guardian halo · 8",
+      "family": "light-fields",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 34098,
+      "sha256": "264d1274f7ea8cef8f6368a1b8952ec9db604da1b507199e46d0d230eb6e8d4c",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/guardian-halo.svg",
+      "title": "guardian halo · 8",
+      "family": "light-fields",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 1212,
+      "sha256": "681789eee8922dd8388e3be3a39b83e16524c2df8e726f8130070584b1117a7a",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/guardian-halo-poster.png"
+    },
+    {
+      "path": "effects/moving-lantern-poster.png",
+      "title": "moving lantern · 5",
+      "family": "light-fields",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 21189,
+      "sha256": "92ca2e26eb88bbf15938879ab53627c56131bd764b76fa1d5852804342a35fdf",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/moving-lantern.svg",
+      "title": "moving lantern · 5",
+      "family": "light-fields",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 1213,
+      "sha256": "2445f54d59a2deda6ca28f25bc737d91433b5bd016d3e6d95b0f45612400a0e9",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/moving-lantern-poster.png"
+    },
+    {
+      "path": "effects/slow-bloom-poster.png",
+      "title": "slow bloom · 4",
+      "family": "light-fields",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 28617,
+      "sha256": "171e5ab739ed3576b6d6166ea083d81c79a6122a4e408350c54e7cf5fd10efae",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/slow-bloom.svg",
+      "title": "slow bloom · 4",
+      "family": "light-fields",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 1209,
+      "sha256": "ed234f2621e4acaf6407ffba7115ff276a16f6dd396a1940090185f3ee2f29f6",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/slow-bloom-poster.png"
+    },
+    {
+      "path": "effects/soft-focus-poster.png",
+      "title": "soft focus · 7",
+      "family": "light-fields",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 23982,
+      "sha256": "6a67af67f4fc2a90aac6e36b6521570d1e0b51a1571d42057fb2cfce3a08d6cd",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/soft-focus.svg",
+      "title": "soft focus · 7",
+      "family": "light-fields",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1209,
+      "sha256": "290f83c790739b156f292e56921638e90252565a9fea9fc66c76bbbc980d9afa",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/soft-focus-poster.png"
+    },
+    {
+      "path": "effects/split-glow-poster.png",
+      "title": "split glow · 3",
+      "family": "light-fields",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 26048,
+      "sha256": "94abf91731e52eca06b07ffcfd39e9bb26d6d822d13a904f48141b3141b1b975",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/split-glow.svg",
+      "title": "split glow · 3",
+      "family": "light-fields",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 1209,
+      "sha256": "4d61e91b3178feb420bdbcecf76c756bec4b348aa859bb0686f0b6736d90d2d0",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "effects/split-glow-poster.png"
+    },
+    {
+      "path": "effects/warm-horizon-poster.png",
+      "title": "warm horizon · 6",
+      "family": "light-fields",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 19050,
+      "sha256": "17544527500ca747df2551d174fcfb4a0f51fab904266221f6d6f2933b678cb3",
+      "motionPeriodSeconds": {
+        "min": 7,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/warm-horizon.svg",
+      "title": "warm horizon · 6",
+      "family": "light-fields",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 1211,
+      "sha256": "9f5983f99536cd186da524b1f69c9c554e6a9edda07e6d2b203dd00840aae6d7",
+      "motionPeriodSeconds": {
+        "min": 7,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "effects/warm-horizon-poster.png"
+    },
+    {
+      "path": "loops/approval-landscape-poster.png",
+      "title": "approval landscape",
+      "family": "loops",
+      "type": "poster-png",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 196952,
+      "sha256": "5e516d89e312f0ee82c8528a6b0afe70d7361cf43433c50a114c10bdf7e40e36",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json"
+    },
+    {
+      "path": "loops/approval-landscape.gif",
+      "title": "approval landscape",
+      "family": "loops",
+      "type": "gif-loop",
+      "width": 480,
+      "height": 270,
+      "durationSeconds": 4,
+      "bytes": 488487,
+      "sha256": "2c82dce55f5302ede46bc8b3b774f5f9c2e2faeaf40a45248c59e2d559cd0fac",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/approval-landscape-poster.png"
+    },
+    {
+      "path": "loops/approval-landscape.mp4",
+      "title": "approval landscape",
+      "family": "loops",
+      "type": "mp4-h264",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 201566,
+      "sha256": "e4d7dc6f89a4224a96e05f114c9e44d8cfdfc5a41cbcce9d572d8863666aeab0",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/approval-landscape-poster.png"
+    },
+    {
+      "path": "loops/approval-landscape.svg",
+      "title": "approval landscape",
+      "family": "loops",
+      "type": "animated-svg",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 2913350,
+      "sha256": "bde151c6605d7d55307b51ad8ab5c4ba95be85915719e3b28a1eda6968987b11",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/approval-landscape-poster.png"
+    },
+    {
+      "path": "loops/approval-portrait-poster.png",
+      "title": "approval portrait",
+      "family": "loops",
+      "type": "poster-png",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 4,
+      "bytes": 93506,
+      "sha256": "cfb22c6cbfd05d46959a97b9afbfdbbd61bd738b3f75280e4337b8aba352cc04",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json"
+    },
+    {
+      "path": "loops/approval-portrait.gif",
+      "title": "approval portrait",
+      "family": "loops",
+      "type": "gif-loop",
+      "width": 270,
+      "height": 480,
+      "durationSeconds": 4,
+      "bytes": 240044,
+      "sha256": "6015bf405fc85759539bcaca70a1c397422c919f0f2b9e3f99b55ff98955d074",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/approval-portrait-poster.png"
+    },
+    {
+      "path": "loops/approval-portrait.mp4",
+      "title": "approval portrait",
+      "family": "loops",
+      "type": "mp4-h264",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 4,
+      "bytes": 183050,
+      "sha256": "396c159e38e6d522ac9c4c73a679a4c24d909b1dc09ca52605cf03ddfbdb7cc5",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/approval-portrait-poster.png"
+    },
+    {
+      "path": "loops/approval-portrait.svg",
+      "title": "approval portrait",
+      "family": "loops",
+      "type": "animated-svg",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 4,
+      "bytes": 6987,
+      "sha256": "285ad55e5d8c204a958f25ef85e39f444e379bbe6f9681d9f75dda0d847760ea",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/approval-portrait-poster.png"
+    },
+    {
+      "path": "loops/closing-landscape-poster.png",
+      "title": "closing landscape",
+      "family": "loops",
+      "type": "poster-png",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 136580,
+      "sha256": "3ccecb8e427302caac4937fd17ebc956bea3a6723356c3a020364fbfbaf8ff66",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json"
+    },
+    {
+      "path": "loops/closing-landscape.gif",
+      "title": "closing landscape",
+      "family": "loops",
+      "type": "gif-loop",
+      "width": 480,
+      "height": 270,
+      "durationSeconds": 4,
+      "bytes": 401661,
+      "sha256": "f8869cbd08778debc3184b243e1c1718d1539348922a0d0d7f9be0cc68bb5c4f",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/closing-landscape-poster.png"
+    },
+    {
+      "path": "loops/closing-landscape.mp4",
+      "title": "closing landscape",
+      "family": "loops",
+      "type": "mp4-h264",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 227394,
+      "sha256": "f132fb5c1ce45f91bcc4e6dc8e083a64d609ef4afc74eb8c9d60b2b00d0b7d64",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/closing-landscape-poster.png"
+    },
+    {
+      "path": "loops/closing-landscape.svg",
+      "title": "closing landscape",
+      "family": "loops",
+      "type": "animated-svg",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 2912671,
+      "sha256": "78cdfbc882844d91ced2db043535b50da5b3af3d50c0bc88868df1c369a5500d",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/closing-landscape-poster.png"
+    },
+    {
+      "path": "loops/identity-square-poster.png",
+      "title": "identity square",
+      "family": "loops",
+      "type": "poster-png",
+      "width": 1080,
+      "height": 1080,
+      "durationSeconds": 4,
+      "bytes": 231555,
+      "sha256": "e57ec4b9c159811dcf09163b12759c0b4cb96eea23d118ec82620e7744acf15c",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json"
+    },
+    {
+      "path": "loops/identity-square.gif",
+      "title": "identity square",
+      "family": "loops",
+      "type": "gif-loop",
+      "width": 480,
+      "height": 480,
+      "durationSeconds": 4,
+      "bytes": 680980,
+      "sha256": "43467b94835308d233e5cd2f69eadbf5eaee02eb2b96edb48a6e16d5228f78bc",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/identity-square-poster.png"
+    },
+    {
+      "path": "loops/identity-square.mp4",
+      "title": "identity square",
+      "family": "loops",
+      "type": "mp4-h264",
+      "width": 1080,
+      "height": 1080,
+      "durationSeconds": 4,
+      "bytes": 265622,
+      "sha256": "e6ba2f417b11e1b71db01d6465b80d6d5c9ae5447ee1e856099bcf615622489f",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/identity-square-poster.png"
+    },
+    {
+      "path": "loops/identity-square.svg",
+      "title": "identity square",
+      "family": "loops",
+      "type": "animated-svg",
+      "width": 1080,
+      "height": 1080,
+      "durationSeconds": 4,
+      "bytes": 2912628,
+      "sha256": "c9ac9b31cc81e774fa15f124838f6d37704d133db66b5468e97b0b05e783997d",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/identity-square-poster.png"
+    },
+    {
+      "path": "loops/orbit-square-poster.png",
+      "title": "orbit square",
+      "family": "loops",
+      "type": "poster-png",
+      "width": 1080,
+      "height": 1080,
+      "durationSeconds": 4,
+      "bytes": 82706,
+      "sha256": "aa66ea56c9b5d30c1aaccca434c6e8845bb5b182c82a9015ee5cb3f0e7f0d312",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json"
+    },
+    {
+      "path": "loops/orbit-square.gif",
+      "title": "orbit square",
+      "family": "loops",
+      "type": "gif-loop",
+      "width": 480,
+      "height": 480,
+      "durationSeconds": 4,
+      "bytes": 566068,
+      "sha256": "6faeccb32267e1fb726ea77039374eb06eb6e00642ffcc7c65068f5c00fea49c",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/orbit-square-poster.png"
+    },
+    {
+      "path": "loops/orbit-square.mp4",
+      "title": "orbit square",
+      "family": "loops",
+      "type": "mp4-h264",
+      "width": 1080,
+      "height": 1080,
+      "durationSeconds": 4,
+      "bytes": 550317,
+      "sha256": "560e12cf2adeefab52f14c105295d2f266a0ba0e6232b979710b462c44b74d0a",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/orbit-square-poster.png"
+    },
+    {
+      "path": "loops/orbit-square.svg",
+      "title": "orbit square",
+      "family": "loops",
+      "type": "animated-svg",
+      "width": 1080,
+      "height": 1080,
+      "durationSeconds": 4,
+      "bytes": 7116,
+      "sha256": "ca7471a9a81d3ff473ee6e0bd5702bb6d2d50e1de8a429cb929814d29665b752",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/orbit-square-poster.png"
+    },
+    {
+      "path": "loops/quiet-landscape-poster.png",
+      "title": "quiet landscape",
+      "family": "loops",
+      "type": "poster-png",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 68849,
+      "sha256": "958de9be3357589ff61d83dcaa5e1155b088da341ac5af8f3b6668c5a7fb0e91",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json"
+    },
+    {
+      "path": "loops/quiet-landscape.gif",
+      "title": "quiet landscape",
+      "family": "loops",
+      "type": "gif-loop",
+      "width": 480,
+      "height": 270,
+      "durationSeconds": 4,
+      "bytes": 299388,
+      "sha256": "0c18e8699e8a188b383fd561efe4ecf9671f63c472602d6f5b0ac60a9ecf6cb1",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/quiet-landscape-poster.png"
+    },
+    {
+      "path": "loops/quiet-landscape.mp4",
+      "title": "quiet landscape",
+      "family": "loops",
+      "type": "mp4-h264",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 211640,
+      "sha256": "da9ce6a5e1e3e02d557603aa14ddd7c8b3be601ccb973c8fac95023ab24f6777",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/quiet-landscape-poster.png"
+    },
+    {
+      "path": "loops/quiet-landscape.svg",
+      "title": "quiet landscape",
+      "family": "loops",
+      "type": "animated-svg",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 8658,
+      "sha256": "dbc3b40ff5e16b2566f7d188440d5093784af2a79135b8843b6b5673b493feee",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/quiet-landscape-poster.png"
+    },
+    {
+      "path": "loops/signal-landscape-poster.png",
+      "title": "signal landscape",
+      "family": "loops",
+      "type": "poster-png",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 53820,
+      "sha256": "80bf33fe63ed2e94b4cc8050981d5d777237f1ec275feef493e192e0921a6b96",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json"
+    },
+    {
+      "path": "loops/signal-landscape.gif",
+      "title": "signal landscape",
+      "family": "loops",
+      "type": "gif-loop",
+      "width": 480,
+      "height": 270,
+      "durationSeconds": 4,
+      "bytes": 247776,
+      "sha256": "6d3251775d301c347737e1a4b6f1f89439ea2c7b55752db4b45595207407f031",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/signal-landscape-poster.png"
+    },
+    {
+      "path": "loops/signal-landscape.mp4",
+      "title": "signal landscape",
+      "family": "loops",
+      "type": "mp4-h264",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 139373,
+      "sha256": "545c369bfd52bbc30a636cdeee493df1d3e0b23b8fb5bcd5db8de4a37de4bde9",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/signal-landscape-poster.png"
+    },
+    {
+      "path": "loops/signal-landscape.svg",
+      "title": "signal landscape",
+      "family": "loops",
+      "type": "animated-svg",
+      "width": 1280,
+      "height": 720,
+      "durationSeconds": 4,
+      "bytes": 7048,
+      "sha256": "049b47d2b546a077c38ad168c92cb1729fe9250160bcd682dc9931c4adb4f387",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/signal-landscape-poster.png"
+    },
+    {
+      "path": "loops/story-portrait-poster.png",
+      "title": "story portrait",
+      "family": "loops",
+      "type": "poster-png",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 4,
+      "bytes": 252863,
+      "sha256": "2c946e58b220f47ead6b60c755928a13446d53166a0f6ef224b02d357d90ef9e",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json"
+    },
+    {
+      "path": "loops/story-portrait.gif",
+      "title": "story portrait",
+      "family": "loops",
+      "type": "gif-loop",
+      "width": 270,
+      "height": 480,
+      "durationSeconds": 4,
+      "bytes": 353919,
+      "sha256": "6c505d7085180e600e26728440d997c6ed776d9c0e3669b032f0dc8222ce7c9d",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/story-portrait-poster.png"
+    },
+    {
+      "path": "loops/story-portrait.mp4",
+      "title": "story portrait",
+      "family": "loops",
+      "type": "mp4-h264",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 4,
+      "bytes": 259209,
+      "sha256": "c60c65630efffd38a97e7b31c7369ed19e84488a6c7b775dc97e9d81f69a60a7",
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/story-portrait-poster.png"
+    },
+    {
+      "path": "loops/story-portrait.svg",
+      "title": "story portrait",
+      "family": "loops",
+      "type": "animated-svg",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 4,
+      "bytes": 2912726,
+      "sha256": "0215f8c6c9da2b4a8c541f1c1dc7fa2291c533b3c1093c635979caee2246ca50",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "frames": 48,
+      "frameRate": 12,
+      "source": "assets.json",
+      "posterPath": "loops/story-portrait-poster.png"
+    },
+    {
+      "path": "effects/crossing-rings-poster.png",
+      "title": "crossing rings · 4",
+      "family": "orbits",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 8707,
+      "sha256": "b234393a6052c2e3070d6e54101aad2b5c9f05ce69f3d3f5fe061fc07b8ea652",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/crossing-rings.svg",
+      "title": "crossing rings · 4",
+      "family": "orbits",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1110,
+      "sha256": "68a57a8dbff5f157853f302292c776c5345e7f0762ce7a5a72e106318a34ee32",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/crossing-rings-poster.png"
+    },
+    {
+      "path": "effects/dashed-orbit-poster.png",
+      "title": "dashed orbit · 6",
+      "family": "orbits",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 8954,
+      "sha256": "62c3682eec28a808bbdc22326fed7696081d5ba5cde6ec600cfe7433013796c0",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/dashed-orbit.svg",
+      "title": "dashed orbit · 6",
+      "family": "orbits",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 1596,
+      "sha256": "6a01aff3ff81b54b4d457ff5e3a0d6fff2555c593a24070917f1dbb34f7c6384",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "effects/dashed-orbit-poster.png"
+    },
+    {
+      "path": "effects/double-orbit-poster.png",
+      "title": "double orbit · 2",
+      "family": "orbits",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 6831,
+      "sha256": "0d9a745fe825a199334a30d7421b0a90dfcfa61c00571217a4e7984ff824c860",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/double-orbit.svg",
+      "title": "double orbit · 2",
+      "family": "orbits",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 1307,
+      "sha256": "b83028cdfa21567c31fc6d11fde124da9844c4dda599d62a2e1af2a879e2ac19",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/double-orbit-poster.png"
+    },
+    {
+      "path": "effects/elliptic-guard-poster.png",
+      "title": "elliptic guard · 3",
+      "family": "orbits",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 8549,
+      "sha256": "24319cfc2579baee5d831c12b3ba09a162984eb582a8646f215358ee3b73d6f9",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 8
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/elliptic-guard.svg",
+      "title": "elliptic guard · 3",
+      "family": "orbits",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 8,
+      "bytes": 1628,
+      "sha256": "65f3b92bfe9e34e74c6cb1c4c206338fdf15e62e4acf021ff6c63cbc7202d750",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 8
+      },
+      "source": "assets.json",
+      "posterPath": "effects/elliptic-guard-poster.png"
+    },
+    {
+      "path": "effects/halo-gate-poster.png",
+      "title": "halo gate · 7",
+      "family": "orbits",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 7894,
+      "sha256": "369e53a017fd1c7dfde84acb6800d8cc14ca2b879f4fd0edc9de0c505a8287d7",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/halo-gate.svg",
+      "title": "halo gate · 7",
+      "family": "orbits",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1105,
+      "sha256": "906e32697b21056bd739c3a1f4d491bd3f6b14d59e624654dba7ef6c545031e8",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/halo-gate-poster.png"
+    },
+    {
+      "path": "effects/orbiting-heart-poster.png",
+      "title": "orbiting heart · 8",
+      "family": "orbits",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 10026,
+      "sha256": "e7eefbd239adda93410a7c1f93bc6a72e8202856fabb439525fa6fa545858aac",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/orbiting-heart.svg",
+      "title": "orbiting heart · 8",
+      "family": "orbits",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 1309,
+      "sha256": "e9a13daf1c5e73336fa1389a15527dbe14e9475c02126aa0236d329821e09154",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/orbiting-heart-poster.png"
+    },
+    {
+      "path": "effects/quiet-orbit-poster.png",
+      "title": "quiet orbit · 1",
+      "family": "orbits",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 4355,
+      "sha256": "3beb0bec4c61fe647abbab913b6ab1a139687db9771ef6646f106b14b5c7f4d0",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/quiet-orbit.svg",
+      "title": "quiet orbit · 1",
+      "family": "orbits",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1102,
+      "sha256": "d8d0a672b44fdfa3e706eb2a65643fe448b48b1cb0a55d176209617e49dd0c8a",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/quiet-orbit-poster.png"
+    },
+    {
+      "path": "effects/satellite-ring-poster.png",
+      "title": "satellite ring · 5",
+      "family": "orbits",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 6435,
+      "sha256": "4f745a246caf2fceaf3b9758b9a7754d384de2a25fd4ee117b8dd4fae7549cf2",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/satellite-ring.svg",
+      "title": "satellite ring · 5",
+      "family": "orbits",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 1307,
+      "sha256": "ca4214edc9fbdf9d6942db54d4f59d6e877258945dd60cad2bdc0b5e32cdfc00",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/satellite-ring-poster.png"
+    },
+    {
+      "path": "effects/constellation-poster.png",
+      "title": "constellation · 5",
+      "family": "particles",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 1721,
+      "sha256": "8154e0a9a9f06209e1ff4ead6da295e088bd6dc15f700be8983b0a69de45037d",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/constellation.svg",
+      "title": "constellation · 5",
+      "family": "particles",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 5103,
+      "sha256": "5de46226c48f3fda20244c640c7e03f302cb4cb761195b3cab01d217db839813",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/constellation-poster.png"
+    },
+    {
+      "path": "effects/dust-poster.png",
+      "title": "dust · 1",
+      "family": "particles",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 2045,
+      "sha256": "93da03bd1f9f92b15501da2bd3121f69292633f920c01f9681d74a3b831f2e56",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/dust.svg",
+      "title": "dust · 1",
+      "family": "particles",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 7390,
+      "sha256": "fd5e0d1df5be60394a0d0d55f47254ede9a1e29be905f5a882dc2c9d093f0f1d",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/dust-poster.png"
+    },
+    {
+      "path": "effects/embers-poster.png",
+      "title": "embers · 3",
+      "family": "particles",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 2041,
+      "sha256": "aa1a209b92f5d6e94589b7ad78cbd9075a1edcf2aeba605854ccaf06d87f365a",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/embers.svg",
+      "title": "embers · 3",
+      "family": "particles",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 7398,
+      "sha256": "350cb469380a63a93e47bb34f01508114c483316d5dcdeeedbb9d0e35673d1e4",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/embers-poster.png"
+    },
+    {
+      "path": "effects/fireflies-poster.png",
+      "title": "fireflies · 4",
+      "family": "particles",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 2041,
+      "sha256": "072f6233860d10c723e0842d43fe0db42bf350f555fc938cdda629a74368dde7",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/fireflies.svg",
+      "title": "fireflies · 4",
+      "family": "particles",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 7401,
+      "sha256": "0658e098af7c06883e624b6ee0501b28464acbf379084e5f031138c32d0e63ad",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/fireflies-poster.png"
+    },
+    {
+      "path": "effects/pollen-poster.png",
+      "title": "pollen · 7",
+      "family": "particles",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 2043,
+      "sha256": "dc04b44f9f6dfc452c92be53be1484934edc618a9fac7532c1a00d8f3e800215",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/pollen.svg",
+      "title": "pollen · 7",
+      "family": "particles",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 7398,
+      "sha256": "ae6b4d024e369ac2265504d61c90bdba718c72f08b536d3112f57d2c066bb083",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/pollen-poster.png"
+    },
+    {
+      "path": "effects/signal-motes-poster.png",
+      "title": "signal motes · 8",
+      "family": "particles",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 2042,
+      "sha256": "fb33041d0556cd510081b3e6ee5bff7c6f17891b02c0823383c657cb33d9efb8",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/signal-motes.svg",
+      "title": "signal motes · 8",
+      "family": "particles",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 7402,
+      "sha256": "25465077bf778b127ea29d54b12cd8a22e459b36bfa239bc69b4b0bc749824b1",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/signal-motes-poster.png"
+    },
+    {
+      "path": "effects/snow-poster.png",
+      "title": "snow · 6",
+      "family": "particles",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 2042,
+      "sha256": "00acbd339b00c0d5da9b871eb476f4ceb51aa4fceb86b12abb5e58e91ddcef91",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/snow.svg",
+      "title": "snow · 6",
+      "family": "particles",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 7388,
+      "sha256": "a60d2a6ae42f068344e1f03c3e6a3f9116f92088751f727750849bcd03a8407b",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/snow-poster.png"
+    },
+    {
+      "path": "effects/sparks-poster.png",
+      "title": "sparks · 2",
+      "family": "particles",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 2647,
+      "sha256": "bdb916ffd9c9445254c4ebac7bae38dd4e9a07c99faa613119a82271439d19cd",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/sparks.svg",
+      "title": "sparks · 2",
+      "family": "particles",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 7,
+      "bytes": 7670,
+      "sha256": "5aeb92e78b46bf025043e4aa9e2d8d38aea28279408199a9644f3ab000c36264",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 7
+      },
+      "source": "assets.json",
+      "posterPath": "effects/sparks-poster.png"
+    },
+    {
+      "path": "poses/celebrating-subtle-hand-raise.png",
+      "title": "Celebrating Subtle Hand Raise",
+      "family": "poses",
+      "type": "pose-png",
+      "width": 1254,
+      "height": 1254,
+      "durationSeconds": null,
+      "fps": null,
+      "bytes": 1382272,
+      "sha256": "bdb86f700f7c7cd6dc36a619b44ed118a390813d6208dbaef88c1379cca72709",
+      "source": "poses/manifest.json"
+    },
+    {
+      "path": "poses/crossed-arms-watchful.png",
+      "title": "Crossed Arms Watchful",
+      "family": "poses",
+      "type": "pose-png",
+      "width": 1254,
+      "height": 1254,
+      "durationSeconds": null,
+      "fps": null,
+      "bytes": 1433331,
+      "sha256": "0ae5102c09f201370dbf23c6d7debafb93cc5c9ccb4fc0fe304c192eb1883e8d",
+      "source": "poses/manifest.json"
+    },
+    {
+      "path": "poses/offering-heart-forward.png",
+      "title": "Offering Heart Forward",
+      "family": "poses",
+      "type": "pose-png",
+      "width": 1254,
+      "height": 1254,
+      "durationSeconds": null,
+      "fps": null,
+      "bytes": 1480008,
+      "sha256": "c4023bfb8cf203fc7479a4dd603f4cfef1242b99255cc5745fa59814128c500a",
+      "source": "poses/manifest.json"
+    },
+    {
+      "path": "poses/pointing-left.png",
+      "title": "Pointing Left",
+      "family": "poses",
+      "type": "pose-png",
+      "width": 1254,
+      "height": 1254,
+      "durationSeconds": null,
+      "fps": null,
+      "bytes": 963154,
+      "sha256": "d8f3b8449acee4f9814047e7b589f66bbc399d2ad1e4ceba94b1dbc063cae16f",
+      "source": "poses/manifest.json"
+    },
+    {
+      "path": "poses/pointing-right.png",
+      "title": "Pointing Right",
+      "family": "poses",
+      "type": "pose-png",
+      "width": 1254,
+      "height": 1254,
+      "durationSeconds": null,
+      "fps": null,
+      "bytes": 1699373,
+      "sha256": "2a11a367200e9e1792ce4cf5e1ef4be349b6e38ee695106647cf3667a40d823e",
+      "source": "poses/manifest.json"
+    },
+    {
+      "path": "poses/stop-calm-palm.png",
+      "title": "Stop Calm Palm",
+      "family": "poses",
+      "type": "pose-png",
+      "width": 1254,
+      "height": 1254,
+      "durationSeconds": null,
+      "fps": null,
+      "bytes": 1140060,
+      "sha256": "75d7ad155687740ee01f4bfd4ca27ce53e3a9c50d930cbaaa8bafbf86aa7e574",
+      "source": "poses/manifest.json"
+    },
+    {
+      "path": "poses/thinking-hand-chin.png",
+      "title": "Thinking Hand Chin",
+      "family": "poses",
+      "type": "pose-png",
+      "width": 1254,
+      "height": 1254,
+      "durationSeconds": null,
+      "fps": null,
+      "bytes": 1323613,
+      "sha256": "c8d67b69b2e72c35804fb7da47b7b317a5ce6fea826bfd7faeedba63721c6a19",
+      "source": "poses/manifest.json"
+    },
+    {
+      "path": "poses/welcoming-open-hand.png",
+      "title": "Welcoming Open Hand",
+      "family": "poses",
+      "type": "pose-png",
+      "width": 1254,
+      "height": 1254,
+      "durationSeconds": null,
+      "fps": null,
+      "bytes": 1146682,
+      "sha256": "5b86de47433483ef92ad58eb7fd024b33e1a0f1683a5712708cb54be604ead01",
+      "source": "poses/manifest.json"
+    },
+    {
+      "path": "effects/authority-beat-poster.png",
+      "title": "authority beat · 4",
+      "family": "pulse-motifs",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 3746,
+      "sha256": "5d8ab196368fc236e40e0662844949fe6ce7e0614e7912ac658890c199b25e47",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/authority-beat.svg",
+      "title": "authority beat · 4",
+      "family": "pulse-motifs",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 1064,
+      "sha256": "a3639384f0ddb1415e0a5ce664cd0e0c7bd87dca091ed734c4748e3bd0105cc3",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json",
+      "posterPath": "effects/authority-beat-poster.png"
+    },
+    {
+      "path": "effects/contained-pulse-poster.png",
+      "title": "contained pulse · 5",
+      "family": "pulse-motifs",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 6734,
+      "sha256": "ccd3972e3297cd016666914745cad2c3132a7a90f5f481f6718436da0c5a9b50",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/contained-pulse.svg",
+      "title": "contained pulse · 5",
+      "family": "pulse-motifs",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 1937,
+      "sha256": "d8126ba4daf03c806f33a50da0bc27a110f9da6d0f8f2f0ff82a4f6615d31d20",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json",
+      "posterPath": "effects/contained-pulse-poster.png"
+    },
+    {
+      "path": "effects/double-heartbeat-poster.png",
+      "title": "double heartbeat · 3",
+      "family": "pulse-motifs",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 3375,
+      "sha256": "9dbac9ccc73ec8ce4bc4beb2a6da5348d59d31cc6e280b9e2c89dc80f7c91a43",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/double-heartbeat.svg",
+      "title": "double heartbeat · 3",
+      "family": "pulse-motifs",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1618,
+      "sha256": "102fd31bf5b196f924771054b19c3d650df6012383176463bb64ec333d3b23b7",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/double-heartbeat-poster.png"
+    },
+    {
+      "path": "effects/heart-outline-poster.png",
+      "title": "heart outline · 2",
+      "family": "pulse-motifs",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 8169,
+      "sha256": "a85f6ccdaef9734e7d0f6c7346e835cf04a8b66dc5acbb5dec1ef4407da3ba01",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/heart-outline.svg",
+      "title": "heart outline · 2",
+      "family": "pulse-motifs",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 1479,
+      "sha256": "749abe95416395248dfb5a65486a0649bb3190705c1ab72675d586d82e22f38c",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json",
+      "posterPath": "effects/heart-outline-poster.png"
+    },
+    {
+      "path": "effects/heart-window-poster.png",
+      "title": "heart window · 8",
+      "family": "pulse-motifs",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 10551,
+      "sha256": "6536fe6369aae71c9daf7ad326a523c02f95c9146525b88e589b89a005690175",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/heart-window.svg",
+      "title": "heart window · 8",
+      "family": "pulse-motifs",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 1434,
+      "sha256": "d2325821d4244ea869abb8b67ad0e416c029ac22e762aab6dd8272ab11feafc2",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json",
+      "posterPath": "effects/heart-window-poster.png"
+    },
+    {
+      "path": "effects/ripple-heart-poster.png",
+      "title": "ripple heart · 6",
+      "family": "pulse-motifs",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 3012,
+      "sha256": "1dd0353fb9fa0b9e3e7eab4e143c004d6f571d20bc78ca2bfc6d32cc7cd23c97",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/ripple-heart.svg",
+      "title": "ripple heart · 6",
+      "family": "pulse-motifs",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1110,
+      "sha256": "c5c6875c18e283d1e6359806071df62ff03b5c4a0301de7e176d93f9f624b953",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/ripple-heart-poster.png"
+    },
+    {
+      "path": "effects/soft-pulse-poster.png",
+      "title": "soft pulse · 1",
+      "family": "pulse-motifs",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 2547,
+      "sha256": "ea0a9fe7c16ba494606dafd332a23e20be800e98243a3c339e15b3a75ba14625",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 5
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/soft-pulse.svg",
+      "title": "soft pulse · 1",
+      "family": "pulse-motifs",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 1564,
+      "sha256": "6a5d2ea9d0e725514a926dfe8e2730a61b0088702b95da6dfdd94294e9ee8303",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 5
+      },
+      "source": "assets.json",
+      "posterPath": "effects/soft-pulse-poster.png"
+    },
+    {
+      "path": "effects/steady-signal-poster.png",
+      "title": "steady signal · 7",
+      "family": "pulse-motifs",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 3321,
+      "sha256": "d47e512f844e0e36cbccca7203666b3cb4454012f51a240c7aab94af0fc0c371",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 5
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/steady-signal.svg",
+      "title": "steady signal · 7",
+      "family": "pulse-motifs",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 1615,
+      "sha256": "f56a861aec29194b945cd9738941f6067ce2a8d115c3318f1fb6625fe43b5750",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 5
+      },
+      "source": "assets.json",
+      "posterPath": "effects/steady-signal-poster.png"
+    },
+    {
+      "path": "effects/beacon-path-poster.png",
+      "title": "beacon path · 7",
+      "family": "trails",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 4315,
+      "sha256": "9cd962e6e72d0ef4d19c5f5da882b599b2c6af780447186b152e6777d37d7b33",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/beacon-path.svg",
+      "title": "beacon path · 7",
+      "family": "trails",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 903,
+      "sha256": "84f386fee52aaa5b69bea092b67c06b72dfd95ce3e44b4443a7465e5a24be546",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json",
+      "posterPath": "effects/beacon-path-poster.png"
+    },
+    {
+      "path": "effects/comet-arc-poster.png",
+      "title": "comet arc · 4",
+      "family": "trails",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 4343,
+      "sha256": "072ad211dffb5c4f16b06d30e6dc248b64ba016e8034245444be6c51bf85ea31",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/comet-arc.svg",
+      "title": "comet arc · 4",
+      "family": "trails",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 899,
+      "sha256": "45f4e2de21fccc69c8aba155b80fca1afb058ff29178340fd64fad7c68945662",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json",
+      "posterPath": "effects/comet-arc-poster.png"
+    },
+    {
+      "path": "effects/double-current-poster.png",
+      "title": "double current · 5",
+      "family": "trails",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 9464,
+      "sha256": "0596146df0ff504a81a166340771ac75ac3784382d46b5da704bb51777664713",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/double-current.svg",
+      "title": "double current · 5",
+      "family": "trails",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 1318,
+      "sha256": "46668d3f99b6af1d4f19af808bb02df9102d1e9f64ac283377806ac8eb014a04",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json",
+      "posterPath": "effects/double-current-poster.png"
+    },
+    {
+      "path": "effects/heart-trace-poster.png",
+      "title": "heart trace · 8",
+      "family": "trails",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 9690,
+      "sha256": "bc12fa6465be0ffdd0b911f7a29e9791559a28c184888c5d2216ecc0b33a8350",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/heart-trace.svg",
+      "title": "heart trace · 8",
+      "family": "trails",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 1315,
+      "sha256": "2a86d8da918596de35c8319d00c73b4d25881ee55e899283f6180360a344d0b3",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json",
+      "posterPath": "effects/heart-trace-poster.png"
+    },
+    {
+      "path": "effects/orbit-trail-poster.png",
+      "title": "orbit trail · 3",
+      "family": "trails",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 12590,
+      "sha256": "4e6554b1ae70457dfa6b999de3cfef5e6cd24bcb843d1e3fc1ec6c2e4738747c",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/orbit-trail.svg",
+      "title": "orbit trail · 3",
+      "family": "trails",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1719,
+      "sha256": "b11e56a926bbd08f64aa7d775ef5c18a696f2cb8a7a9440033a10d88a88e87f5",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/orbit-trail-poster.png"
+    },
+    {
+      "path": "effects/pulse-trail-poster.png",
+      "title": "pulse trail · 1",
+      "family": "trails",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 3967,
+      "sha256": "5fc3488f5234376ee3d17d68e1236d56b0ed5693f73c62bff4b3876840a13bb3",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/pulse-trail.svg",
+      "title": "pulse trail · 1",
+      "family": "trails",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 4,
+      "bytes": 901,
+      "sha256": "f9324cc5594913793701093ec3e1ce612e697ba8a6a0ed542249614e2138bfba",
+      "motionPeriodSeconds": {
+        "min": 4,
+        "max": 4
+      },
+      "source": "assets.json",
+      "posterPath": "effects/pulse-trail-poster.png"
+    },
+    {
+      "path": "effects/silk-ribbon-poster.png",
+      "title": "silk ribbon · 2",
+      "family": "trails",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 9960,
+      "sha256": "8f27f4b06230f49bdc389da2a9c488980d23c5a550e2fe83f1cd124f027aaa27",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/silk-ribbon.svg",
+      "title": "silk ribbon · 2",
+      "family": "trails",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 5,
+      "bytes": 1311,
+      "sha256": "84716f433aa9001b4832da09854f3639f67381a1a9b7bec5ea5e917f04c7720c",
+      "motionPeriodSeconds": {
+        "min": 5,
+        "max": 5
+      },
+      "source": "assets.json",
+      "posterPath": "effects/silk-ribbon-poster.png"
+    },
+    {
+      "path": "effects/wave-ribbon-poster.png",
+      "title": "wave ribbon · 6",
+      "family": "trails",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 12197,
+      "sha256": "1c67f934b0c3f84c3ce1abea64dd91b160ab51c745add2cf1d19a96b05528407",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/wave-ribbon.svg",
+      "title": "wave ribbon · 6",
+      "family": "trails",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 1725,
+      "sha256": "2f0332937cf2db65e4ed7ff21ee63cf77770229cdea297f2056a2ad2394e0d1e",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/wave-ribbon-poster.png"
+    },
+    {
+      "path": "effects/amber-wipe-poster.png",
+      "title": "amber wipe · 1",
+      "family": "transitions",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 994,
+      "sha256": "e675282bffc8cec839995a93cae37619ac9149f4a6b9939e7bb198e6db77bcdd",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/amber-wipe.svg",
+      "title": "amber wipe · 1",
+      "family": "transitions",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 719,
+      "sha256": "801ad2711633578fdd1446bda9248dd2f58b1e9805f6f94a1fc7c53de597c178",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/amber-wipe-poster.png"
+    },
+    {
+      "path": "effects/diagonal-sweep-poster.png",
+      "title": "diagonal sweep · 7",
+      "family": "transitions",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 7568,
+      "sha256": "b513fa4a9b155c159c1ddbad4af7188bb3decafededc381f5e11418e5008a9d2",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/diagonal-sweep.svg",
+      "title": "diagonal sweep · 7",
+      "family": "transitions",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 763,
+      "sha256": "4239ae0f9e280a6e19d59b7c6ed669038f310ff5f2778f396243cec4d518e90e",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/diagonal-sweep-poster.png"
+    },
+    {
+      "path": "effects/iris-gate-poster.png",
+      "title": "iris gate · 4",
+      "family": "transitions",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 994,
+      "sha256": "e675282bffc8cec839995a93cae37619ac9149f4a6b9939e7bb198e6db77bcdd",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/iris-gate.svg",
+      "title": "iris gate · 4",
+      "family": "transitions",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 710,
+      "sha256": "ad9ca7d4c2687a7b75b78eb9b5884a99713f1510d37ace7765e31aa707118371",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/iris-gate-poster.png"
+    },
+    {
+      "path": "effects/pulse-reveal-poster.png",
+      "title": "pulse reveal · 8",
+      "family": "transitions",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 994,
+      "sha256": "e675282bffc8cec839995a93cae37619ac9149f4a6b9939e7bb198e6db77bcdd",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/pulse-reveal.svg",
+      "title": "pulse reveal · 8",
+      "family": "transitions",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 713,
+      "sha256": "9e1f409027e1a0f6718e1aaad83c23674c0f98f71223617b4c5701d9bc3f14dd",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/pulse-reveal-poster.png"
+    },
+    {
+      "path": "effects/radial-open-poster.png",
+      "title": "radial open · 3",
+      "family": "transitions",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 994,
+      "sha256": "e675282bffc8cec839995a93cae37619ac9149f4a6b9939e7bb198e6db77bcdd",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/radial-open.svg",
+      "title": "radial open · 3",
+      "family": "transitions",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 708,
+      "sha256": "0fb28c3d1c74edf23a592df5f916d2a13b99a2eeb3966ef3dd7ae74671af7731",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/radial-open-poster.png"
+    },
+    {
+      "path": "effects/ripple-reveal-poster.png",
+      "title": "ripple reveal · 6",
+      "family": "transitions",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 994,
+      "sha256": "e675282bffc8cec839995a93cae37619ac9149f4a6b9939e7bb198e6db77bcdd",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/ripple-reveal.svg",
+      "title": "ripple reveal · 6",
+      "family": "transitions",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 714,
+      "sha256": "f80ff36fdb940439f412c8af7872606e80a4aac716842f0a6aeb4f6425e86127",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/ripple-reveal-poster.png"
+    },
+    {
+      "path": "effects/soft-curtain-poster.png",
+      "title": "soft curtain · 2",
+      "family": "transitions",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 6773,
+      "sha256": "7ed8692da6a2678d9daac9b6e0ccb7c074b9b4d7aafbd85e052d832dd2d7e0b6",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/soft-curtain.svg",
+      "title": "soft curtain · 2",
+      "family": "transitions",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 765,
+      "sha256": "438107d70ff03cb08f0c81874800ad7396ea638aeb2ccd382be640f196b16dec",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/soft-curtain-poster.png"
+    },
+    {
+      "path": "effects/split-reveal-poster.png",
+      "title": "split reveal · 5",
+      "family": "transitions",
+      "type": "poster-png",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 5290,
+      "sha256": "66141c5fbecc41c349a10e5ce7ad5876491fee956e06e04c4f5872cd52626efa",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json"
+    },
+    {
+      "path": "effects/split-reveal.svg",
+      "title": "split reveal · 5",
+      "family": "transitions",
+      "type": "animated-svg",
+      "width": 640,
+      "height": 360,
+      "durationSeconds": 6,
+      "bytes": 779,
+      "sha256": "0ec4889c2277a5da694fed64b368a869c53e322d52b591479844d461c6d8d44d",
+      "motionPeriodSeconds": {
+        "min": 6,
+        "max": 6
+      },
+      "source": "assets.json",
+      "posterPath": "effects/split-reveal-poster.png"
+    }
+  ]
+}

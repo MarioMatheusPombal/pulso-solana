@@ -1,9 +1,9 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-  <img src="assets/banner-dark.svg" alt="PULSO — Human Intent Protocol" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/readme/hero-light.svg">
+  <img src="assets/readme/hero-dark.svg" alt="PULSO: human authorization layer for AI agents. The agent holds the wallet. The human holds the authority." width="100%">
 </picture>
 
 <br>
@@ -42,19 +42,19 @@ Hand an agent an unrestricted private key and you inherit every failure mode of 
 PULSO is the third option: **bounded autonomy**.
 
 ```yaml
-shopping-agent:
+payment-agent:
   autonomous:
-    max_per_transaction: 25 USDC
-    max_daily: 100 USDC
-    recipients: [verified_merchants]
+    up_to: 10 USDC
 
   require_human:
-    spend_above: 25 USDC
-    new_recipient: true
+    spend_above: 10 USDC
     permission_change: true
 
+  limits:
+    max_per_transaction: 500 USDC
+    max_daily: 1000 USDC
+
   forbidden:
-    - transfer_wallet_ownership
     - modify_own_policy
 ```
 
@@ -66,17 +66,17 @@ An authorization is not "this agent may use my wallet". It binds **human authori
 
 Change the amount, change the recipient, reuse it, or let it expire — and it stops being valid.
 
-```mermaid
-flowchart TD
-    A["AI Agent wants to act"] --> P{"PULSO Policy<br/>on-chain"}
-    P -->|"within delegated authority"| X["execute"]
-    P -->|"outside authority"| R["HUMAN_INTENT_REQUIRED"]
-    R --> H["Human approves<br/>the exact action"]
-    H --> I["IntentAuthorization PDA<br/>scoped · expiring · single-use"]
-    I --> V{"Program verifies<br/>action_hash"}
-    V -->|"match"| X
-    V -->|"any field changed"| D["reject"]
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/primitive-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/readme/primitive-light.svg">
+  <img src="assets/readme/primitive-dark.svg" alt="One authorization is one exact action: human authority, agent, action, asset, amount, recipient, scope, expiration, nonce and usage count are bound into a single action_hash, signed by the human and enforced on-chain." width="100%">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/flow-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/readme/flow-light.svg">
+  <img src="assets/readme/flow-dark.svg" alt="How an action passes through PULSO. Within delegated authority the agent executes alone. Outside it, the program returns HUMAN_INTENT_REQUIRED, the human approves the exact action (scoped, expiring, single-use) and it executes. If any field changed, or the authorization was reused or expired, the program rejects it." width="100%">
+</picture>
 
 The enforcement lives in the same programmable environment where the agent executes economic actions. That is the reason this is a Solana program and not a backend service: a backend can be bypassed by an agent that simply calls the chain directly.
 
@@ -89,6 +89,12 @@ The enforcement lives in the same programmable environment where the agent execu
 ## Demo scenarios
 
 The local demo runs all scenarios A–F with test USDC and a local Solana validator. The command reports each scenario as `PASS` and stops at the first failure. Scenarios C–E restart local validators to isolate state; F sets the LiteSVM clock past the authorization expiry.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/scenarios-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/readme/scenarios-light.svg">
+  <img src="assets/readme/scenarios-dark.svg" alt="Demo scenarios A to F with the result each one must produce. The table below lists the same results." width="100%">
+</picture>
 
 | | Scenario | Expected |
 |:--:|:--|:--|
@@ -209,7 +215,7 @@ Built for the **Crypto World's Fair** hackathon (Colosseum × Superteam Brasil),
 | What works today | `bash scripts/demo.sh` runs local scenarios A–F with test accounts. |
 | Not in scope | mainnet custody, token, NFT, DAO, KYC, fiat bridge, multi-chain, recommendation or procurement |
 
-**Public demo video:** not available yet.
+**Public demo video:** [A–F demo capture](assets/pulso-demo.mp4) · [English captions](assets/pulso-demo.en.srt). The video is generated in CI from real local-validator runs for A–E; F is labeled as a LiteSVM simulation, not an RPC receipt. **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
 
 ## What PULSO is not
 
@@ -223,9 +229,11 @@ It is not an AI agent, a shopping agent, a procurement tool, a recommendation en
 
 <div align="center">
 <br>
-<sub>
 
-**Give agents money without giving them unlimited power.**
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/footer-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/readme/footer-light.svg">
+  <img src="assets/readme/footer-dark.svg" alt="Give agents money without giving them unlimited power. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
+</picture>
 
-</sub>
 </div>

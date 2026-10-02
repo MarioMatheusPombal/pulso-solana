@@ -1,3 +1,9 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../assets/readme/docbar-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="../assets/readme/docbar-light.svg">
+  <img src="../assets/readme/docbar-dark.svg" alt="PULSO: human authorization for AI agents. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
+</picture>
+
 > **NOT AUDITED · DEVNET DEMONSTRATION ONLY.** Prototype architecture, not production custody.
 > Published spec — see the [README](../README.md) for context.
 

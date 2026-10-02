@@ -69,7 +69,9 @@ export function parseActivity(body: unknown): { error: string } | { value: Activ
     return { error: "confirmed activity requires a transaction signature" };
   }
   if (status === "executed" && !actionHash) return { error: "executed activity requires actionHash" };
-  if ((status === "blocked" || status === "rejected") && (evidence !== "simulation" || !code || signature)) {
+  if (status === "rejected" && evidence === "confirmed_transaction") {
+    if (!code || !signature) return { error: "confirmed rejection requires a known program error code and transaction signature" };
+  } else if ((status === "blocked" || status === "rejected") && (evidence !== "simulation" || !code || signature)) {
     return { error: "simulation activity requires a known program error code" };
   }
   if (status === "blocked" && code !== "PULSO_003_HUMAN_INTENT_REQUIRED" && code !== "PULSO_007_RECIPIENT_NOT_ALLOWED") {

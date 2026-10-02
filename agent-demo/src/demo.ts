@@ -100,21 +100,22 @@ export async function runDemo(o: DemoOptions = {}): Promise<DemoResult | Scenari
     }
     const addresses = await setup({ cluster: "localnet" });
     const connection = new Connection(addresses.rpcUrl, "confirmed");
+    const activityUrl = o.activityUrl ?? (process.env.PULSO_ACTIVITY_URL?.trim() || undefined);
     if (o.scenario === "C") {
       log("\n=== Scenario C — authorize 100 USDC, tamper to 150 USDC ===");
-      const scenarioC = await runScenarioC(addresses, log);
+      const scenarioC = await runScenarioC(addresses, log, activityUrl);
       log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
       return { scenarioC };
     }
     if (o.scenario === "D") {
       log("\n=== Scenario D — authorize merchant, tamper to another recipient ===");
-      const scenarioD = await runScenarioD(addresses, log);
+      const scenarioD = await runScenarioD(addresses, log, activityUrl);
       log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
       return { scenarioD };
     }
     if (o.scenario === "E") {
       log("\n=== Scenario E — concurrent replay of a one-use authorization ===");
-      const scenarioE = await runScenarioE(addresses, log);
+      const scenarioE = await runScenarioE(addresses, log, activityUrl);
       log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
       return { scenarioE };
     }
@@ -127,7 +128,7 @@ export async function runDemo(o: DemoOptions = {}): Promise<DemoResult | Scenari
     const scenarioA = await runAgent({
       addresses,
       log,
-      activityUrl: o.activityUrl ?? (process.env.PULSO_ACTIVITY_URL?.trim() || undefined),
+      activityUrl,
       actions: [{ label: "Scenario A", amount: usdc(5), recipient: merchant }],
     });
 
@@ -136,7 +137,7 @@ export async function runDemo(o: DemoOptions = {}): Promise<DemoResult | Scenari
       addresses,
       log,
       approvalsUrl: mode === "ui" ? o.approvalsUrl ?? "http://localhost:3000" : undefined,
-      activityUrl: o.activityUrl ?? (process.env.PULSO_ACTIVITY_URL?.trim() || undefined),
+      activityUrl,
       waitOptions: mode === "ui" ? { timeoutMs: 300_000 } : { timeoutMs: 30_000, initialDelayMs: 200, maxDelayMs: 1_000 },
       actions: [{ label: "Scenario B", amount: usdc(100), recipient: merchant }],
       onPause: async (pending) => {
@@ -226,6 +227,14 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     console.error("--all cannot be combined with --scenario");
     process.exit(1);
   }
+  // Brand header for whoever watches the terminal. Plain text when piped or when NO_COLOR is set.
+  const color = process.stdout.isTTY && !process.env.NO_COLOR;
+  const amber = (text: string) => (color ? `[38;2;255;176;32m${text}[0m` : text);
+  console.log(`${amber("▁▁▁▁▁▁▂▁▁█▁▃▁▁▁▁▁▁  PULSO")} · human authorization for AI agents`);
+  console.log("The agent holds the wallet. The human holds the authority.");
+  console.log(`${amber("NOT AUDITED · DEVNET DEMONSTRATION ONLY")}
+`);
+
   // Exit explicitly: web3.js websocket subscriptions would keep retrying against the validator we just stopped.
   const run = values.all
     ? runAllScenarios()

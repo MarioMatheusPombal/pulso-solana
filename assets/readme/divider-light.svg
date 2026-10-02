@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 36" width="1200" height="36" role="img" aria-label="PULSO pulse divider"><title>PULSO pulse divider</title><defs>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0V40M0 40H40" fill="none" stroke="#E9E5DC"/></pattern>
+<radialGradient id="glow"><stop offset="0" stop-color="#FFB020" stop-opacity="0.3"/><stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient>
+<radialGradient id="eye"><stop offset="0" stop-color="#FFD06A" stop-opacity=".85"/><stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient>
+<radialGradient id="fade"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<linearGradient id="pulse" gradientUnits="userSpaceOnUse" x1="0" x2="1200"><stop offset="0" stop-color="#B87400" stop-opacity="0"/><stop offset=".18" stop-color="#B87400" stop-opacity=".4"/><stop offset=".56" stop-color="#B87400"/><stop offset=".9" stop-color="#B87400" stop-opacity=".4"/><stop offset="1" stop-color="#B87400" stop-opacity="0"/></linearGradient>
+</defs><style>
+.comet{stroke-dasharray:.09 .91;animation:run 5s linear infinite}
+.eyes{animation:eyes 5s ease-in-out infinite}
+@keyframes run{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes eyes{0%,100%{opacity:.25}50%{opacity:1}}
+
+@media (prefers-reduced-motion:reduce){.comet{display:none}*{animation:none!important}}
+</style><path d="M0 18 H1200" fill="none" stroke="#D8D3C9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M545 18 l14 0 l8 -6 l10 6 l17 0 l10 -27 l9 39 l10 -18 l12 6 l20 0" fill="none" stroke="#F6F4EF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M0 18 H545 l14 0 l8 -6 l10 6 l17 0 l10 -27 l9 39 l10 -18 l12 6 l20 0 H1200" fill="none" stroke="url(#pulse)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M0 18 H545 l14 0 l8 -6 l10 6 l17 0 l10 -27 l9 39 l10 -18 l12 6 l20 0 H1200" fill="none" stroke="#B87400" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" pathLength="1" class="comet"/></svg>

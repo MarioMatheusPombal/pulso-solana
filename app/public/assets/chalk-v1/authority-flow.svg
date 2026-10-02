@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 190" fill="none" role="img" aria-label="Agent proposal passes through policy, human signature, and on-chain enforcement">
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M102 95h158m-12-10 13 10-13 10M312 95h143m-12-10 13 10-13 10M507 95h116m-12-10 13 10-13 10" stroke="#eee8d8" stroke-width="2.5"/>
+    <path d="M38 50q2-8 11-8h91q10 1 10 10v85q-2 9-11 8H48q-10-2-10-11z" stroke="#eee8d8" stroke-width="2"/>
+    <path d="M254 50q3-8 12-8h89q9 1 10 10v85q-2 9-11 8h-90q-10-2-10-11z" stroke="#edb84d" stroke-width="2.5"/>
+    <path d="M449 50q2-8 11-8h91q10 1 10 10v85q-2 9-11 8h-90q-10-2-10-11z" stroke="#eee8d8" stroke-width="2"/>
+    <path d="M617 50q2-8 11-8h47q10 1 10 10v85q-2 9-11 8h-46q-10-2-10-11z" stroke="#9bb88d" stroke-width="2.5"/>
+    <path d="m57 75 34-20 34 20-34 21zM91 97v24m-34-42v40m68-42v40" stroke="#eee8d8" stroke-width="1.7"/>
+    <path d="m283 99 18 17 35-43m-53-21h73m-73 75h73" stroke="#edb84d" stroke-width="2.4"/>
+    <path d="M476 113c2-24 17-36 30-41 14 5 29 17 30 41-6 12-18 18-30 21-12-3-24-9-30-21Z" stroke="#eee8d8" stroke-width="2"/>
+    <path d="m491 105 11 11 20-24" stroke="#eee8d8" stroke-width="2.2"/>
+    <path d="m629 94 11 12 20-25" stroke="#9bb88d" stroke-width="2.5"/>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+// Brand geometry shared by the visual components. Source: public/assets/brand-v1/motion/build.js.
+
+export const NOTICE = "NOT AUDITED · DEVNET DEMONSTRATION ONLY";
+
+/** Hood silhouette in the Guardian master's 1254 × 1254 space. */
+export const HOOD =
+  "M603 108 L557 132 L523 156 L493 180 L466 204 L441 228 L419 252 L399 276 L381 300 L365 324 L350 348 L336 372 L322 396 L308 420 L294 444 L279 468 L263 492 L247 516 L230 540 L213 564 L196 588 L179 612 L162 636 L145 660 L129 684 L114 708 L100 732 L90 756 L85 780 L95 804 L123 828 L169 852 L223 876 L269 900 L312 924 L353 948 L392 972 L427 996 L460 1020 L491 1044 L519 1068 L546 1092 L571 1116 L597 1140 L616 1158 L626 1158 L653 1134 L680 1110 L709 1086 L738 1062 L768 1038 L799 1014 L833 990 L868 966 L907 942 L949 918 L993 894 L1042 870 L1094 846 L1136 822 L1162 798 L1168 774 L1160 750 L1149 726 L1134 702 L1118 678 L1102 654 L1085 630 L1067 606 L1051 582 L1034 558 L1017 534 L1001 510 L985 486 L970 462 L955 438 L941 414 L928 390 L914 366 L900 342 L885 318 L868 294 L850 270 L829 246 L806 222 L781 198 L753 174 L723 150 L688 126 L650 108Z";
+
+/** Centres of the amber irises, same space. */
+export const EYES = [{ cx: 511, cy: 600 }, { cx: 740, cy: 600 }];
+
+const BEAT: [number, number][] = [[14, 0], [8, -6], [10, 6], [17, 0], [10, -27], [9, 39], [10, -18], [12, 6], [20, 0]];
+
+/** One heartbeat as a relative SVG path segment: 110 px wide at scale 1, ends on the baseline. */
+export const beat = (scale = 1) => BEAT.map(([x, y]) => `l${+(x * scale).toFixed(2)} ${+(y * scale).toFixed(2)}`).join(" ");

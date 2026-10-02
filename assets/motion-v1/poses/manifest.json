@@ -1,0 +1,88 @@
+{
+  "reference": "public/assets/brand-v1/raster-v2/guardian-heart-transparent.png",
+  "generation_tool": "built-in image_gen",
+  "transparent_background": true,
+  "poses": [
+    {
+      "path": "celebrating-subtle-hand-raise.png",
+      "width": 1254,
+      "height": 1254,
+      "channels": "RGBA",
+      "sha256": "bdb86f700f7c7cd6dc36a619b44ed118a390813d6208dbaef88c1379cca72709",
+      "title": "Celebrating Subtle Hand Raise",
+      "pose": "celebrating-subtle-hand-raise",
+      "tool": "built-in image_gen"
+    },
+    {
+      "path": "crossed-arms-watchful.png",
+      "width": 1254,
+      "height": 1254,
+      "channels": "RGBA",
+      "sha256": "0ae5102c09f201370dbf23c6d7debafb93cc5c9ccb4fc0fe304c192eb1883e8d",
+      "title": "Crossed Arms Watchful",
+      "pose": "crossed-arms-watchful",
+      "tool": "built-in image_gen"
+    },
+    {
+      "path": "offering-heart-forward.png",
+      "width": 1254,
+      "height": 1254,
+      "channels": "RGBA",
+      "sha256": "c4023bfb8cf203fc7479a4dd603f4cfef1242b99255cc5745fa59814128c500a",
+      "title": "Offering Heart Forward",
+      "pose": "offering-heart-forward",
+      "tool": "built-in image_gen"
+    },
+    {
+      "path": "pointing-left.png",
+      "width": 1254,
+      "height": 1254,
+      "channels": "RGBA",
+      "sha256": "d8f3b8449acee4f9814047e7b589f66bbc399d2ad1e4ceba94b1dbc063cae16f",
+      "title": "Pointing Left",
+      "pose": "pointing-left",
+      "tool": "built-in image_gen"
+    },
+    {
+      "path": "pointing-right.png",
+      "width": 1254,
+      "height": 1254,
+      "channels": "RGBA",
+      "sha256": "2a11a367200e9e1792ce4cf5e1ef4be349b6e38ee695106647cf3667a40d823e",
+      "title": "Pointing Right",
+      "pose": "pointing-right",
+      "tool": "built-in image_gen",
+      "source_generation_sha256": "8e89fe9839a88804c4257f7817a39497b557e8df05aa4b2f0ae0d4b8cd6a8f6c"
+    },
+    {
+      "path": "stop-calm-palm.png",
+      "width": 1254,
+      "height": 1254,
+      "channels": "RGBA",
+      "sha256": "75d7ad155687740ee01f4bfd4ca27ce53e3a9c50d930cbaaa8bafbf86aa7e574",
+      "title": "Stop Calm Palm",
+      "pose": "stop-calm-palm",
+      "tool": "built-in image_gen"
+    },
+    {
+      "path": "thinking-hand-chin.png",
+      "width": 1254,
+      "height": 1254,
+      "channels": "RGBA",
+      "sha256": "c8d67b69b2e72c35804fb7da47b7b317a5ce6fea826bfd7faeedba63721c6a19",
+      "title": "Thinking Hand Chin",
+      "pose": "thinking-hand-chin",
+      "tool": "built-in image_gen"
+    },
+    {
+      "path": "welcoming-open-hand.png",
+      "width": 1254,
+      "height": 1254,
+      "channels": "RGBA",
+      "sha256": "5b86de47433483ef92ad58eb7fd024b33e1a0f1683a5712708cb54be604ead01",
+      "title": "Welcoming Open Hand",
+      "pose": "welcoming-open-hand",
+      "tool": "built-in image_gen"
+    }
+  ]
+}

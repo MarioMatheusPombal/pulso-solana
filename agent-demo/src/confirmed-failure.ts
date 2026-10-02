@@ -1,4 +1,5 @@
-import { Connection, Keypair, Transaction } from "@solana/web3.js";
+import { Connection, Keypair, PublicKey, Transaction } from "@solana/web3.js";
+import { PROGRAM_ID } from "@pulso/sdk";
 
 export interface ConfirmedTransaction {
   signature: string;
@@ -45,4 +46,49 @@ export async function sendConfirmedFailure(
     throw new Error(`Expected confirmed error ${expectedCode} and log ${expectedLogMessage}; code=${receipt.errorCode}, logs=${receipt.logs.join(" | ")}`);
   }
   return { signature: receipt.signature, errorCode: receipt.errorCode, errorLog };
+}
+
+/** Display-only report of a confirmed transaction for the app timeline. Best-effort: never throws, never authorizes. */
+export async function reportConfirmed(
+  activityUrl: string | undefined,
+  a: {
+    status: "rejected" | "executed";
+    authority: PublicKey;
+    agent: PublicKey;
+    policy: PublicKey;
+    amount: bigint;
+    recipient: PublicKey;
+    actionHash: Uint8Array;
+    signature: string;
+    code?: string;
+  },
+): Promise<void> {
+  if (!activityUrl) return;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 750);
+  try {
+    await fetch(`${activityUrl.replace(/\/+$/, "")}/api/activity`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        eventId: globalThis.crypto.randomUUID(),
+        status: a.status,
+        evidence: "confirmed_transaction",
+        authority: a.authority.toBase58(),
+        agent: a.agent.toBase58(),
+        programId: PROGRAM_ID.toBase58(),
+        policy: a.policy.toBase58(),
+        amount: a.amount.toString(),
+        recipient: a.recipient.toBase58(),
+        actionHash: Buffer.from(a.actionHash).toString("hex"),
+        ...(a.code && { code: a.code }),
+        signature: a.signature,
+      }),
+      signal: controller.signal,
+    });
+  } catch {
+    // Telemetry must never change the scenario result.
+  } finally {
+    clearTimeout(timer);
+  }
 }

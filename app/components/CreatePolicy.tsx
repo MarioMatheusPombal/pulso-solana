@@ -9,7 +9,16 @@ import { buildCreatePolicyIxs, fetchPolicy } from "../lib/chain";
 import { DEFAULT_MINT } from "../lib/config";
 import { validatePolicyForm, type PolicyForm } from "../lib/policy";
 import { readableAppError } from "../lib/errors";
+import { formatUnits, parseUnits } from "../lib/units";
+import { GateScene } from "./GateScene";
 import { PolicyState } from "./PolicyState";
+import { BandGlyph } from "./Pulse";
+
+/** A typed amount as it will read on-chain, or a dash while it is not a valid amount. */
+const shown = (input: string) => {
+  const p = parseUnits(input);
+  return "value" in p ? `${formatUnits(p.value)} USDC` : "—";
+};
 
 const empty: PolicyForm = { agent: "", autonomous: "5", cap: "20", daily: "50", requireNewRecipient: true, mint: DEFAULT_MINT };
 
@@ -71,13 +80,16 @@ export function CreatePolicy() {
 
   return (
     <>
-      <div className="page-intro">
-        <p className="eyebrow">HUMAN AUTHORITY · DEVNET POLICY</p>
-        <h1>Delegate limited authority to an agent</h1>
-        <p className="lead">
-          You are granting an AI agent the power to move funds on your behalf, within limits you set. Only you, with your
-          wallet, can change or revoke these limits. The agent can never widen its own authority.
-        </p>
+      <div className="hero">
+        <div className="page-intro">
+          <p className="eyebrow">HUMAN AUTHORITY · DEVNET POLICY</p>
+          <h1>Delegate limited authority to an agent</h1>
+          <p className="lead">
+            You are granting an AI agent the power to move funds on your behalf, within limits you set. Only you, with your
+            wallet, can change or revoke these limits. The agent can never widen its own authority.
+          </p>
+        </div>
+        <GateScene />
       </div>
 
       <div className="panel delegation">
@@ -89,22 +101,47 @@ export function CreatePolicy() {
           <label className="field field-agent">Agent public key
             <input type="text" value={form.agent} onChange={(e) => set("agent", e.target.value)} placeholder="base58" />
           </label>
-          <label className="field">Autonomous limit (USDC) <span className="hint">— up to this amount per transaction without asking</span>
-            <input type="text" inputMode="decimal" value={form.autonomous} onChange={(e) => set("autonomous", e.target.value)} />
+          <label className="field">
+            <span className="field-label">Autonomous limit (USDC)</span>
+            <span className="hint" id="autonomous-hint">Up to this amount per transaction without asking.</span>
+            <input type="text" inputMode="decimal" aria-describedby="autonomous-hint" value={form.autonomous} onChange={(e) => set("autonomous", e.target.value)} />
           </label>
-          <label className="field">Per-transaction cap (USDC) <span className="hint">— hard maximum, even with approval</span>
-            <input type="text" inputMode="decimal" value={form.cap} onChange={(e) => set("cap", e.target.value)} />
+          <label className="field">
+            <span className="field-label">Per-transaction cap (USDC)</span>
+            <span className="hint" id="cap-hint">Hard maximum for each transfer, even with approval.</span>
+            <input type="text" inputMode="decimal" aria-describedby="cap-hint" value={form.cap} onChange={(e) => set("cap", e.target.value)} />
           </label>
-          <label className="field">Daily limit (USDC)
-            <input type="text" inputMode="decimal" value={form.daily} onChange={(e) => set("daily", e.target.value)} />
+          <label className="field">
+            <span className="field-label">Daily limit (USDC)</span>
+            <span className="hint" id="daily-hint">Fixed 24-hour window, opened by the first spend.</span>
+            <input type="text" inputMode="decimal" aria-describedby="daily-hint" value={form.daily} onChange={(e) => set("daily", e.target.value)} />
           </label>
           <label className="check field-recipient">
             <input type="checkbox" checked={form.requireNewRecipient} onChange={(e) => set("requireNewRecipient", e.target.checked)} />
             Require approval for new recipients
           </label>
-          <label className="field field-mint">Vault mint
-            <input type="text" value={form.mint} onChange={(e) => set("mint", e.target.value)} placeholder="base58" />
+          <label className="field field-mint">
+            <span className="field-label">Vault mint</span>
+            <span className="hint" id="mint-hint">SPL token mint held by the policy vault.</span>
+            <input type="text" aria-describedby="mint-hint" value={form.mint} onChange={(e) => set("mint", e.target.value)} placeholder="Base58 public key" />
           </label>
+        </div>
+        <div className="bands" aria-label="Preview of what these limits mean">
+          <div className="band">
+            <BandGlyph kind="auto" />
+            <span className="band-name">Autonomous</span>
+            <span className="band-value">up to {shown(form.autonomous)}</span>
+          </div>
+          <div className="band">
+            <BandGlyph kind="human" />
+            <span className="band-name">Human approval</span>
+            <span className="band-value">up to {shown(form.cap)}</span>
+          </div>
+          <div className="band">
+            <BandGlyph kind="forbidden" />
+            <span className="band-name">Forbidden</span>
+            <span className="band-value">above {shown(form.cap)}</span>
+          </div>
         </div>
         {error && <div className="error">{error}</div>}
         <div className="form-footer">

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Galeria local de estudos de movimento da identidade PULSO.">
+  <title>PULSO · Movimento da marca</title>
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="#top" aria-label="PULSO — início">PULSO<span> / MOTION</span></a>
+    <a class="guide-link" href="../brand-v1/README.md">Design system v2 ↗</a>
+  </header>
+  <main id="top">
+    <section class="intro" aria-labelledby="title">
+      <p class="eyebrow">IDENTIDADE EXPRESSIVA · ESTUDOS DE MOVIMENTO</p>
+      <h1 id="title">Um sinal vivo.<br><span>Uma decisão humana.</span></h1>
+      <p class="lede">Loops de marca e estudos de pose do Guardião. São recursos visuais independentes, não uma gravação da demonstração nem evidência de um resultado na chain.</p>
+      <p class="notice">NOT AUDITED · DEVNET DEMONSTRATION ONLY</p>
+    </section>
+
+    <section class="controls" aria-label="Controles da galeria">
+      <div class="filters" role="group" aria-label="Filtrar por família" id="filters">
+        <button class="filter active" type="button" data-family="all" aria-pressed="true">Tudo</button>
+      </div>
+      <div class="view-controls">
+        <label class="select-label" for="surface">Fundo de prévia</label>
+        <select id="surface">
+          <option value="light">Claro</option><option value="dark">Escuro</option><option value="amber">Âmbar</option>
+        </select>
+        <label class="motion-toggle"><input id="motion" type="checkbox" checked> <span>Reproduzir movimento</span></label>
+      </div>
+      <p class="motion-note" id="motion-note" aria-live="polite"></p>
+    </section>
+
+    <section class="gallery" id="gallery" aria-label="Ativos de movimento" aria-live="polite">
+      <p class="loading">Carregando inventário…</p>
+    </section>
+    <footer>
+      <p>Cor e movimento são linguagem visual. Estados de produto continuam explícitos em texto; âmbar significa revisão pendente, nunca aprovação.</p>
+      <p><a href="README.md">Como usar, editar e exportar</a> · <a href="inventory.json">Inventário e metadados</a></p>
+      <p class="notice">NOT AUDITED · DEVNET DEMONSTRATION ONLY</p>
+    </footer>
+  </main>
+  <script>
+    (() => {
+      const gallery = document.querySelector('#gallery');
+      const filterBar = document.querySelector('#filters');
+      const motionInput = document.querySelector('#motion');
+      const surfaceSelect = document.querySelector('#surface');
+      const note = document.querySelector('#motion-note');
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      let inventory = [];
+      let selectedFamily = 'all';
+      const esc = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      const kindOf = (item) => item.kind || item.type || item.format || 'asset';
+      const familyOf = (item) => item.family || item.group || 'Outros';
+      const sourceOf = (item) => item.src || item.path || item.file || '';
+      const posterOf = (item, all = inventory) => item.poster || item.posterPath || item.poster_path || all.find(other => other.type === 'poster-png' && other.path.replace(/-poster\.png$/, '') === item.path.replace(/\.(svg|gif|mp4)$/, ''))?.path || '';
+      const isVideo = item => /mp4|video/i.test(kindOf(item)) || /\.mp4(?:$|\?)/i.test(sourceOf(item));
+      const isGif = item => /gif/i.test(kindOf(item)) || /\.gif(?:$|\?)/i.test(sourceOf(item));
+      const isSvg = item => /svg/i.test(kindOf(item)) || /\.svg(?:$|\?)/i.test(sourceOf(item));
+      const card = item => {
+        const src = sourceOf(item), poster = posterOf(item);
+        const title = item.title || item.name || src.split('/').pop();
+        const alt = item.alt || `Estudo de movimento: ${title}`;
+        const preview = isVideo(item)
+          ? `<video class="media" controls playsinline preload="none" poster="${esc(poster)}" data-motion-media src="${esc(src)}" aria-label="${esc(title)}"></video>`
+          : isGif(item)
+            ? `<img class="media" src="${esc(motionInput.checked && !reduced.matches ? src : poster || src)}" data-animated-src="${esc(src)}" data-poster-src="${esc(poster || src)}" alt="${esc(alt)}" loading="lazy">`
+            : isSvg(item)
+              ? `<img class="media" src="${esc(motionInput.checked && !reduced.matches ? src : poster || src)}" data-animated-src="${esc(src)}" data-poster-src="${esc(poster || src)}" alt="${esc(alt)}" loading="lazy">`
+              : `<img class="media" src="${esc(src)}" alt="${esc(alt)}" loading="lazy">`;
+        const dims = item.dimensions || [item.width, item.height].filter(Boolean).join(' × ') || '';
+        const duration = item.duration || item.durationSeconds ? `${item.duration || item.durationSeconds}s` : '';
+        return `<article class="asset-card" data-family="${esc(familyOf(item))}">
+          <div class="media-stage">${preview}<span class="media-kind">${esc(kindOf(item))}</span></div>
+          <div class="card-copy"><p class="card-family">${esc(familyOf(item))}</p><h2>${esc(title)}</h2>
+          <p class="meta">${esc([dims, duration].filter(Boolean).join(' · '))}</p>
+          <a class="download" href="${esc(src)}" download>Baixar ${esc(kindOf(item))} ↗</a>${poster ? ` <a class="download" href="${esc(poster)}" download>poster PNG ↗</a>` : ''}</div>
+        </article>`;
+      };
+      function applyMotion() {
+        const play = motionInput.checked && !reduced.matches;
+        document.body.classList.toggle('motion-paused', !play);
+        gallery.querySelectorAll('[data-animated-src]').forEach(img => {
+          img.src = play && img.dataset.visible === 'true' ? img.dataset.animatedSrc : img.dataset.posterSrc;
+        });
+        gallery.querySelectorAll('video[data-motion-media]').forEach(video => {
+          if (!play) video.pause();
+          video.autoplay = false;
+          video.controls = play;
+        });
+        motionInput.checked = play;
+        motionInput.disabled = reduced.matches;
+        note.textContent = reduced.matches ? 'Movimento reduzido do sistema ativo; prévias animadas estão pausadas.' : play ? 'Loops reproduzidos somente quando visíveis.' : 'Prévia estática selecionada.';
+      }
+      function applyFilter() {
+        gallery.querySelectorAll('.asset-card').forEach(el => { el.hidden = selectedFamily !== 'all' && el.dataset.family !== selectedFamily; });
+      }
+      function setSurface() { document.body.dataset.surface = surfaceSelect.value; }
+      fetch('inventory.json').then(response => { if (!response.ok) throw new Error('Inventário indisponível'); return response.json(); }).then(data => {
+        inventory = Array.isArray(data) ? data : data.assets || data.items || [];
+        const families = [...new Set(inventory.map(familyOf))];
+        families.forEach(family => {
+          const button = document.createElement('button');
+          button.type = 'button'; button.className = 'filter'; button.dataset.family = family; button.textContent = family; button.setAttribute('aria-pressed','false');
+          filterBar.append(button);
+        });
+        filterBar.addEventListener('click', event => {
+          const button = event.target.closest('button[data-family]'); if (!button) return;
+          selectedFamily = button.dataset.family;
+          filterBar.querySelectorAll('button').forEach(b => { const active = b === button; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); });
+          applyFilter();
+        });
+        gallery.innerHTML = inventory.filter(item => item.type !== 'poster-png').map(card).join('') || '<p>Nenhum recurso registrado no inventário.</p>';
+        const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+          const media = entry.target;
+          media.dataset.visible = String(entry.isIntersecting);
+          if (!entry.isIntersecting) { if (media.tagName === 'VIDEO') media.pause(); else if (media.dataset.posterSrc) media.src = media.dataset.posterSrc; }
+          else if (media.dataset.animatedSrc && motionInput.checked && !reduced.matches) media.src = media.dataset.animatedSrc;
+        }), {rootMargin:'100px'});
+        gallery.querySelectorAll('.media').forEach(media => observer.observe(media));
+        gallery.querySelectorAll('video[data-motion-media]').forEach(video => video.addEventListener('play', () => {
+          if (!motionInput.checked || reduced.matches || video.dataset.visible !== 'true') video.pause();
+        }));
+        applyMotion();
+      }).catch(error => { gallery.innerHTML = `<p role="alert">${esc(error.message)}. Abra esta galeria por um servidor HTTP local para carregar os arquivos.</p>`; });
+      motionInput.addEventListener('change', applyMotion);
+      reduced.addEventListener?.('change', applyMotion);
+      surfaceSelect.addEventListener('change', setSurface);
+      setSurface();
+    })();
+  </script>
+</body>
+</html>

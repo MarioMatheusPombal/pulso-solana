@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" width="1254" height="1254" role="img" aria-label="Guardian eye glow overlay, aligned to the 1254 px master"><title>Guardian eye glow overlay, aligned to the 1254 px master</title><defs>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0V40M0 40H40" fill="none" stroke="#131C25"/></pattern>
+<radialGradient id="glow"><stop offset="0" stop-color="#FFB020" stop-opacity="0.24"/><stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient>
+<radialGradient id="eye"><stop offset="0" stop-color="#FFD06A" stop-opacity=".85"/><stop offset="1" stop-color="#FFB020" stop-opacity="0"/></radialGradient>
+<radialGradient id="fade"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<linearGradient id="pulse" gradientUnits="userSpaceOnUse" x1="0" x2="1254"><stop offset="0" stop-color="#FFB020" stop-opacity="0"/><stop offset=".18" stop-color="#FFB020" stop-opacity=".4"/><stop offset=".56" stop-color="#FFB020"/><stop offset=".9" stop-color="#FFB020" stop-opacity=".4"/><stop offset="1" stop-color="#FFB020" stop-opacity="0"/></linearGradient>
+</defs><g id="eyes"><ellipse id="eye-left" cx="511" cy="600" rx="78" ry="60" fill="url(#eye)"/><ellipse id="eye-right" cx="740" cy="600" rx="78" ry="60" fill="url(#eye)"/></g></svg>

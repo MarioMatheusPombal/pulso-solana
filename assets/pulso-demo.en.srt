@@ -1,0 +1,59 @@
+1
+00:00:04,000 --> 00:00:12,000
+PULSO enforces authority granted by a human. This capture runs the real A–F demo in CI.
+
+2
+00:00:12,000 --> 00:00:20,000
+Scenarios A–E use reset local validators. Scenario F runs only in LiteSVM.
+
+3
+00:00:20,000 --> 00:00:28,000
+The agent sends 5 USDC, below the 10 USDC approval threshold. The on-chain transfer executes.
+
+4
+00:00:28,000 --> 00:00:36,000
+The output is captured from the demo process; receipt signatures are omitted from the video.
+
+5
+00:00:36,000 --> 00:00:44,000
+At 100 USDC, the agent pauses and prints the exact action payload for approval.
+
+6
+00:00:44,000 --> 00:00:52,000
+A generated localnet fixture records simulated human approval; this is not a human wallet signature.
+
+7
+00:00:52,000 --> 00:01:00,000
+The confirmed local-validator receipt rejects a change from the approved 100 USDC to 150 USDC.
+
+8
+00:01:00,000 --> 00:01:08,000
+The program reports PULSO_006_INTENT_MISMATCH, and balances remain unchanged.
+
+9
+00:01:08,000 --> 00:01:16,000
+The same amount and nonce are submitted to a different recipient. The confirmed receipt rejects it.
+
+10
+00:01:16,000 --> 00:01:24,000
+PULSO_006_INTENT_MISMATCH. The vault and both recipient balances remain unchanged.
+
+11
+00:01:24,000 --> 00:01:32,000
+Two distinct transactions race for one authorization. Exactly one transfer succeeds.
+
+12
+00:01:32,000 --> 00:01:40,000
+The concurrent replay and a later sequential replay both fail with PULSO_005_INTENT_ALREADY_USED.
+
+13
+00:01:40,000 --> 00:01:48,000
+LiteSVM advances its test Clock to expires_at + 1 and returns PULSO_004_INTENT_EXPIRED.
+
+14
+00:01:48,000 --> 00:01:56,000
+This is a simulation, not an RPC transaction or validator receipt.
+
+15
+00:01:56,000 --> 00:02:04,000
+The agent holds the wallet. The human holds the authority.

@@ -1,0 +1,1 @@
+PULSO: human authorization layer for AI agents. The agent holds the wallet. The human holds the authority. NOT AUDITED · DEVNET DEMONSTRATION ONLY.

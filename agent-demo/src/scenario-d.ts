@@ -2,7 +2,7 @@ import anchor from "@anchor-lang/core";
 import { getAccount, getOrCreateAssociatedTokenAccount, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { PULSO_ERRORS, PulsoClient, findIntentPda, getProgram } from "@pulso/sdk";
-import { sendConfirmedFailure } from "./confirmed-failure.js";
+import { reportConfirmed, sendConfirmedFailure } from "./confirmed-failure.js";
 import { loadKeypair, usdc, type DemoAddresses } from "./setup.js";
 
 const { BN } = anchor;
@@ -33,13 +33,14 @@ export interface ScenarioDResult {
 export async function runScenarioD(
   addresses: DemoAddresses,
   log: (line: string) => void = () => {},
+  activityUrl?: string,
 ): Promise<ScenarioDResult> {
   const connection = new Connection(addresses.rpcUrl, "confirmed");
   const human = loadKeypair(addresses.cluster, "human");
   const agent = loadKeypair(addresses.cluster, "agent");
   const mint = new PublicKey(addresses.mint);
   const authorizedRecipient = new PublicKey(addresses.merchantTokenAccount);
-  const client = new PulsoClient({ connection, agent, human: human.publicKey });
+  const client = new PulsoClient({ connection, agent, human: human.publicKey, activityUrl });
   const pending = await client.execute({ amount: usdc(100), recipient: authorizedRecipient });
   if (pending.status !== "HUMAN_INTENT_REQUIRED") {
     throw new Error(`Scenario D expected human approval for 100 USDC; got ${pending.status}`);
@@ -89,6 +90,7 @@ export async function runScenarioD(
     .transaction();
   const failure = await sendConfirmedFailure(connection, attack, agent, PULSO_ERRORS.IntentMismatch.code, PULSO_ERRORS.IntentMismatch.message);
 
+  await reportConfirmed(activityUrl, { status: "rejected", authority: human.publicKey, agent: agent.publicKey, policy: client.policy, amount: pending.intent.fields.amount, recipient: attemptedRecipient, actionHash: pending.intent.actionHash, signature: failure.signature, code: PULSO_ERRORS.IntentMismatch.message });
   const vaultAfter = (await getAccount(connection, client.vault)).amount;
   const authorizedRecipientAfter = (await getAccount(connection, authorizedRecipient)).amount;
   const attemptedRecipientAfter = (await getAccount(connection, attemptedRecipient)).amount;

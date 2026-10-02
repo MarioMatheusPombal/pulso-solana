@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { formatUnits } from "../lib/units";
+import { Guardian } from "./Guardian";
 
 interface Item { id: string; amount: string; recipient: string; agent: string; expiresAt: string }
 
@@ -30,16 +31,24 @@ export function PendingApprovals() {
 
   if (!publicKey) return <p className="lead">Connect your wallet to see pending approvals.</p>;
   if (!items) return <p className="lead">Loading…</p>;
-  if (items.length === 0) return <p className="lead">Nothing pending. Resting rhythm.</p>;
+  if (items.length === 0)
+    return (
+      <div className="panel empty">
+        <Guardian size={72} />
+        <p className="lead">Nothing pending. Resting rhythm.</p>
+      </div>
+    );
   return (
     <>
       {items.map((i) => (
-        <div className="panel" key={i.id}>
-          <Link href={`/approvals/${i.id}`}>
+        <Link className="panel pending-item" key={i.id} href={`/approvals/${i.id}`}>
+          <span className="badge pending">Awaiting approval</span>
+          <div>
             <strong>{formatUnits(BigInt(i.amount))} USDC</strong> → <span className="mono">{i.recipient}</span>
-          </Link>
-          <div className="hint">agent {i.agent} · expires {new Date(Number(i.expiresAt) * 1000).toLocaleString()}</div>
-        </div>
+            <div className="hint">agent {i.agent} · expires {new Date(Number(i.expiresAt) * 1000).toLocaleString()}</div>
+          </div>
+          <span className="pending-arrow" aria-hidden="true">Review →</span>
+        </Link>
       ))}
     </>
   );

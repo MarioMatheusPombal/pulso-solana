@@ -49,6 +49,19 @@ describe("activity API", () => {
     expect(res.status).toBe(label === "oversized body" ? 413 : 400);
   });
 
+  it("accepts a confirmed rejection only with code and signature, and keeps simulation rejections signature-free", async () => {
+    const base = { ...event("00000000-0000-4000-8000-000000000005", "rejected"), code: "PULSO_006_INTENT_MISMATCH" };
+    expect((await route.POST(request("POST", base))).status).toBe(201);
+    const noSig = { ...base, eventId: "00000000-0000-4000-8000-000000000006", signature: undefined };
+    expect((await route.POST(request("POST", noSig))).status).toBe(400);
+    const noCode = { ...base, eventId: "00000000-0000-4000-8000-000000000007", code: undefined };
+    expect((await route.POST(request("POST", noCode))).status).toBe(400);
+    const simWithSig = { ...base, eventId: "00000000-0000-4000-8000-000000000008", evidence: "simulation" };
+    expect((await route.POST(request("POST", simWithSig))).status).toBe(400);
+    const approval = { ...base, eventId: "00000000-0000-4000-8000-000000000009", code: "PULSO_003_HUMAN_INTENT_REQUIRED" };
+    expect((await route.POST(request("POST", approval))).status).toBe(400);
+  });
+
   it("is idempotent by eventId and rejects unfiltered or invalid policy queries", async () => {
     const b = event("00000000-0000-4000-8000-000000000004");
     await route.POST(request("POST", b));
