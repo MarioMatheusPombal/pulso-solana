@@ -16,6 +16,7 @@ export function parseUnits(input: string, decimals = DECIMALS): { value: bigint 
 
 /** 10500000n -> "10.50". Always at least 2 places; more only when needed. */
 export function formatUnits(v: bigint, decimals = DECIMALS): string {
+  if (decimals === 0) return v.toString();
   const neg = v < 0n;
   const abs = neg ? -v : v;
   const s = abs.toString().padStart(decimals + 1, "0");

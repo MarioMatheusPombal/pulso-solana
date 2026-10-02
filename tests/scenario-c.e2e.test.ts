@@ -21,5 +21,6 @@ describe("amount tampering scenario C (issue 118)", () => {
     expect(lines.some((line) => line.includes("same intent hash and nonce"))).toBe(true);
     expect(lines.some((line) => line.includes("PULSO_006_INTENT_MISMATCH"))).toBe(true);
     expect(lines.some((line) => line.includes("rejected transaction confirmed"))).toBe(true);
+    expect(lines.some((line) => line.includes("summary: 0 autonomous, 0 approved") && line.includes("1× PULSO_006_INTENT_MISMATCH"))).toBe(true);
   });
 });

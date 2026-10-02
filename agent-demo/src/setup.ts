@@ -22,7 +22,7 @@ export const MAX_PER_TRANSACTION = usdc(500);
 export const DAILY_LIMIT = usdc(1000);
 export const VAULT_FUNDING = usdc(500);
 
-const RPC_URLS: Record<Cluster, string> = {
+export const RPC_URLS: Record<Cluster, string> = {
   localnet: "http://127.0.0.1:8899",
   devnet: "https://api.devnet.solana.com",
 };

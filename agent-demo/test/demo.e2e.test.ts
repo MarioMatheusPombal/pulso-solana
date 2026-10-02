@@ -13,5 +13,6 @@ describe("demo, scenarios A and B (issue 110)", () => {
     expect(r.merchantDelta).toBe(usdc(105));
     expect(lines.some((l) => l.includes("HUMAN_INTENT_REQUIRED"))).toBe(true);
     expect(lines.some((l) => l.includes("simulated human approval"))).toBe(true);
+    expect(lines.some((l) => l.includes("summary: 1 autonomous, 1 approved (1/1 hash verified), 0 refused"))).toBe(true);
   });
 });

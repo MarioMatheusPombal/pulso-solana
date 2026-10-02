@@ -7,7 +7,9 @@
     "setup": "tsx src/setup.ts",
     "agent": "tsx src/agent.ts",
     "demo": "tsx src/demo.ts",
+    "trail": "tsx src/trail.ts",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run test/trail.test.ts",
     "test:e2e": "vitest run --config vitest.e2e.config.ts"
   },
   "dependencies": {

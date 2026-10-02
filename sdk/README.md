@@ -70,4 +70,28 @@ const transfer = tool(
 
 When approval is required, the tool returns `human_intent_required`, the reason, approval URL, and exact serializable intent. The tool does not run another callback. To let the SDK wait for the human and submit only that stored intent, create the gate with `{ waitForApproval: true }`; timeout and program errors propagate to the framework. LangChain's current TypeScript tools use a handler plus a Zod input schema and accept structured object results; see [LangChain tools](https://docs.langchain.com/oss/javascript/langchain/tools).
 
+## Authority receipt (receiver side)
+
+Before releasing what you sold, check that a payment came out of a PULSO policy. Read only: no keys, no signing, no sending. Spec: [`docs/AUTHORITY_RECEIPT_SPEC.md`](https://github.com/MarioMatheusPombal/pulso-solana/blob/main/docs/AUTHORITY_RECEIPT_SPEC.md).
+
+```ts
+import { ChallengeLedger } from "@pulso/sdk";
+
+const ledger = new ChallengeLedger(); // in memory, one process, demonstration level
+const challenge = ledger.issue({ recipient /* token account */, mint, minAmount: 1_000_000n, ttlSeconds: 300 });
+// 402 body = challenge. The agent pays with challenge.nonce; you get back the signature.
+// Agent side: await pulso.execute({ amount: 1_000_000n, recipient, nonce: Buffer.from(challenge.nonce, "hex") });
+const r = await ledger.redeem(connection, signature, challenge.nonce, { requireApproved: false, acceptedAuthorities: [humanKey] });
+if (r.ok) release(r.receipt);  // JSON-safe: human, agent, amount, nonce, mode, hashVerified...
+else deny(r.reason);           // e.g. TX_FAILED, NONCE_MISMATCH, HASH_MISMATCH; never a partial receipt
+```
+
+`verifyAuthorityReceipt(connection, signature, expected, opts?)` is the same check without the ledger. It fails closed: RPC down, missing or failed transaction, another program, any field or hash that differs gives `ok: false` with a reason. A challenge is spent only after a full `ok: true`.
+
+`describeAuthorityReceipt(connection, signature, opts?)` runs the same checks with no challenge, for a public page that only has a signature: the transaction must hold exactly one `execute_transfer`, and recipient, mint and amount are read from it. It proves the authority, not that the payment answers a specific request.
+
+Proves: a key other than the agent defined the policy; the payment ran through `execute_transfer` at that slot; in `approved` mode the same key signed that exact action. Does not prove: who the human is (use `acceptedAuthorities`), that they saw the payment in `autonomous` mode, or what was bought. It states what happened at that slot, not whether the agent is still authorized.
+
+NOT AUDITED · DEVNET DEMONSTRATION ONLY
+
 Test: `pnpm test:sdk` · End to end (boots `solana-test-validator`; run `pnpm build` first): `pnpm test:e2e` · Typecheck: `pnpm --filter @pulso/sdk typecheck`

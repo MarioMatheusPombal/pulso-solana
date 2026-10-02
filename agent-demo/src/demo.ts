@@ -12,7 +12,9 @@ import { startValidator, type LocalValidator } from "./validator.js";
 import { runScenarioC, type ScenarioCResult } from "./scenario-c.js";
 import { runScenarioD, type ScenarioDResult } from "./scenario-d.js";
 import { runScenarioE, type ScenarioEResult } from "./scenario-e.js";
+import { formatTrail, readTrail, type Trail } from "./trail.js";
 import { runScenarioF, type ScenarioFResult } from "./scenario-f.js";
+import { runScenarioG, type ScenarioGResult } from "./scenario-g.js";
 
 const { BN } = anchor;
 
@@ -27,7 +29,7 @@ export interface DemoOptions {
   approvalsUrl?: string;
   /** Optional display-only SDK activity endpoint, also read from PULSO_ACTIVITY_URL. */
   activityUrl?: string;
-  scenario?: "AB" | "C" | "D" | "E" | "F";
+  scenario?: "AB" | "C" | "D" | "E" | "F" | "G";
   log?: (line: string) => void;
 }
 
@@ -55,12 +57,29 @@ export interface ScenarioFDemoResult {
   scenarioF: ScenarioFResult;
 }
 
+export interface ScenarioGDemoResult {
+  scenarioG: ScenarioGResult;
+}
+
 export interface FullDemoResult {
   scenarioAB: DemoResult;
   scenarioC: ScenarioCResult;
   scenarioD: ScenarioDResult;
   scenarioE: ScenarioEResult;
   scenarioF: ScenarioFResult;
+  scenarioG: ScenarioGResult;
+}
+
+/** Print the policy's authorization trail from chain. A read failure only prints a warning. */
+async function showTrail(connection: Connection, policy: string, log: (line: string) => void): Promise<Trail | undefined> {
+  log("\nAuthorization trail (read from chain)");
+  try {
+    const trail = await readTrail(connection, new PublicKey(policy));
+    formatTrail(trail).forEach((l) => log(l && `  ${l}`));
+    return trail;
+  } catch (e) {
+    log(`  (could not read the authorization trail: ${(e as Error).message})`);
+  }
 }
 
 async function rpcAnswers(): Promise<boolean> {
@@ -77,13 +96,15 @@ export function runDemo(o: DemoOptions & { scenario: "C" }): Promise<ScenarioCDe
 export function runDemo(o: DemoOptions & { scenario: "D" }): Promise<ScenarioDDemoResult>;
 export function runDemo(o: DemoOptions & { scenario: "E" }): Promise<ScenarioEDemoResult>;
 export function runDemo(o: DemoOptions & { scenario: "F" }): Promise<ScenarioFDemoResult>;
+export function runDemo(o: DemoOptions & { scenario: "G" }): Promise<ScenarioGDemoResult>;
 export function runDemo(o?: DemoOptions & { scenario?: "AB" }): Promise<DemoResult>;
-export async function runDemo(o: DemoOptions = {}): Promise<DemoResult | ScenarioCDemoResult | ScenarioDDemoResult | ScenarioEDemoResult | ScenarioFDemoResult> {
+export async function runDemo(o: DemoOptions = {}): Promise<DemoResult | ScenarioCDemoResult | ScenarioDDemoResult | ScenarioEDemoResult | ScenarioFDemoResult | ScenarioGDemoResult> {
   const log = o.log ?? console.log;
   const mode = o.approve ?? "auto";
   if (o.scenario === "F") {
     log("\n=== Scenario F — expiry enforced by the on-chain program (LiteSVM) ===");
     const scenarioF = runScenarioF(log);
+    log("\nNo authorization trail for F: it runs in LiteSVM and makes no RPC call.");
     log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
     return { scenarioF };
   }
@@ -104,20 +125,30 @@ export async function runDemo(o: DemoOptions = {}): Promise<DemoResult | Scenari
     if (o.scenario === "C") {
       log("\n=== Scenario C — authorize 100 USDC, tamper to 150 USDC ===");
       const scenarioC = await runScenarioC(addresses, log, activityUrl);
+      await showTrail(connection, addresses.policy, log);
       log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
       return { scenarioC };
     }
     if (o.scenario === "D") {
       log("\n=== Scenario D — authorize merchant, tamper to another recipient ===");
       const scenarioD = await runScenarioD(addresses, log, activityUrl);
+      await showTrail(connection, addresses.policy, log);
       log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
       return { scenarioD };
     }
     if (o.scenario === "E") {
       log("\n=== Scenario E — concurrent replay of a one-use authorization ===");
       const scenarioE = await runScenarioE(addresses, log, activityUrl);
+      await showTrail(connection, addresses.policy, log);
       log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
       return { scenarioE };
+    }
+    if (o.scenario === "G") {
+      log("\n=== Scenario G — receiver answers 402 and delivers only against an authority receipt ===");
+      const scenarioG = await runScenarioG(addresses, log);
+      await showTrail(connection, addresses.policy, log);
+      log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
+      return { scenarioG };
     }
     const merchant = new PublicKey(addresses.merchantTokenAccount);
     const bal = async (a: string | PublicKey) => (await getAccount(connection, new PublicKey(a))).amount;
@@ -169,6 +200,7 @@ export async function runDemo(o: DemoOptions = {}): Promise<DemoResult | Scenari
     if (vaultDelta !== usdc(105) || merchantDelta !== usdc(105)) {
       throw new Error(`Unexpected balances: vault −${vaultDelta / usdc(1)} USDC, merchant +${merchantDelta / usdc(1)} USDC; expected 105 USDC each`);
     }
+    await showTrail(connection, addresses.policy, log);
     log("");
     log(`Done. Vault −${vaultDelta / usdc(1)} USDC, merchant +${merchantDelta / usdc(1)} USDC.`);
     log("NOT AUDITED · DEVNET DEMONSTRATION ONLY");
@@ -197,8 +229,10 @@ export async function runAllScenarios(log: (line: string) => void = console.log)
   log(`✓ E PASS — one transfer; concurrent and sequential replays confirmed ${"PULSO_005_INTENT_ALREADY_USED"} (${scenarioE.errorCode})`);
   const scenarioF = (await runDemo({ scenario: "F", log })).scenarioF;
   log(`✓ F PASS — LiteSVM simulation confirmed PULSO_004_INTENT_EXPIRED (${scenarioF.errorCode}) at expires_at + 1`);
-  log("\nAll PULSO scenarios A–F passed.");
-  return { scenarioAB, scenarioC, scenarioD, scenarioE, scenarioF };
+  const scenarioG = (await runDemo({ scenario: "G", log })).scenarioG;
+  log(`✓ G PASS — receiver delivered for autonomous and approved receipts; refused a direct SPL transfer (${scenarioG.g3.refusal.reason}) and replays (${scenarioG.g4.nonceMismatch.reason}, ${scenarioG.g4.consumed.reason})`);
+  log("\nAll PULSO scenarios A–G passed.");
+  return { scenarioAB, scenarioC, scenarioD, scenarioE, scenarioF, scenarioG };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
@@ -211,8 +245,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       scenario: { type: "string", default: "AB" },
     },
   });
-  if (values.scenario !== "AB" && values.scenario !== "C" && values.scenario !== "D" && values.scenario !== "E" && values.scenario !== "F") {
-    console.error("--scenario must be AB, C, D, E, or F");
+  if (values.scenario !== "AB" && values.scenario !== "C" && values.scenario !== "D" && values.scenario !== "E" && values.scenario !== "F" && values.scenario !== "G") {
+    console.error("--scenario must be AB, C, D, E, F, or G");
     process.exit(1);
   }
   if (values.approve !== "auto" && values.approve !== "ui") {
@@ -246,7 +280,9 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
         ? runDemo({ scenario: "E" })
         : values.scenario === "F"
           ? runDemo({ scenario: "F" })
-          : runDemo({ scenario: "AB", approve: values.approve, approvalsUrl: values["approvals-url"] });
+          : values.scenario === "G"
+            ? runDemo({ scenario: "G" })
+            : runDemo({ scenario: "AB", approve: values.approve, approvalsUrl: values["approvals-url"] });
   run
     .then(() => process.exit(0))
     .catch((e: Error) => {

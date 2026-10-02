@@ -57,6 +57,8 @@ export interface ExecuteParams {
   recipient: PublicKey;
   expiresInSeconds?: number;
   maxUses?: number;
+  /** 16 bytes: the receiver's challenge nonce. On the approved path it goes into the action hash. Default: 16 zero bytes. */
+  nonce?: Uint8Array;
 }
 
 export interface WaitOptions {
@@ -122,10 +124,11 @@ export class PulsoClient {
 
   /** Executes the transfer, or returns HUMAN_INTENT_REQUIRED (without throwing) when the policy asks for the human. */
   async execute(p: ExecuteParams): Promise<ExecuteResult> {
-    const { amount, recipient, expiresInSeconds = 120, maxUses = 1 } = p;
+    const { amount, recipient, expiresInSeconds = 120, maxUses = 1, nonce } = p;
+    if (nonce !== undefined && nonce.length !== 16) throw new RangeError(`nonce must be 16 bytes, got ${nonce.length}`);
     const approval = findRecipientApprovalPda(this.policy, recipient, this.programId);
     const hasApproval = (await this.connection.getAccountInfo(approval)) !== null;
-    const ix = await this.transferIx(amount, recipient, new Uint8Array(16), undefined, hasApproval ? approval : undefined);
+    const ix = await this.transferIx(amount, recipient, nonce ?? new Uint8Array(16), undefined, hasApproval ? approval : undefined);
     const sim = await this.simulate(ix);
     if (sim.ok) {
       const signature = await this.send(ix);
@@ -163,6 +166,7 @@ export class PulsoClient {
       recipient: d.recipient,
       expiresAt: (await this.chainNow()) + BigInt(expiresInSeconds),
       maxUses,
+      nonce,
     });
     const approvalId = hex(intent.actionHash);
     const pending: PendingApproval = {

@@ -6,8 +6,11 @@
     "build": "anchor build --arch v0",
     "test": "anchor build --arch v0 && anchor test --skip-build",
     "demo": "pnpm --filter @pulso/agent-demo demo",
+    "trail": "pnpm --filter @pulso/agent-demo trail",
     "test:sdk": "pnpm --filter @pulso/sdk test",
     "test:app": "pnpm --filter @pulso/app test",
+    "test:mcp": "pnpm --filter @pulso/mcp-server test",
+    "test:mcp:e2e": "pnpm --filter @pulso/mcp-server test:e2e",
     "test:e2e": "pnpm --filter @pulso/sdk test:e2e && pnpm --filter @pulso/agent-demo test:e2e",
     "idl": "anchor build --arch v0 && cp target/idl/pulso.json target/types/pulso.ts sdk/src/idl/"
   }
