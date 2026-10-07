@@ -11,7 +11,7 @@ export default function Template({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!motionOK() || !root.current) return;
+    if (!motionOK() || !root.current || root.current.querySelector(".landing-motion")) return;
     gsap.from(root.current.children, { autoAlpha: 0, y: 10, duration: 0.24, stagger: 0.05, ease: "power2.out", clearProps: "all" });
   });
 

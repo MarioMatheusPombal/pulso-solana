@@ -1,10 +1,6 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/hero-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/readme/hero-light.svg">
-  <img src="assets/readme/hero-dark.svg" alt="PULSO: human authorization layer for AI agents. The agent holds the wallet. The human holds the authority." width="100%">
-</picture>
+<picture><source media="(prefers-reduced-motion: no-preference)" srcset="assets/chalk-v1/motion/hero.svg"><img src="assets/chalk-v1/readme/hero.png" alt="PULSO: human authorization layer for AI agents. The agent holds the wallet. The human holds the authority. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%"></picture>
 
 <br>
 <br>
@@ -66,17 +62,9 @@ An authorization is not "this agent may use my wallet". It binds **human authori
 
 Change the amount, change the recipient, reuse it, or let it expire — and it stops being valid.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/primitive-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/readme/primitive-light.svg">
-  <img src="assets/readme/primitive-dark.svg" alt="One authorization is one exact action: human authority, agent, action, asset, amount, recipient, scope, expiration, nonce and usage count are bound into a single action_hash, signed by the human and enforced on-chain." width="100%">
-</picture>
+<picture><source media="(prefers-reduced-motion: no-preference)" srcset="assets/chalk-v1/motion/primitive.svg"><img src="assets/chalk-v1/readme/primitive.png" alt="One authorization is one exact action: human authority, agent, action, asset, amount, recipient, scope, expiration, nonce and usage count are bound into a single action_hash, signed by the human and enforced on-chain. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%"></picture>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/flow-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/readme/flow-light.svg">
-  <img src="assets/readme/flow-dark.svg" alt="How an action passes through PULSO. Within delegated authority the agent executes alone. Outside it, the program returns HUMAN_INTENT_REQUIRED, the human approves the exact action (scoped, expiring, single-use) and it executes. If any field changed, or the authorization was reused or expired, the program rejects it." width="100%">
-</picture>
+<picture><source media="(prefers-reduced-motion: no-preference)" srcset="assets/chalk-v1/motion/flow.svg"><img src="assets/chalk-v1/readme/flow.png" alt="How an action passes through PULSO. Within delegated authority the agent executes alone. Outside it, the program returns HUMAN_INTENT_REQUIRED, the human approves the exact action (scoped, expiring, single-use) and it executes. If any field changed, or the authorization was reused or expired, the program rejects it. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%"></picture>
 
 The enforcement lives in the same programmable environment where the agent executes economic actions. That is the reason this is a Solana program and not a backend service: a backend can be bypassed by an agent that simply calls the chain directly.
 
@@ -90,11 +78,7 @@ The enforcement lives in the same programmable environment where the agent execu
 
 The local demo runs all scenarios A–G with test USDC and a local Solana validator. The command reports each scenario as `PASS` and stops at the first failure. Scenarios C–E restart local validators to isolate state; F sets the LiteSVM clock past the authorization expiry; G is the [authority receipt](#authority-receipt) check from the payee side.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/scenarios-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/readme/scenarios-light.svg">
-  <img src="assets/readme/scenarios-dark.svg" alt="Demo scenarios A to F with the result each one must produce. The table below lists the same results, plus scenario G." width="100%">
-</picture>
+<picture><source media="(prefers-reduced-motion: no-preference)" srcset="assets/chalk-v1/motion/scenarios.svg"><img src="assets/chalk-v1/readme/scenarios.png" alt="Demo scenarios A to F with the result each one must produce. The table below lists the same results, plus scenario G. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%"></picture>
 
 | | Scenario | Expected |
 |:--:|:--|:--|
@@ -200,12 +184,43 @@ pnpm demo -- --approve ui
 
 Open the printed approval URL and connect a localnet test wallet matching the generated authority fixture. The app displays the exact payload and signs `record_intent` in that wallet. The approval transaction is signed by the connected wallet. Setup still uses local fixture keys to initialize demo accounts; this local harness does not demonstrate isolation of a real human wallet. The browser-wallet path has not been exercised by an end-to-end test.
 
+### Open the local Simulation Lab
+
+After `pnpm install --frozen-lockfile`, start the app from the repository root:
+
+```bash
+pnpm --filter @pulso/app dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) for the landing, or [http://localhost:3000/simulation](http://localhost:3000/simulation) for the Lab. Exploring the local simulation needs only Node.js 22 and pnpm 12.8.1; no wallet or Solana toolchain is required. Reloading clears its in-page state. Stop the server with `Ctrl+C`.
+
+| Where to go | What to try |
+|---|---|
+| `/` | Guardian chalk identity, first-visit intro, Skip/Replay and reduced-motion fallback. |
+| `/simulation` → **Simulation** | Select a company and agent; configure autonomous allowance, transfer cap, daily limit and expiry. Submit **5 USDC** for an autonomous result, then **18 USDC** for human review. Inspect the exact payload before approving or denying. |
+| `/simulation` → **Simulation** | Run **A–F**, schedule agents, filter movements, export **CSV**, and **Reset**. Rehearse an invitation and exact commercial terms in **Company agreement**; commercial consent does not authorize payment. All results here are local simulations. |
+| `/simulation` → **Live demo** | Read the A–G commands and follow one policy's activity. The browser never runs terminal commands. |
+| `/simulation` → **Workspace** or **Lab pages** | Open the available operational routes. They remain separate from simulation. |
+| `/policy`, `/wallet` | Create a policy/vault with a test wallet; inspect an agent's public key, vault balance and activity. |
+| `/approvals`, `/approvals/<id>` | Review the exact payload requested by the agent. Use the approval URL printed by `pnpm demo -- --approve ui`; signing requires the matching localnet test wallet. |
+| `/receipt/<signature>` | Verify an existing PULSO payment's authority receipt against the configured RPC. |
+| `/docs`, `/integration` | Read authorization notes and the available MCP/SDK setup prompts. |
+| `/waitlist` | Submit pilot interest to the local server. This does not deploy a public waitlist. |
+
+Operational routes need a matching RPC, and signing needs a test wallet. The default RPC is devnet. For localnet, set `NEXT_PUBLIC_RPC_URL=http://127.0.0.1:8899` before starting the app (PowerShell: `$env:NEXT_PUBLIC_RPC_URL = 'http://127.0.0.1:8899'`). See [app/README.md](app/README.md) for configuration and trust boundaries. B2B workspace availability follows the release scope; the local commercial-terms rehearsal is not evidence of a real B2B settlement.
+
+Run the complete reproducible on-chain suite with `bash scripts/demo.sh` above; on Windows, use Linux/WSL with the listed Solana toolchain. The Live demo activity panel reads reports for one selected policy and verifies recent transaction signatures against RPC; it does not turn a partial feed into a suite result. Scenario F is a LiteSVM test and has no RPC transaction signature. **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
+
 To run one scenario instead of the full A–G sequence, pass its selector:
 
 ```bash
 bash scripts/demo.sh --scenario C  # also accepts D, E, F, or G
 bash scripts/demo.sh --scenario AB # runs the automatic and approval cases
 ```
+
+### Local MCP client
+
+The [MCP Inspector quickstart](docs/MCP_QUICKSTART.md) covers the policy/transfer flow through local stdio tools, operator configuration, test policy/funds, exact approval and measured execution. The [real terminal capture](docs/MCP_INSPECTOR_CAPTURE.txt) uses a local authority fixture; it does not claim manual wallet approval or external partner validation. The release allowlist includes the MCP package and CI; older releases may omit it. **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
 
 ## Authority receipt
 
@@ -281,7 +296,7 @@ PULSO is being built as a B2B product: human authorization for AI agents, aimed 
 | | |
 |:--|:--|
 | **Available today** | This repository: a reproducible devnet and localnet demonstration. The Anchor program, the TypeScript SDK source in `sdk/`, the agent demo (scenarios A–G) and the approval app. |
-| **Integration interfaces** | The on-chain program and its IDL, the [policy and intent spec](docs/POLICY_AND_INTENT_SPEC.md), and the SDK source. The SDK is not published to a package registry, and there is no MCP server. |
+| **Integration interfaces** | The on-chain program and its IDL, the [policy and intent spec](docs/POLICY_AND_INTENT_SPEC.md), and the SDK source. The SDK is not published to a package registry. A local stdio MCP server is included in the prepared release tree; see the [measured Inspector quickstart](docs/MCP_QUICKSTART.md) for setup and fixture limitations. |
 | **Planned, not available** | A managed commercial service. It is not offered, has no date, and no billing, mainnet, custody, multi-approver or SLA exists. |
 
 If you build agents or payments on Solana and want to try PULSO in a devnet pilot or as a design partner, open an issue in this repository.
@@ -293,10 +308,6 @@ If you build agents or payments on Solana and want to try PULSO in a devnet pilo
 <div align="center">
 <br>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/readme/footer-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/readme/footer-light.svg">
-  <img src="assets/readme/footer-dark.svg" alt="Give agents money without giving them unlimited power. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
-</picture>
+<img src="assets/chalk-v1/readme/footer.png" alt="Give agents money without giving them unlimited power. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
 
 </div>

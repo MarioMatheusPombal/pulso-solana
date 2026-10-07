@@ -6,7 +6,9 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "shot": "node scripts/shot.mjs",
+    "shot:install": "playwright install chromium"
   },
   "dependencies": {
     "@anchor-lang/core": "1.2.0",
@@ -23,6 +25,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@types/node": "^26.6.3",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

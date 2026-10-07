@@ -1,0 +1,139 @@
+NOT AUDITED · DEVNET DEMONSTRATION ONLY
+Real terminal capture: MCP Inspector CLI 2.9.0, 2026-10-02 UTC.
+Historical M1 source before #286 receipt adapter; discovery of four tools is preserved.
+The current source adds a fifth tool, pay_receipt_challenge.
+macOS arm64; Node 26.10.0; pnpm 12.8.1; Solana CLI 4.3.0; Anchor 1.2.0.
+Warm run: install/build and validator/UI startup excluded. RPC 18997; UI 13000.
+Authority: in-memory localnet fixture, never serialized or passed to MCP.
+No manual browser wallet approval. No external partner measurement.
+Inspector commands: --config <private external config> --server pulso --format json
+tools/list; tools/call with get_policy, request_transfer, get_approval_status, execute_approved.
+Each CLI command starts a new stdio server; pending record persisted externally.
+
+$ [2026-10-02T20:17:26.863Z] +0.019s setup_started
+{
+  "client": "MCP Inspector CLI 2.9.0",
+  "node": "v26.10.0",
+  "authority": "local fixture, never serialized"
+}
+
+$ [2026-10-02T20:17:30.546Z] +3.701s tools_discovered
+{
+  "names": [
+    "get_policy",
+    "request_transfer",
+    "get_approval_status",
+    "execute_approved"
+  ],
+  "protocol": "2025-11-25"
+}
+
+$ [2026-10-02T20:17:30.980Z] +4.136s policy
+{
+  "status": "found",
+  "policy": "EtNKj61Hz95TmshrbZnFaVPAZJng4vF2K2LB3EpXmVhS",
+  "authority": "3gCD3WqJRfGWoguahMYfHnymL5EbWiQWnTsXmhqSzPE8",
+  "agent": "ATqeuW5sLXqtqGm9EboTxbnsAW7ZM5HZabsygHsUGN28",
+  "mint": "CXTh3cdWJworCwEnFYxcED6HLvEbSqvV8aW9JBhdzzGe",
+  "enabled": true,
+  "agentRevoked": false,
+  "maxPerTransaction": "500000000",
+  "dailyLimit": "1000000000",
+  "requireApprovalAbove": "10000000",
+  "requireApprovalForNewRecipient": false
+}
+
+$ [2026-10-02T20:17:30.980Z] +4.136s setup_complete
+{
+  "seconds": 4.136227,
+  "recipientTokenAccount": "ewRTw13C9EAN3pAQwsJcUoKssnm47iK4VcXpoMLYaPm",
+  "vault": "13chG7N9cb77XGcf2x6UBdyArVLtDVCda53Ytpctx2GJ"
+}
+
+$ [2026-10-02T20:17:30.981Z] +4.137s balances_before
+{
+  "vault": "500000000",
+  "recipient": "0"
+}
+
+$ [2026-10-02T20:17:32.438Z] +5.594s autonomous
+{
+  "status": "executed",
+  "signature": "XnoXvc3xYiYAn16VMTr7UtK1TxxUZBZLcjQcYFwLp23ZSoemGYw7FzBTH3ceimuqA9P3K7h352z2sPAEQbpLp5T"
+}
+
+$ [2026-10-02T20:17:32.439Z] +5.595s balances_after_autonomous
+{
+  "vault": "495000000",
+  "recipient": "5000000"
+}
+
+$ [2026-10-02T20:17:33.903Z] +7.058s pending
+{
+  "status": "pending",
+  "approvalId": "eb5ee6068d5076081aa414d4b56cc56cba47c7f1101e191ba4faebcb03d8c628",
+  "approvalUrl": "http://127.0.0.1:13000/approvals/eb5ee6068d5076081aa414d4b56cc56cba47c7f1101e191ba4faebcb03d8c628",
+  "reason": "HUMAN_INTENT_REQUIRED",
+  "payload": {
+    "programId": "4jdHys9YsHTbVQxB6YAr7R8jsmoEy7wqcpxC9tk2dqQi",
+    "policy": "EtNKj61Hz95TmshrbZnFaVPAZJng4vF2K2LB3EpXmVhS",
+    "authority": "3gCD3WqJRfGWoguahMYfHnymL5EbWiQWnTsXmhqSzPE8",
+    "agent": "ATqeuW5sLXqtqGm9EboTxbnsAW7ZM5HZabsygHsUGN28",
+    "mint": "CXTh3cdWJworCwEnFYxcED6HLvEbSqvV8aW9JBhdzzGe",
+    "recipientTokenAccount": "ewRTw13C9EAN3pAQwsJcUoKssnm47iK4VcXpoMLYaPm",
+    "amount": "100000000",
+    "nonce": "8c9fe898880f0e52bbb39babff8824ac",
+    "expiresAt": "1790972371",
+    "maxUses": 1,
+    "actionHash": "eb5ee6068d5076081aa414d4b56cc56cba47c7f1101e191ba4faebcb03d8c628"
+  }
+}
+
+$ [2026-10-02T20:17:36.897Z] +10.053s approval_ui_http
+{
+  "status": 200,
+  "url": "http://127.0.0.1:13000/approvals/eb5ee6068d5076081aa414d4b56cc56cba47c7f1101e191ba4faebcb03d8c628"
+}
+
+$ [2026-10-02T20:17:37.922Z] +11.078s pending_after_server_restart
+{
+  "status": "pending",
+  "approvalId": "eb5ee6068d5076081aa414d4b56cc56cba47c7f1101e191ba4faebcb03d8c628"
+}
+
+$ [2026-10-02T20:17:38.353Z] +11.509s fixture_approval
+{
+  "signature": "4CKkX6MoxESZHcfDpNzxXbSFoqQMsh9PafpwUaTStLhAFu7hsi9v3ie5bEfJp2AWkyoAdCoSra3dVimHq5sBJ55C",
+  "secondsToRecordIntent": 4.450416083000001,
+  "manualWalletApproval": false
+}
+
+$ [2026-10-02T20:17:38.814Z] +11.970s approved
+{
+  "status": "approved",
+  "approvalId": "eb5ee6068d5076081aa414d4b56cc56cba47c7f1101e191ba4faebcb03d8c628"
+}
+
+$ [2026-10-02T20:17:40.267Z] +13.423s protected_transfer
+{
+  "status": "executed",
+  "signature": "4tAfURNgfPoyg8hRQqeZyGHvD71Bm8RDkiwmit1TBvzAyqkvGsTmLrCJspdVqwt2AJ3jNcJ6gPkXo4FibVu3gRkp"
+}
+
+$ [2026-10-02T20:17:40.268Z] +13.424s balances_final
+{
+  "vault": "395000000",
+  "recipient": "105000000"
+}
+
+$ [2026-10-02T20:17:40.268Z] +13.424s approval_elapsed
+{
+  "seconds": 6.365497583
+}
+
+$ [2026-10-02T20:17:40.710Z] +13.866s used
+{
+  "status": "used",
+  "approvalId": "eb5ee6068d5076081aa414d4b56cc56cba47c7f1101e191ba4faebcb03d8c628"
+}
+

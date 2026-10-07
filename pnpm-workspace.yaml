@@ -2,6 +2,7 @@ packages:
   - sdk
   - app
   - agent-demo
+  - mcp-server
 
 # Optional native addons of ws (pulled in by @solana/web3.js); the JS fallback is enough.
 allowBuilds:

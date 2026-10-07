@@ -1,0 +1,24 @@
+.sim-business-intro { margin: -7px 0 16px; color: var(--s-muted); font-size: 14px; }
+.sim-business-parties { display: grid; grid-template-columns: 1fr 24px 1fr; align-items: center; gap: 13px; }
+.sim-business-parties > div { display: grid; min-width: 0; padding: 14px; border: 1px solid var(--s-line); border-radius: var(--r-sm); background: var(--bg); }
+.sim-business-parties > div span { color: var(--s-muted); font: 700 12px var(--mono); letter-spacing: .08em; }
+.sim-business-parties > div b { margin: 4px 0; font-size: 14px; overflow-wrap: anywhere; }
+.sim-business-parties > div small { color: var(--s-muted); font-size: 13px; }
+.sim-business-parties > i { color: var(--s-coral); font-style: normal; text-align: center; }
+.sim-business-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+.sim-business-state { color: var(--amber); font-size: 14px; }
+.sim-business-state.sim-connected { color: var(--s-muted); }
+.sim-business-form { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: end; gap: 13px; }
+.sim-business-form .sim-field { margin: 13px 0; }
+.sim-business-propose { margin-bottom: 13px; }
+.sim-terms { margin-top: 7px; padding: 14px; border: 1px solid var(--s-line); border-radius: var(--r-md); background: var(--bg); }
+.sim-terms .sim-card-heading { margin-bottom: 13px; }
+.sim-terms dl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 0; }
+.sim-terms dl > div { min-width: 0; }
+.sim-terms dt { color: var(--s-muted); font: 12px var(--mono); text-transform: uppercase; }
+.sim-terms dd { margin: 3px 0; font-size: 14px; overflow-wrap: anywhere; }
+.sim-terms > p { margin: 13px 0; color: var(--s-muted); font-size: 13px; }
+.sim-business-note { margin: 14px 0 0; color: var(--s-muted); font-size: 14px; }
+.sim-business-ref { display: block; margin-top: 13px; color: var(--s-muted); font: 13px var(--mono); }
+.sim-business .sim-button { white-space: normal; }
+@media (max-width: 600px) { .sim-business-form { grid-template-columns: 1fr; } .sim-business-form .sim-field { margin: 5px 0; } .sim-business-propose { margin: 0; } .sim-terms dl { grid-template-columns: repeat(2, 1fr); } }

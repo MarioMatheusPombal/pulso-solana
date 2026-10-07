@@ -1,0 +1,21 @@
+.brand-intro { position: relative; width: min(384px, 100%); margin: -4px 0 10px; }
+.brand-intro-art { display: block; width: 100%; height: auto; overflow: visible; color: var(--amber); transform-origin: 50% 50%; }
+.brand-intro.is-playing { position: fixed; z-index: 1000; inset: 0; display: grid; width: auto; margin: 0; place-items: center; overflow: hidden; background: radial-gradient(ellipse at 50% 46%, rgb(230 176 75 / 9%), transparent 44%), linear-gradient(rgb(20 25 22 / 68%), rgb(20 25 22 / 68%)), url("/assets/chalk-v1/slate-texture.webp") center / cover; pointer-events: none; }
+.brand-intro.is-playing .brand-intro-art { width: min(820px, 88vw); filter: drop-shadow(0 20px 46px rgb(0 0 0 / 28%)); }
+.brand-intro.is-done { width: auto; margin: 0 0 12px; }
+.landing-copy:has(> .brand-intro.is-playing) { z-index: 1000; }
+.brand-intro.is-done .brand-intro-art { display: none; }
+.bi-word { fill: var(--text); }
+.bi-speck { fill: var(--text); }
+.bi-pulse-line { fill: none; stroke: var(--amber); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; }
+/* Chalk is the accent here (#378); falls back to the heading face where the chalk font is not loaded. */
+.bi-tagline { display: none; fill: var(--amber); font: 600 32px/1 var(--chalk, var(--wordmark)); letter-spacing: .02em; }
+.brand-intro.is-playing .bi-tagline { display: inline; }
+.brand-intro-notice { position: fixed; left: 0; right: 0; bottom: 30px; margin: 0; text-align: center; color: var(--muted); font: 500 12px/1 var(--mono); letter-spacing: .24em; }
+.brand-intro-control { position: absolute; right: 0; bottom: 1px; padding: 6px 10px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--panel); color: var(--text); font: 600 11px/1.2 var(--mono); cursor: pointer; }
+.brand-intro.is-playing .brand-intro-control { position: fixed; right: max(20px, calc((100vw - 1240px) / 2)); bottom: 22px; padding: 9px 15px; background: var(--panel); pointer-events: auto; }
+.brand-intro.is-done .brand-intro-control { position: static; }
+.brand-intro-control:hover { border-color: var(--amber); color: var(--amber); }
+.brand-intro-control:focus-visible { border-color: var(--focus); color: var(--text); }
+@media (prefers-reduced-motion: reduce) { .brand-intro.is-playing { display: none; } .brand-intro.is-done { width: min(384px, 100%); } .brand-intro.is-done .brand-intro-art { display: block; } .brand-intro-control { display: none; } }
+@media (max-width: 640px) { .brand-intro-notice { bottom: 84px; letter-spacing: .14em; } }

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="PULSO Guardian favicon 180px. NOT AUDITED · DEVNET DEMONSTRATION ONLY"><title>PULSO Guardian favicon 180px</title><desc>NOT AUDITED · DEVNET DEMONSTRATION ONLY</desc><style>
+@font-face{font-family:'Caveat';src:url('../fonts/Caveat.ttf') format('truetype');font-weight:400 700}
+@font-face{font-family:'Crimson Pro';src:url('../fonts/CrimsonPro.ttf') format('truetype');font-weight:400 700}
+@font-face{font-family:'JetBrains Mono';src:url('../fonts/JetBrainsMono.ttf') format('truetype');font-weight:400 700}
+.chalk{font-family:'Caveat',cursive}.editorial{font-family:'Crimson Pro',Georgia,serif}.technical{font-family:'JetBrains Mono',monospace}
+</style><g transform="scale(0.3515625)"><rect width="512" height="512" rx="92" fill="#1C211E"/><image href="../masters/guardian-chalk.webp" x="22" y="22" width="468" height="468" preserveAspectRatio="xMidYMid meet"/></g></svg>

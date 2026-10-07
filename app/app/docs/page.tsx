@@ -1,8 +1,8 @@
 import { NOTICE } from "../../lib/brand";
 
 export const metadata = {
-  title: "Docs · installation guide in preparation",
-  description: "Preview of PULSO integration paths and the human authorization flow.",
+  title: "Docs · PULSO authority and integration",
+  description: "PULSO's human authorization flow and measured local SDK and MCP setup notes.",
 };
 
 const sections = [
@@ -16,10 +16,10 @@ export default function DocsPage() {
   return (
     <div className="docs-layout">
       <header className="docs-heading">
-        <p className="eyebrow">REFERENCE · PREVIEW</p>
-        <h1>Integration notes</h1>
+        <p className="eyebrow">REFERENCE</p>
+        <h1>Authority and integration</h1>
         <p className="lead">PULSO is the authorization boundary between an AI agent and the action it wants to take. Policy lives on-chain. The human decides what crosses it. Teams building agents and payment products on Solana are the first intended users.</p>
-        <p className="preview-stamp"><span aria-hidden="true">✳</span> Installation guide in preparation</p>
+        <p className="preview-stamp"><span aria-hidden="true">✳</span> Integration setup notes at <a href="/integration">/integration</a></p>
       </header>
 
       <div className="docs-body">
@@ -31,16 +31,16 @@ export default function DocsPage() {
         <article className="docs-article">
           <section id="paths" className="doc-section" aria-labelledby="paths-title">
             <h2 id="paths-title">Integration paths</h2>
-            <p>Two integration routes are being documented. Both are designed to meet the same program-enforced policy.</p>
+            <p>SDK and local stdio MCP setup notes are available at <a href="/integration">/integration</a>. Both routes use the same program-enforced policy.</p>
             <div className="doc-route">
               <div><span className="doc-route-mark">⌘</span><h3>TypeScript SDK</h3></div>
-              <p>The SDK is the direct integration path for agents that already make Solana calls. The package guide and verified installation steps are being prepared.</p>
+              <p>The SDK is the direct integration path for agents that already make Solana calls. Review the source-workspace setup notes before adapting it to an existing agent.</p>
               <a href="https://github.com/MarioMatheusPombal/pulso-solana/tree/main/sdk" target="_blank" rel="noreferrer">Inspect the public SDK source <span aria-hidden="true">↗</span></a>
             </div>
             <div className="doc-route">
               <div><span className="doc-route-mark">◎</span><h3>Model Context Protocol</h3></div>
-              <p>An MCP integration guide is being prepared. This preview does not publish a server endpoint, package name, or copy-ready setup snippet.</p>
-              <a href="#install">Read the installation note <span aria-hidden="true">↓</span></a>
+              <p>A local stdio MCP server and a measured Inspector quickstart are included in the repository. The observed run uses localnet and a disposable fixture; manual browser-wallet approval and other hosts remain unvalidated.</p>
+              <a href="/integration">Review MCP setup notes <span aria-hidden="true">↗</span></a>
             </div>
           </section>
 
@@ -61,10 +61,10 @@ export default function DocsPage() {
           </section>
 
           <section id="install" className="doc-section" aria-labelledby="install-title">
-            <h2 id="install-title">Installation preview</h2>
-            <p>This page is a preview of the guide, not a setup manual. Verified steps are still being written.</p>
-            <p>Package names, server endpoints, wallet requirements, and network settings need to match the current release before we publish copy-ready commands. Do not treat this preview as an install recipe.</p>
+            <h2 id="install-title">Setup notes</h2>
+            <p>The SDK and MCP setup prompts describe existing source-checkout commands and the scenarios measured so far. They do not install software, publish a remote server or claim support for every host.</p>
             <div className="reference-links">
+              <a href="/integration">Open SDK and MCP setup notes <span aria-hidden="true">↗</span></a>
               <a href="https://github.com/MarioMatheusPombal/pulso-solana/tree/main/sdk" target="_blank" rel="noreferrer">SDK source <span aria-hidden="true">↗</span></a>
               <a href="https://github.com/MarioMatheusPombal/pulso-solana/blob/main/docs/POLICY_AND_INTENT_SPEC.md" target="_blank" rel="noreferrer">Policy and intent spec <span aria-hidden="true">↗</span></a>
               <a href="https://github.com/MarioMatheusPombal/pulso-solana/blob/main/docs/SECURITY_MODEL.md" target="_blank" rel="noreferrer">Security model <span aria-hidden="true">↗</span></a>
@@ -77,9 +77,9 @@ export default function DocsPage() {
             <details><summary>Does PULSO hold the human’s private key?</summary><p>No. The human signs in their own wallet. PULSO never receives or stores that private key.</p></details>
             <details><summary>Can an agent bypass the approval screen?</summary><p>The screen is not the enforcement boundary. The on-chain program checks the policy and authorization when the action executes.</p></details>
             <details><summary>Does PULSO guard every action from an agent wallet?</summary><p>PULSO enforces policy on actions routed through a PULSO-enabled program and its scoped vault. Unrelated programs and assets outside that policy remain outside this gate.</p></details>
-            <details><summary>Is there an MCP server I can install today?</summary><p>This preview does not publish a server package or endpoint. The MCP integration guide is still in preparation.</p></details>
+            <details><summary>Is there an MCP server I can install today?</summary><p>The repository includes a local stdio MCP server. It is not a hosted service or a published npm package. Review the measured setup notes at <a href="/integration">/integration</a>; Inspector localnet validation does not establish other host or browser-wallet support.</p></details>
             <details><summary>Is PULSO available as a paid or managed service?</summary><p>Not yet. Today there is a devnet demonstration. A managed service, organization dashboard and packaged SDK are planned and not available. To discuss a devnet pilot, use the <a href="/waitlist">pilot request</a> page.</p></details>
-            <details><summary>Where should I start while the guide is being written?</summary><p>Read the policy and intent specification and security model. The links above lead to the current project documents.</p></details>
+            <details><summary>Where should I start?</summary><p>Review the <a href="/integration">SDK and MCP setup notes</a>, then read the policy and intent specification and security model.</p></details>
           </section>
         </article>
       </div>

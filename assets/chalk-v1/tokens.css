@@ -1,0 +1,21 @@
+@font-face { font-family: "Caveat"; src: url("fonts/Caveat.ttf") format("truetype"); font-weight: 400 700; }
+@font-face { font-family: "Crimson Pro"; src: url("fonts/CrimsonPro.ttf") format("truetype"); font-weight: 400 700; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/JetBrainsMono.ttf") format("truetype"); font-weight: 400 700; }
+
+:root {
+  color-scheme: dark;
+  --pulso-slate: #1c211e;
+  --pulso-panel: #242a25;
+  --pulso-raised: #2a302b;
+  --pulso-chalk: #eee8d8;
+  --pulso-muted: #b8b7a9;
+  --pulso-line: #586057;
+  --pulso-amber: #e6b04b;
+  --pulso-coral: #e97968;
+  --pulso-success: #a7be91;
+  --pulso-danger: #ee8f7d;
+  --pulso-focus: #f2c964;
+  --pulso-font-display: "Caveat", cursive;
+  --pulso-font-editorial: "Crimson Pro", Georgia, serif;
+  --pulso-font-technical: "JetBrains Mono", monospace;
+}

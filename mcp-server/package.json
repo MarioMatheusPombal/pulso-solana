@@ -1,0 +1,28 @@
+{
+  "name": "@pulso/mcp-server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node --import tsx dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "test:e2e": "tsc -p tsconfig.build.json && vitest run --config vitest.e2e.config.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.2.0",
+    "@pulso/sdk": "workspace:*",
+    "@solana/spl-token": "^0.4.15",
+    "@solana/web3.js": "^1.99.0",
+    "tsx": "^4.20.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@anchor-lang/core": "1.2.0",
+    "@modelcontextprotocol/client": "2.2.0",
+    "@types/node": "^26.6.3",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.2"
+  }
+}

@@ -1,0 +1,169 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ANCHOR_VERSION: 1.2.0
+
+jobs:
+  anchor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      # rust-toolchain.toml pins the host toolchain; rustup installs it on first use.
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Cache Solana toolchain
+        id: solana
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.local/share/solana
+            ~/.cache/solana
+          key: solana-stable-${{ runner.os }}-v1
+
+      - name: Install Solana toolchain
+        if: steps.solana.outputs.cache-hit != 'true'
+        run: sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+
+      - name: Install Anchor CLI
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          curl -sSfL -o "$HOME/.local/bin/anchor" \
+            "https://github.com/solana-foundation/anchor/releases/download/v${ANCHOR_VERSION}/anchor-${ANCHOR_VERSION}-x86_64-unknown-linux-gnu"
+          chmod +x "$HOME/.local/bin/anchor"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
+
+      # SBPF v0: the LiteSVM version used by the tests does not load the v3 default.
+      - name: anchor build
+        run: anchor build --arch v0
+
+      - name: anchor test
+        run: anchor test --skip-build
+
+      # The agent-demo e2e job below reuses this exact build instead of compiling again.
+      - name: Share the built program
+        uses: actions/upload-artifact@v4
+        with:
+          name: pulso-program
+          path: target/deploy/pulso.so
+          retention-days: 1
+          if-no-files-found: error
+
+      # End-to-end tests against a real solana-test-validator, reusing the build above.
+      # They cover the authority receipt (verifier attacks and scenario G).
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: sdk e2e
+        run: pnpm --filter @pulso/sdk test:e2e
+      - name: authority receipt e2e (attacks and scenario G)
+        run: pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts ../tests/receipt-attacks.e2e.test.ts ../tests/scenario-g.e2e.test.ts
+      - name: mcp transfer e2e
+        run: pnpm test:mcp:e2e
+      - name: mcp security boundaries
+        run: pnpm --filter @pulso/mcp-server exec vitest run --config ../tests/mcp-security.config.mts
+      # B2B network (issue 311): the agent adapter (#309) and the network matrix against a real validator.
+      - name: b2b agent adapter e2e
+        run: pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts test/b2b.e2e.test.ts
+      - name: b2b network e2e (isolation, consent, replay, attacks)
+        run: pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts ../tests/b2b-network.e2e.test.ts
+      # Runs here and not in agent-demo-e2e: the LiteSVM cargo test reuses this job's Rust cache and build.
+      - name: scenario F e2e (expiry, LiteSVM clock)
+        run: pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts ../tests/scenario-f.e2e.test.ts
+
+  # Agent-demo e2e that the anchor job does not run (issue 314): setup, scenarios A and B,
+  # the deterministic agent, scenarios C-F, the full-demo port guard and the B2B demo
+  # rehearsal. Same local ports (8899/9900) as every other validator test, so one vitest
+  # run, one file at a time. Scenarios A-G capture stays in demo-video.yml.
+  agent-demo-e2e:
+    needs: anchor
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Solana toolchain
+        id: solana
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.local/share/solana
+            ~/.cache/solana
+          key: solana-stable-${{ runner.os }}-v1
+
+      - name: Install Solana toolchain
+        if: steps.solana.outputs.cache-hit != 'true'
+        run: sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+
+      - name: Put the validator on PATH
+        run: echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
+
+      - name: Download the program built by the anchor job
+        uses: actions/download-artifact@v4
+        with:
+          name: pulso-program
+          path: target/deploy
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: agent-demo e2e (setup, A/B, agent, full-demo guard)
+        run: pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts test/setup.e2e.test.ts test/demo.e2e.test.ts test/agent.e2e.test.ts test/full-demo.e2e.test.ts
+      # Scenario F compiles and runs a LiteSVM cargo test: it lives in the anchor job, which has the Rust cache.
+      - name: scenarios C-E e2e (amount, recipient, replay)
+        run: pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts ../tests/scenario-c.e2e.test.ts ../tests/scenario-d.e2e.test.ts ../tests/scenario-e.e2e.test.ts
+      - name: b2b demo rehearsal e2e (localnet)
+        run: pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts test/b2b-demo.e2e.test.ts
+
+  sdk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Cross-checks the TypeScript action hash against the vectors the Rust tests use.
+      - run: pnpm test:sdk
+      - run: pnpm --filter @pulso/sdk typecheck
+      # Loads the SDK in plain Node (no vitest/webpack interop), as demo.sh does.
+      - run: pnpm --filter @pulso/agent-demo exec node --import tsx --input-type=module -e "await import('@pulso/sdk')"
+      - run: pnpm test:app
+      - run: pnpm --filter @pulso/app typecheck
+      # Agent adapter unit tests (issue 311): trail, B2B package validation, B2B adapter.
+      - run: pnpm --filter @pulso/agent-demo test
+
+  mcp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @pulso/mcp-server typecheck
+      - run: pnpm --filter @pulso/mcp-server build
+      - run: pnpm test:mcp

@@ -16,6 +16,8 @@ export interface ValidatorOptions {
   soPath: string;
   rpcPort: number;
   faucetPort: number;
+  gossipPort?: number;
+  dynamicPortRange?: string;
 }
 
 /** Boots a fresh solana-test-validator with the program preloaded. Shared by the SDK e2e tests and the demo. */
@@ -25,6 +27,8 @@ export async function startValidator(o: ValidatorOptions): Promise<LocalValidato
     "solana-test-validator",
     [
       "--reset", "--quiet",
+      ...(o.gossipPort === undefined ? [] : ["--gossip-port", String(o.gossipPort)]),
+      ...(o.dynamicPortRange === undefined ? [] : ["--dynamic-port-range", o.dynamicPortRange]),
       "--ledger", ledger,
       "--rpc-port", String(o.rpcPort),
       "--faucet-port", String(o.faucetPort),

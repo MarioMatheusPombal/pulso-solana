@@ -1,14 +1,16 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/MarioMatheusPombal/pulso-solana/main/assets/readme/docbar-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/MarioMatheusPombal/pulso-solana/main/assets/readme/docbar-light.svg">
-  <img src="https://raw.githubusercontent.com/MarioMatheusPombal/pulso-solana/main/assets/readme/docbar-dark.svg" alt="PULSO: human authorization for AI agents. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
-</picture>
+<img src="https://raw.githubusercontent.com/MarioMatheusPombal/pulso-solana/main/assets/chalk-v1/readme/docbar.png" alt="PULSO: human authorization for AI agents. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
 
 # @pulso/app
 
 Web app for PULSO policy and approval: create a policy, watch the agent wallet,
 and approve or deny the exact action an agent asked for.
-The landing page is at `/`, policy configuration is at `/policy`, and integration notes are previewed at `/docs` (`/integration` redirects there). A pilot-interest form (the waitlist) is available at `/waitlist`. The copy positions PULSO as human authorization for teams building agents and payment products on Solana; managed service, dashboard, SDK packaging and mainnet are described only as planned.
+The landing page is at `/`, the Simulation Lab opens at `/simulation`, and authorization notes are at `/docs`. Policy configuration (`/policy`), agent wallets (`/wallet`), approvals, network tools, and integration remain available from Lab pages and direct links. A pilot-interest form is at `/waitlist`. The copy positions PULSO as human authorization for teams building agents and payment products on Solana; managed service, dashboard, SDK packaging and mainnet are described only as planned.
+
+The header wallet control is available on every route, including Home, Simulation and Docs. The same wallet provider stays mounted during navigation; use the control to select or manage the human wallet. Mobile keeps the wallet and Lab menu in separate grid slots.
+
+The landing is a single classroom hero with aligned 2D parallax planes: the Guardian teaches while holding a heart, and the chalk diagram ends at a shield. The original brand opening, Skip and Replay remain. The scene has subtle idle motion, mouse depth, Pause/Resume and a static reduced-motion state; mobile and tablet place the scene beneath the copy. The internal design reference is at `/ds` (redirects to `/design-system`) without a navigation link. Verify desktop/mobile/reduced motion with `node scripts/shot.mjs . --at 1000,5000 --full`, `--mobile` and `--reduced` while the app is running. Production artwork and provenance: `public/assets/classroom-v1/README.md`. All Simulation Lab functionality remains in its existing components.
+
+The hero scales through 2560×1440 and 3840×2160, with a height bound for ultrawide screens and a separate mobile crop. It reuses the same three WebP layers (~273 KB total). Short landscape/zoomed viewports may scroll within the single hero to keep content reachable. In the private checkout, from the repository root, run `node docs/design/authority-studio-v1/classroom-v1/responsive-v2/qa.cjs` against the running app for the viewport, resize and motion checks; screenshots go to `app/.shots/hero-responsive-v2/`.
 
 **NOT AUDITED · DEVNET DEMONSTRATION ONLY**
 
@@ -21,6 +23,10 @@ pnpm test:app                        # vitest, calls the route handlers directly
 pnpm --filter @pulso/app typecheck
 pnpm --filter @pulso/app build
 ```
+
+Open `/simulation` for the local Simulation Lab. The Lab combines a deterministic local policy/transfer simulation, a local B2B invitation and commercial-terms rehearsal that still passes through the simulated payment policy, and the read-only Live demo evidence panel. Commercial consent is not spending authority. The Live demo catalogs reproducible A–G scenarios and reads `/api/activity` for one selected policy; it does not run terminal commands from the browser. The full local suite remains `bash scripts/demo.sh`; it runs validator scenarios and F in LiteSVM. A policy activity row never attests that the full suite passed.
+
+For RPC-confirmed activity, keep a local validator available at `http://127.0.0.1:8899`, run this app with that `NEXT_PUBLIC_RPC_URL`, and set `PULSO_ACTIVITY_URL=http://localhost:3000` when launching a compatible demo command. Select the policy printed by that run. The Lab checks up to 10 new signatures against the configured RPC; it labels SDK reports, simulations, observed intent accounts, and verified transactions separately. F has no RPC signature. G and the automated B2B rehearsal do not emit activity to this timeline. The Lab feed does not attest that the full suite completed.
 
 ## Wallet and RPC
 
@@ -35,7 +41,7 @@ The human connects a browser wallet (Wallet Standard: Phantom, Solflare, Backpac
 NEXT_PUBLIC_RPC_URL=http://127.0.0.1:8899 pnpm --filter @pulso/app dev
 ```
 
-Page `/`: product landing page with links to policy setup and Docs.
+Page `/`: chalkboard landing with the approved large Guardian illustration, a first-visit-per-session GSAP intro, and links to the Simulation Lab and Docs. Skip and replay controls remain available; the opening runs for about one second and never gates the page or a transaction. Pilot interest stays a secondary link.
 
 Page `/policy`: create a policy and its vault (`create_policy` + `create_vault`, one transaction), then show the policy read back from the chain.
 
@@ -59,17 +65,18 @@ To report live agent outcomes, configure the SDK with `activityUrl: "http://loca
 
 ## Brand and motion
 
-The app uses a dark chalkboard surface, local Caveat, Crimson Pro, and JetBrains Mono fonts from `app/app/fonts/`, and the chalk Guardian and diagrams in `app/public/assets/chalk-v1/`. OFL notices live beside the font files. The dark palette is fixed across routes to avoid a theme flash.
+The app uses the approved chalkboard identity: slate texture, warm chalk, amber attention, the original Guardian illustration, and local Caveat, Crimson Pro, and JetBrains Mono fonts. Shared tokens come from `app/app/globals.css`; brand sources and asset rules are documented in `docs/BRAND_SYSTEM_V1.md` and `public/assets/chalk-v1/README.md`.
 
-`/docs` is a compact reference and clearly marked preview, not an installation guide. MCP and SDK installation steps are in preparation; it does not claim a ready MCP server or publish provisional install commands. `/integration` redirects to `/docs`.
+`/docs` explains the authority flow and links to `/integration` for the available MCP/SDK setup review prompts. Those prompts describe validated local scenarios and their measured limits; they do not install software or claim universal host support.
 
 The waitlist demo player and poster are served from `app/public/assets/`; their release originals remain under `public/assets/`.
 
-The landing uses GSAP (`gsap`, `@gsap/react`) for low-amplitude pointer parallax on the Guardian; it runs through `useGSAP` and cleans up on unmount. Docs stays static for reading. Three rules hold everywhere:
+The landing uses GSAP to move the approved Guardian chalk artwork along a subtle arc and reveal the Caveat wordmark. It plays once per session, offers Skip and Replay controls, and falls back to the visible static SVG if JavaScript, storage, or the animation fails. Pointer response is limited to a small transform on fine pointers. Reduced-motion changes finish the intro immediately; the authority diagram stays static. Three rules hold everywhere:
 
 - With `prefers-reduced-motion`, nothing animates and every element sits in its final state.
 - The payload under review on `/approvals/<id>` never animates. Only the confirmation that follows an on-chain result does.
-- The Guardian illustration on `/` uses low-amplitude desktop pointer parallax. Reduced-motion and touch layouts stay static.
+- The authority diagram stays readable at narrow widths and does not rely on animation.
+- The PULSO brand intro animates only on the landing page. It cannot delay the approval payload or transaction controls.
 
 ## Trust boundary
 
@@ -117,3 +124,13 @@ Example `POST` body:
 
 - `dev` and `build` use `--webpack` because `@pulso/sdk` ships TypeScript source that imports `./x.js` for `./x.ts`; Turbopack does not resolve that, webpack does via `extensionAlias` in `next.config.mjs`.
 - `pnpm-workspace.yaml` sets `allowBuilds` to `false` for `bufferutil` and `utf-8-validate` (optional native speedups pulled in by `@solana/web3.js`); pnpm 12 fails the install on undeclared build scripts.
+
+## Integration onboarding
+
+Open `/integration` from the main navigation or landing. Review each complete prompt, copy it, or download its Markdown file. Clipboard failure selects the visible text for manual copying. Downloads are generic documentation, not universal skills. MCP records Inspector CLI 2.9.0 / MCP 2025-11-25 local validation with fixture-signed approval; manual browser-wallet approval and other hosts remain unvalidated. Public availability depends on the release update. SDK commands use the existing source workspace, not a published npm package. Verify one allowed and one blocked action through the actual integration before claiming installation success. No installation happens on visit. Only the human sets and signs authority.
+
+Materials live in `app/public/integration/` and are included by the release app/ allowlist. Run the release dry-run before any authorized public release.
+
+## Humanist identity
+
+The header uses the approved compact Guardian face and lowercase `pulso` lettering. Editable SVGs are in `public/assets/humanist-v1/`; Nunito/Nunito Sans WOFF2 fonts and their OFL licenses live in `app/fonts/`. They are served locally. Technical values retain JetBrains Mono; reduced motion and exact approval payloads are preserved. To inspect the typography, open Home, Simulation (all three tabs), Docs, Policy and Network at desktop/mobile sizes.

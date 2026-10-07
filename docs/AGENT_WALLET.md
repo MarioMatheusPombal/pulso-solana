@@ -1,8 +1,4 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../assets/readme/docbar-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="../assets/readme/docbar-light.svg">
-  <img src="../assets/readme/docbar-dark.svg" alt="PULSO: human authorization for AI agents. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
-</picture>
+<img src="../assets/chalk-v1/readme/docbar.png" alt="PULSO: human authorization for AI agents. NOT AUDITED · DEVNET DEMONSTRATION ONLY." width="100%">
 
 > **NOT AUDITED · DEVNET DEMONSTRATION ONLY.** Prototype design, not production custody.
 > Published spec — see the [README](../README.md) for context.

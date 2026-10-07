@@ -1,0 +1,26 @@
+.pulso-header { position: relative; z-index: 5; }
+.brand-lockup { display: block; width: 180px; max-width: 100%; height: auto; }
+.pulso-navigation { gap: 8px !important; }
+.pulso-navigation a { font-family: var(--sans) !important; font-size: 15px !important; font-weight: 700; }
+.pulso-lab-menu { position: relative; flex: 0 0 auto; }
+.pulso-lab-menu summary { padding: 8px 11px; border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--muted); font: 600 11px/1.2 var(--mono); list-style: none; cursor: pointer; }
+.pulso-lab-menu summary::-webkit-details-marker { display: none; }
+.pulso-lab-menu summary::after { margin-left: 8px; color: var(--amber); content: "⌄"; }
+.pulso-lab-menu[open] summary { color: var(--text); border-color: var(--amber); }
+.pulso-lab-menu nav { position: absolute; top: calc(100% + 8px); right: 0; display: grid !important; width: 200px; padding: 6px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel); box-shadow: var(--shadow); }
+.pulso-lab-menu nav a { padding: 8px 10px; border-radius: var(--r-sm); color: var(--muted); font: 500 13px/1.4 var(--font-interface), ui-sans-serif, sans-serif; text-decoration: none; }
+.pulso-lab-menu nav a:hover, .pulso-lab-menu nav a[aria-current="page"] { background: var(--raise); color: var(--amber); }
+@media (max-width: 850px) { .pulso-lab-menu { grid-row: 1; grid-column: 2; justify-self: end; } .pulso-navigation { grid-row: 2 !important; grid-column: 1 / -1 !important; flex-wrap: wrap; } }
+@media (max-width: 620px) { .brand-lockup { width: 146px; } .pulso-lab-menu { grid-row: 1; grid-column: 2; } .pulso-navigation { grid-row: 2 !important; grid-column: 1 / -1 !important; flex-wrap: nowrap !important; justify-content: space-between; } .pulso-lab-menu summary { padding: 7px 9px; font-size: 12px; } }
+/* Keep the wallet in one stable slot, including Home, Simulation and Docs. */
+@media (max-width: 850px) {
+  .pulso-header.top { grid-template-columns: minmax(0, 1fr) auto; }
+  .pulso-header .header-actions { grid-row: 1; grid-column: 2; justify-self: end; }
+  .pulso-header .pulso-lab-menu { grid-row: 2; grid-column: 2; justify-self: end; }
+  .pulso-header .pulso-navigation { grid-row: 2 !important; grid-column: 1 !important; justify-content: flex-start; gap: 5px !important; }
+}
+@media (max-width: 620px) {
+  .pulso-header .pulso-navigation a { padding-inline: 5px; font-size: 13px !important; }
+  .pulso-header .pulso-lab-menu summary { padding: 7px; font-size: 10px; }
+  .pulso-header .header-actions { min-height: 40px; }
+}

@@ -8,8 +8,10 @@
     "agent": "tsx src/agent.ts",
     "demo": "tsx src/demo.ts",
     "trail": "tsx src/trail.ts",
+    "b2b": "tsx src/b2b.ts",
+    "b2b-demo": "tsx src/b2b-demo.ts",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run test/trail.test.ts",
+    "test": "vitest run test/trail.test.ts test/b2b-package.test.ts test/b2b.test.ts",
     "test:e2e": "vitest run --config vitest.e2e.config.ts"
   },
   "dependencies": {
