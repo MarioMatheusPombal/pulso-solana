@@ -1,5 +1,5 @@
 // NOT AUDITED · DEVNET DEMONSTRATION ONLY
-// No network: a double of the connection subset the reconciliation touches (spec 14 section 8).
+// No network: a double of the connection subset the reconciliation touches (docs/B2B_NETWORK_SPEC.md section 8).
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { createPrivateKey, createHash, sign } from "node:crypto";
 import { mkdtemp, rm } from "node:fs/promises";

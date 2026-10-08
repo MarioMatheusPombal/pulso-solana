@@ -1,6 +1,6 @@
 // NOT AUDITED · DEVNET DEMONSTRATION ONLY
 // Trust boundary: organizations, connections and consents stored here are application state. They
-// do NOT authorize spending; enforcement stays in the on-chain program (spec 14 section 1).
+// do NOT authorize spending; enforcement stays in the on-chain program (docs/B2B_NETWORK_SPEC.md section 1).
 // One JSON file per collection, same lock + atomic rename pattern as waitlist-store.
 import { randomBytes, randomUUID } from "node:crypto";
 import { mkdir, open, readFile, rename, stat, unlink, writeFile } from "node:fs/promises";

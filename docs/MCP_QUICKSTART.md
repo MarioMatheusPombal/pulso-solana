@@ -6,7 +6,7 @@ PULSO is a human authorization layer. This guide connects one concrete client, *
 
 ## Source availability and prerequisites
 
-Use a checkout containing `mcp-server/`. The prepared release allowlist includes this package, its locked workspace, the technical contract and CI. An older public release may omit MCP; confirm the package exists before running these commands. Preparing the release tree does not itself publish a tag or update the public repository.
+Use a checkout containing `mcp-server/`. This repository includes the package, its locked workspace, the technical contract and CI. Confirm the package exists in your checkout before running these commands.
 
 Install Node.js 22 (CI major), pnpm 12.8.1, Rust 1.89.0, Anchor CLI 1.2.0 and Solana/Agave CLI. Validation used macOS arm64, Node 26.10.0, pnpm 12.8.1, Anchor 1.2.0 and Solana CLI 4.3.0. Inspector is fetched separately, pinned below. This is localnet with test tokens, not a production wallet setup.
 

@@ -2,8 +2,8 @@
 'use strict';
 
 // Gera os assets de README (../../readme/) e o kit de motion (./layers, ./previews).
-// Uso: node public/assets/brand-v1/motion/build.js — só Node, sem dependências.
-// A arte do Guardião entra por cópias reduzidas dos masters de raster-v2 (ver MOTION.md).
+// Usage: node public/assets/brand-v1/motion/build.js — Node only, no dependencies.
+// The Guardian art enters as downsized copies of the raster-v2 masters (see MOTION.md).
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -14,20 +14,20 @@ const SANS = 'Arial,Helvetica,sans-serif';
 const UI = "system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif";
 const MONO = 'ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
 
-// Tokens de tokens.css. `pulse` e `amberText` escurecem o âmbar no tema claro,
-// onde #FFB020 sobre marfim fica em 1,66:1.
+// Tokens from tokens.css. `pulse` and `amberText` darken the amber on the light theme,
+// where #FFB020 on ivory is 1.66:1.
 const T = {
   dark: { dark: true, bg: '#0A0E13', panel: '#10161D', line: '#29343E', grid: '#131C25', text: '#F6F4EF', muted: '#C0C4C8', amber: '#FFB020', pulse: '#FFB020', amberText: '#FFB020', ok: '#55D38F', danger: '#FF7D72', neutral: '#8A96A3' },
   light: { dark: false, bg: '#F6F4EF', panel: '#FFFFFF', line: '#D8D3C9', grid: '#E9E5DC', text: '#14171A', muted: '#62686D', amber: '#FFB020', pulse: '#B87400', amberText: '#8A5200', ok: '#14734B', danger: '#B42318', neutral: '#62686D' },
 };
 
-// Silhueta do capuz no espaço do master (1254 × 1254), traçada do canal alfa.
+// Hood silhouette in master space (1254 × 1254), traced from the alpha channel.
 const HOOD = 'M603 108 L557 132 L523 156 L493 180 L466 204 L441 228 L419 252 L399 276 L381 300 L365 324 L350 348 L336 372 L322 396 L308 420 L294 444 L279 468 L263 492 L247 516 L230 540 L213 564 L196 588 L179 612 L162 636 L145 660 L129 684 L114 708 L100 732 L90 756 L85 780 L95 804 L123 828 L169 852 L223 876 L269 900 L312 924 L353 948 L392 972 L427 996 L460 1020 L491 1044 L519 1068 L546 1092 L571 1116 L597 1140 L616 1158 L626 1158 L653 1134 L680 1110 L709 1086 L738 1062 L768 1038 L799 1014 L833 990 L868 966 L907 942 L949 918 L993 894 L1042 870 L1094 846 L1136 822 L1162 798 L1168 774 L1160 750 L1149 726 L1134 702 L1118 678 L1102 654 L1085 630 L1067 606 L1051 582 L1034 558 L1017 534 L1001 510 L985 486 L970 462 L955 438 L941 414 L928 390 L914 366 L900 342 L885 318 L868 294 L850 270 L829 246 L806 222 L781 198 L753 174 L723 150 L688 126 L650 108Z';
-// Centro das íris âmbar no espaço do master.
+// Center of the amber irises in master space.
 const EYES = [{ cx: 511, cy: 600 }, { cx: 740, cy: 600 }];
 
-// A guarda da release procura termos vetados sem distinguir maiúsculas; base64 pode
-// formar um deles por acaso. Mesmo truque do expressive-kit: referências numéricas.
+// The release guard looks for banned terms case-insensitively; base64 can
+// form one by chance. Same trick as expressive-kit: numeric references.
 const dataUri = file => 'data:image/png;base64,' + fs.readFileSync(path.join(here, 'layers', file)).toString('base64').replace(/[bBcCpPmMvV]/g, c => `&#${c.charCodeAt(0)};`);
 const MARK = dataUri('guardian-mark-400.png');
 const HEART = dataUri('guardian-heart-520.png');
@@ -60,7 +60,7 @@ ${extra}
 </style>`;
 const svg = (W, H, title, body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(title)}"><title>${esc(title)}</title>${body}</svg>\n`;
 
-// Guardião compacto. No tema escuro o capuz preto some no fundo: um contorno o devolve.
+// Compact Guardian. On the dark theme the black hood vanishes into the background: an outline restores it.
 function mark(x, y, S, th, o = {}) {
   const k = S / 1254;
   const at = `transform="translate(${x} ${y}) scale(${r(k)})"`;
@@ -68,7 +68,7 @@ function mark(x, y, S, th, o = {}) {
     + `<g${o.cls ? ` class="${o.cls}"` : ''}>`
     + (th.dark ? `<path ${at} d="${HOOD}" fill="#141B23" stroke="#2F3B48" stroke-width="${r(5 / k)}" stroke-linejoin="round"/>` : '')
     + `<image href="${MARK}" x="${x}" y="${y}" width="${S}" height="${S}"/>`
-    // A classe animada fica num grupo sem transform próprio: transform-box muda a origem do atributo.
+    // The animated class sits in a group with no transform of its own: transform-box changes the origin of the attribute.
     + `<g ${at}><g class="${o.eyeCls || 'eyes'}">${EYES.map(e => `<ellipse cx="${e.cx}" cy="${e.cy}" rx="78" ry="60" fill="url(#eye)"/>`).join('')}</g></g></g>`;
 }
 const backdrop = (W, H, th, gx, gy, gr) => `<rect width="${W}" height="${H}" rx="20" fill="${th.bg}"/><mask id="m"><ellipse cx="${gx}" cy="${gy}" rx="${gr * 1.5}" ry="${gr}" fill="url(#fade)"/></mask><rect width="${W}" height="${H}" fill="url(#grid)" mask="url(#m)"/>`;
@@ -112,10 +112,10 @@ function flow(th) {
     + mark(297, 164, 96, th, { glow: false })
     + t(345, 292, 'PULSO', { fill: th.text, font: SANS, size: 22, weight: 800, ls: 4, anchor: 'middle' })
     + t(345, 318, 'policy enforced by', { fill: th.muted, size: 14, anchor: 'middle' }) + t(345, 338, 'the on-chain program', { fill: th.muted, size: 14, anchor: 'middle' })
-    // 1 · autônomo
+    // 1 · autonomous
     + mono(500, 78, 'WITHIN DELEGATED AUTHORITY', { fill: th.ok }) + line(l1, th.ok) + comet(l1, th.ok, { delay: 0.6 })
     + t(500, 128, 'Autonomous. No human in the loop.', { fill: th.muted, size: 14 }) + pill(830, 80, 130, 'EXECUTED', th.ok, th)
-    // 2 · aprovação humana: é aqui que a linha pulsa
+    // 2 · human approval: this is where the line pulses
     + mono(500, 216, 'OUTSIDE AUTHORITY · HUMAN_INTENT_REQUIRED', { fill: th.amberText }) + line(l2, th.pulse) + comet(l2, th.text, { delay: 1.8 })
     + t(500, 300, 'The human approves the exact action:', { fill: th.muted, size: 14 }) + t(500, 320, 'scoped, expiring, single-use.', { fill: th.muted, size: 14 }) + pill(830, 242, 130, 'EXECUTED', th.ok, th)
     // 3 · rejeitado
@@ -132,7 +132,7 @@ const SCENARIOS = [
   ['E', 'Authorization reused', 'single-use replay', 'no', 'PULSO_005_INTENT_ALREADY_USED'],
   ['F', 'Past expiry', 'authorization expired', 'no', 'PULSO_004_INTENT_EXPIRED'],
 ];
-// Glifo de 256 px: linha reta = autônomo, batimento = aprovação humana, corte com ✕ = rejeitado.
+// 256 px glyph: straight line = autonomous, heartbeat = human approval, cut with ✕ = rejected.
 function glyph(x, y, kind, th) {
   if (kind === 'ok') return line(`M${x} ${y} H${x + 244}`, th.ok) + `<circle cx="${x + 250}" cy="${y}" r="5" fill="${th.ok}"/>`;
   const d = `M${x} ${y} H${x + 60} ${beat(0.7)}`;
@@ -186,7 +186,7 @@ function footer(th) {
     + notice(40, 212, th) + frame(W, H, th));
 }
 
-// Cabeçalho fino para docs e READMEs de pacote.
+// Thin header for docs and package READMEs.
 function docbar(th) {
   const W = 1200, H = 96, d = `M430 68 H860 ${beat(0.8)} H${W}`;
   return svg(W, H, 'PULSO: human authorization for AI agents. ' + NOTICE, defs(th, W) + css()
@@ -213,7 +213,7 @@ function social(th) {
 }
 
 // ------------------------------------------------------------------ MOTION --
-// Camadas: SVGs transparentes com ids estáveis, para animar no Remotion.
+// Layers: transparent SVGs with stable ids, for animating in Remotion.
 const V = { W: 1920, H: 1080 };
 const D = T.dark;
 const BADGES = { autonomous: ['AUTONOMOUS', D.ok, 'ok'], awaiting: ['AWAITING APPROVAL', D.amber, 'human'], confirmed: ['CONFIRMED', D.ok, 'dot'], rejected: ['REJECTED', D.danger, 'x'], expired: ['EXPIRED', D.neutral, 'ring'] };
@@ -266,7 +266,7 @@ for (const th of [T.dark, T.light]) layers[`grid-${th.dark ? 'dark' : 'light'}.s
 for (const k of Object.keys(BADGES)) layers[`badge-${k}.svg`] = badge(k);
 for (const s of SCENARIOS) layers[`scenario-${s[0]}.svg`] = scenarioCard(s);
 
-// Previews: referência de timing em CSS. O estado sem animação é sempre o quadro final.
+// Previews: timing reference in CSS. The state without animation is always the final frame.
 const stage = (title, style, body) => svg(V.W, V.H, title + ' ' + NOTICE, defs(D, V.W) + css(style)
   + `<rect width="${V.W}" height="${V.H}" fill="${D.bg}"/><mask id="m"><ellipse cx="960" cy="540" rx="1100" ry="640" fill="url(#fade)"/></mask><rect width="${V.W}" height="${V.H}" fill="url(#grid)" mask="url(#m)"/>`
   + body + mono(96, 1010, NOTICE, { fill: D.amber, size: 22, ls: 2, cls: 'notice' }));
@@ -298,7 +298,7 @@ function heartbeatLoop() {
     + t(960, 800, 'PULSO', { fill: D.text, font: SANS, size: 150, weight: 800, ls: 14, anchor: 'middle' }));
 }
 
-// Cena do portão: o pedido do agente chega ao Guardião e só passa com aprovação humana.
+// Gate scene: the agent's request reaches the Guardian and only passes with human approval.
 function gate(approve) {
   const y = 540, dur = approve ? 10 : 8, okColor = approve ? D.ok : D.neutral;
   const node = (x, eyebrow, title, stroke, cls = '') => `<g class="${cls}">${panel(x, y - 80, 340, 160, D, { rx: 16, stroke, sw: 2 })}${mono(x + 32, y - 22, eyebrow, { fill: D.muted, size: 20, ls: 3 })}${t(x + 32, y + 30, title, { fill: D.text, size: 34, weight: 700 })}</g>`;
@@ -306,7 +306,7 @@ function gate(approve) {
   const style = approve
     ? anim('dot', dur, '0%{transform:translateX(0);opacity:0}4%{opacity:1}20%,46%{transform:translateX(330px)}52%{transform:translateX(580px)}72%{transform:translateX(1000px);opacity:1}78%,100%{transform:translateX(1000px);opacity:0}')
       + anim('wait', dur, '0%,20%{opacity:0}24%,44%{opacity:1}48%,100%{opacity:0}')
-      // "Confirmed" só depois que o ponto chega ao destino: verde é resultado observado.
+      // "Confirmed" only after the dot reaches the destination: green is an observed result.
       + anim('ok', dur, '0%,72%{opacity:0}78%,94%{opacity:1}100%{opacity:0}')
       + anim('spike', dur, '0%,44%{stroke-dashoffset:1;opacity:1}56%,94%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}') + '.spike{stroke-dasharray:1}'
       + anim('flash', dur, '0%,44%{opacity:.3}50%{opacity:1}60%,100%{opacity:.3}')
@@ -330,7 +330,7 @@ function gate(approve) {
 
 const previews = { 'logo-reveal.svg': logoReveal(), 'heartbeat-loop.svg': heartbeatLoop(), 'gate-approve.svg': gate(true), 'gate-reject.svg': gate(false) };
 
-// Tokens de motion: os mesmos números que os previews usam, em quadros a 30 fps.
+// Motion tokens: the same numbers the previews use, in frames at 30 fps.
 const tokens = {
   notice: NOTICE,
   fps: 30,

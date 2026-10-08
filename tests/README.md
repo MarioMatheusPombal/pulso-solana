@@ -1,12 +1,12 @@
-# tests — cenários ponta a ponta e reprodução do MVP.
+# tests: end-to-end scenarios and MVP reproduction
 
-Os testes de programa ficam em `programs/pulso/tests/` e rodam em LiteSVM, sem validador. O cenário F pode ser reproduzido com `scripts/demo.sh --scenario F`: ele executa o teste focal de expiração em LiteSVM, avança o Clock para `expires_at + 1` e mostra o erro 6003 e os estados preservados. Esse resultado é uma simulação do programa on-chain; não cria nem representa uma transação RPC.
+The program tests live in `programs/pulso/tests/` and run on LiteSVM, with no validator. Scenario F can be reproduced with `scripts/demo.sh --scenario F`: it runs the focused expiry test on LiteSVM, advances the Clock to `expires_at + 1` and shows error 6003 and the preserved states. This result is a simulation of the on-chain program; it does not create or represent an RPC transaction.
 
-## Segurança MCP (#244)
+## MCP security (#244)
 
 **NOT AUDITED · DEVNET DEMONSTRATION ONLY**
 
-Após instalar dependências e compilar `target/deploy/pulso.so`:
+After installing dependencies and building `target/deploy/pulso.so`:
 
 ```sh
 pnpm --filter @pulso/mcp-server build
@@ -17,100 +17,100 @@ pnpm test:e2e
 anchor test --skip-build
 ```
 
-O harness `security.mcp.test.ts` usa o cliente MCP oficial em stdio, protocolo fixado em `2026-07-28`, backend loopback deliberadamente enganoso e validador Solana real. RPC/WS usam 19008/19009, faucet 20008, gossip 21008 e portas dinâmicas 21010–21099. A fixture humana assina somente no processo do teste; apenas a chave do agente é gravada em diretório temporário privado fora do repo. O diretório é removido ao terminar.
+The `security.mcp.test.ts` harness uses the official MCP client over stdio, protocol pinned to `2026-07-28`, a deliberately deceptive loopback backend and a real Solana validator. RPC/WS use 19008/19009, faucet 20008, gossip 21008 and dynamic ports 21010–21099. The human fixture signs only inside the test process; only the agent key is written, to a private temporary directory outside the repo. The directory is removed at the end.
 
-O fluxo lista as quatro tools base de autorização e a quinta tool `pay_receipt_challenge` integrada pela #286. A listagem verifica a superfície atual completa; os ataques deste harness cobrem o fluxo base, enquanto os testes de recibo do MCP cobrem a quinta tool. O fluxo executa 5 unidades de teste, bloqueia 100, reinicia o servidor, registra o intent com a fixture humana e confirma a execução exata. Saldos esperados em unidades base: vault `500000000 → 495000000 → 395000000`, destinatário `0 → 5000000 → 105000000`, destinatário alternativo `0`. As assinaturas reais são consultadas no RPC; o harness imprime essas assinaturas e saldos, sem chaves.
+The flow lists the four base authorization tools and the fifth tool `pay_receipt_challenge`, integrated by #286. The listing checks the full current surface; the attacks in this harness cover the base flow, while the MCP receipt tests cover the fifth tool. The flow executes 5 test units, blocks 100, restarts the server, records the intent with the human fixture and confirms the exact execution. Expected balances in base units: vault `500000000 → 495000000 → 395000000`, recipient `0 → 5000000 → 105000000`, alternate recipient `0`. The real signatures are queried on the RPC; the harness prints those signatures and balances, never keys.
 
-As provas têm fronteiras distintas:
+The proofs have distinct boundaries:
 
-- **Schema MCP:** campos extras de amount/recipient, handle inválido, zero, float e número JSON são rejeitados antes de executar uma tool. Isso não prova enforcement on-chain.
-- **Adapter/estado local:** backend falsamente aprovado não autoriza execução; outro humano, agente/genesis adulterado, amount/recipient adulterados no arquivo e pedido expirado falham sem gastar. Restart preserva os bytes exatos do pedido.
-- **Programa via SDK direto:** amount/recipient adulterados com o hash autorizado retornam `PULSO_006_INTENT_MISMATCH` (6005); replay retorna `PULSO_005_INTENT_ALREADY_USED` (6004). São simulações do programa real, sem assinatura de transação rejeitada. Pedido acima da alçada pelo SDK direto continua bloqueado. Transferência SPL assinada apenas pelo agente não pode gastar o vault do programa.
-- **Regressão A–F:** `pnpm test:e2e` executa os cenários existentes; C/D/E também fornecem transações rejeitadas confirmadas e assinaturas. F usa LiteSVM com Clock controlado e erro `PULSO_004_INTENT_EXPIRED` (6003), sem transação RPC. A expiração no MCP testa fail-closed do adapter, não substitui a prova de F no programa.
+- **MCP schema:** extra amount/recipient fields, invalid handle, zero, float and JSON number are rejected before a tool runs. This does not prove on-chain enforcement.
+- **Adapter/local state:** a falsely approving backend does not authorize execution; another human, tampered agent/genesis, tampered amount/recipient in the file and an expired request fail without spending. A restart preserves the exact bytes of the request.
+- **Program via direct SDK:** tampered amount/recipient with the authorized hash return `PULSO_006_INTENT_MISMATCH` (6005); replay returns `PULSO_005_INTENT_ALREADY_USED` (6004). These are simulations of the real program, with no rejected-transaction signature. A request above the agent's authority through the direct SDK stays blocked. An SPL transfer signed only by the agent cannot spend the program's vault.
+- **A–F regression:** `pnpm test:e2e` runs the existing scenarios; C/D/E also provide confirmed rejected transactions and signatures. F uses LiteSVM with a controlled Clock and error `PULSO_004_INTENT_EXPIRED` (6003), with no RPC transaction. Expiry in MCP tests the adapter's fail-closed behavior; it does not replace the F proof in the program.
 
-A verificação de segredo inspeciona resultados/frames decodificados pelo cliente MCP, bodies recebidos pelo backend e stderr do processo. Procura bytes das keypairs em array JSON, hex, base64 e base58, nomes de campos privados e caminho da chave do agente. Não representa uma auditoria de segurança nem cobertura de toda codificação possível. Stdout do servidor deve continuar sendo exclusivamente frames MCP aceitos pelo cliente.
+The secret check inspects results/frames decoded by the MCP client, bodies received by the backend and the process stderr. It looks for keypair bytes as a JSON array, hex, base64 and base58, private field names and the agent key path. It is not a security audit and does not cover every possible encoding. The server stdout must remain exclusively MCP frames accepted by the client.
 
-Este harness fica em `tests/`; sua publicação precisa incluir `mcp-server` e as dependências do workspace pela decisão consciente da #246. A allowlist não muda nesta issue.
+This harness lives in `tests/`; publishing it requires `mcp-server` and the workspace dependencies, as decided in #246.
 
-## Rede B2B (#311)
+## B2B network (#311)
 
 **NOT AUDITED · DEVNET DEMONSTRATION ONLY**
 
-Matriz rastreável contra `solana/14_B2B_NETWORK_SPEC.md` seção 12 (T-01 a T-40) e contra os critérios da #311. Conexão, status de pedido e assinatura de mensagem são estado de aplicação e não autorizam gasto; quem gasta, ou recusa, é o programa. Não há KYC, veto bilateral on-chain nem mainnet.
+Traceable matrix against `docs/B2B_NETWORK_SPEC.md` section 12 (T-01 to T-40) and against the #311 criteria. Connection, request status and message signature are application state and do not authorize spending; the one that spends, or refuses, is the program. There is no KYC, no on-chain bilateral veto and no mainnet.
 
-Rodar o E2E novo, com o `.so` compilado (`anchor build --arch v0`):
+Run the E2E, with the compiled `.so` (`anchor build --arch v0`):
 
 ```sh
 pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts ../tests/b2b-network.e2e.test.ts
 ```
 
-`tests/b2b-network.e2e.test.ts` sobe um `solana-test-validator` (RPC 8995, faucet 9995), cria duas organizações A (paga) e B (recebe) com carteiras geradas em memória, abre sessão assinando o desafio como a carteira faria, conecta, cria cobrança e proposta, exporta o pacote, paga com `executePackage` do `agent-demo` e reconcilia. Chama as libs do app com `dir` temporário e a connection real; um bloco chama os handlers reais de `app/app/api/network/**` (sem Next). Nenhuma chave, token ou cookie é impresso, e um teste confere que nenhum arquivo guardado os contém.
+`tests/b2b-network.e2e.test.ts` starts a `solana-test-validator` (RPC 8995, faucet 9995), creates two organizations A (pays) and B (receives) with wallets generated in memory, opens a session by signing the challenge as the wallet would, connects, creates a charge and a proposal, exports the package, pays with `executePackage` from `agent-demo` and reconciles. It calls the app libs with a temporary `dir` and the real connection; one block calls the real handlers in `app/app/api/network/**` (without Next). No key, token or cookie is printed, and one test checks that no stored file contains them.
 
-Siglas de arquivo: **N** = `tests/b2b-network.e2e.test.ts` (E2E, validador real); **auth** = `app/test/network-auth.test.ts`; **store** = `app/test/network-store.test.ts`; **req** = `app/test/network-requests.test.ts`; **rec** = `app/test/network-reconcile.test.ts` (connection de teste); **pkg** = `agent-demo/test/b2b-package.test.ts`; **ad** = `agent-demo/test/b2b.test.ts`; **adE2E** = `agent-demo/test/b2b.e2e.test.ts`; **sdk** = `sdk/test/b2b-terms.test.ts`; **RA** = `tests/receipt-attacks.e2e.test.ts`. Camadas: **U** unitário de lib, **I** lib com store em diretório temporário, **E** E2E com validador. Status: **coberto** (já existia), **PR** (coberto por este PR), **parcial** ou **lacuna** (com motivo).
+File abbreviations: **N** = `tests/b2b-network.e2e.test.ts` (E2E, real validator); **auth** = `app/test/network-auth.test.ts`; **store** = `app/test/network-store.test.ts`; **req** = `app/test/network-requests.test.ts`; **rec** = `app/test/network-reconcile.test.ts` (test connection); **pkg** = `agent-demo/test/b2b-package.test.ts`; **ad** = `agent-demo/test/b2b.test.ts`; **adE2E** = `agent-demo/test/b2b.e2e.test.ts`; **sdk** = `sdk/test/b2b-terms.test.ts`; **RA** = `tests/receipt-attacks.e2e.test.ts`. Layers: **U** lib unit, **I** lib with the store in a temporary directory, **E** E2E with a validator. Status: **covered** (already existed), **PR** (covered by that PR), **partial** or **gap** (with the reason). Request states appear as the literal protocol tokens (`aguardando autorização` = awaiting authorization, `aguardando contraparte` = awaiting counterparty, `enviado` = sent, `confirmado` = confirmed, `verificado` = verified, `recusado` = refused, `expirado` = expired, `cancelado` = cancelled); `autônomo` and `aprovado` are the receipt modes autonomous and approved.
 
-| ID | Cenário | Onde (arquivo: teste) | Camada | Status |
+| ID | Scenario | Where (file: test) | Layer | Status |
 |---|---|---|---|---|
-| T-01 | Vetores `pulso-b2b-terms-v1` | sdk: "vector file declares...", "covers both kinds and amount 2^64-1"; req: "matches shared vector" | U | **parcial**: o `agent-demo` não lê os vetores, reusa `computeTermsDigest` do SDK em `validatePackage` |
-| T-02 | Trocar campo muda o digest | sdk: "every changed-field vector differs"; req: "submit integrity"; N: "T-19/T-23" | U, E | coberto, PR |
-| T-03 | Handle: caixa, `@`, espaço, não-ASCII, tamanho, reservados | store: "normalizes per spec section 3", "creates, rejects duplicates by case, reserved..."; N: "T-04/T-08/T-18" (cirílico, caixa) | U, E | coberto, PR |
-| T-04 | Handles quase iguais | store: "two lookalike handles..."; N: "T-04/T-08/T-18" | I, E | coberto, PR |
-| T-05 | Login: replay | auth: "rejects replay of a consumed nonce"; N: "T-05/T-07 login" | I, E | coberto, PR |
-| T-06 | Assinatura inválida consome o desafio | auth: "consumes the nonce even when the first attempt is invalid"; N: "T-05/T-07 login" | I, E | coberto, PR |
-| T-07 | Login: expirado, domínio, cluster, chave errada | auth: "rejects an expired challenge", "wrong domain", "wrong cluster", "another wallet"; N: "T-05/T-07 login" (expirado, cluster, chave); Origin errado em N: "T-10" e "real route handlers" | I, E | coberto, PR. Desvio da spec: a rota devolve 401 genérico (spec 14 seção 13), o motivo específico não é distinguível na resposta |
-| T-08 | `authority` do corpo ignorada | auth: "rejects a signature over a tampered message"; store: "uses the session authority, not the body"; o corpo nem tem esse campo | I | coberto |
-| T-09 | Verificação concorrente do mesmo desafio | auth: "lets only one of two concurrent verifications win" | I | coberto |
-| T-10 | Sessão expirada, logout, cookie de outra org, sem Origin | auth: "network session", "request helpers"; N: "T-10", "real route handlers" (cookie HttpOnly/SameSite=Strict, 401 sem cookie, 403 com Origin alheio ou ausente) | I, E | coberto, PR |
-| T-11 | Agente tenta login/assumir organização | N: "T-11" (a chave do agente não assina o desafio da authority; sessão própria não vê nada de A; `AGENT_IS_AUTHORITY`; não reatribui `payerAgent`) | E | PR |
-| T-12 | Conta de recebimento: dono, mint, inexistente, RPC fora | store: "refuses wrong owner field, program, size, state, missing account..."; req: "payer agent, receiving account, policy, vault and mint preconditions", "RPC unavailable refuses with 503"; N: só o caso feliz com conta real | I | **parcial**: negativos só com conta de teste, não com contas reais |
-| T-13 | Convite adulterado, reaproveitado, expirado, próprio, duplicado, cruzado | store: "refuses a tampered, replayed, wrong-signer or expired invite", "a reused invite signature...", "duplicate and crossed invites...", "expires lazily..."; N: "T-13/T-14" | I, E | coberto, PR |
-| T-14 | Aceite por terceiro | store: "third parties and the inviter cannot accept..."; N: "T-13/T-14" (404, assinatura de outro: 401, continua `pendente`) | I, E | coberto, PR |
-| T-15 | Aceitar e recusar ao mesmo tempo | store: "accept x decline race" | I | coberto |
-| T-16 | Restart entre convite e aceite, e entre aceite e pagamento | store: "survives a restart"; req: "lazy expiry... restart keeps everything"; N: "T-16/T-33" (módulos novos sobre o mesmo `dir`, agente novo sobre o mesmo `stateDir`) | I, E | coberto, PR |
-| T-17 | IDOR: pedido, conexão, pacote de outra org | store: "isolates organizations", "third parties get 404 everywhere"; req: "lists only the caller's requests..."; N: "IDOR" (C com sessão válida e conexão ativa com A recebe 404 em tudo de A↔B, estado intacto) e "real route handlers" | I, E | coberto, PR |
-| T-18 | Busca exata, resposta mínima | store: "exact match only, minimal result..."; N: "T-04/T-08/T-18" (igualdade com os 3 campos) | I, E | coberto, PR |
-| T-19 | Cobrança sem assinatura / de outra authority / digest de outro pedido | req: "consent with the wrong action, signer or terms is refused; replay is refused"; N: "T-19/T-23" | I, E | coberto, PR |
-| T-20 | Proposta: caminho só após `send.accept`; accept com outro digest | req: "accept: only the receiver..."; N: "T-20" (`ready:false` até assinar; accept de outro digest: 401) | I, E | coberto, PR |
-| T-21 | Edição vira novo pedido, antigo `cancelado` com `supersededBy` | req: "edit = cancel with reason edited..." | I | coberto |
-| T-22 | Nonce repetido; amount 0, negativo, fracionário, `>= 2^64` | req: "a request id (nonce) is unique inside the lock", "amount %j is refused", "amount 2^64-1 is accepted" | I | coberto |
-| T-23 | Cliente manda `status: verificado` ou consentimento falso | req: "the client cannot reach 10-13..."; rec: "ignores status, mode, amount and result in the body"; N: "T-19/T-23" e "T-23" (assinatura inexistente deixa `enviado`, nunca verde) | I, E | coberto, PR |
-| T-24 | Transições proibidas | req: "line %i...", "terminal states do not leave, and every other combination is a 409" | U | coberto |
-| T-25 | Pedido expirado, assinatura informada | rec: "cannot be reported on a live request once it expired...", "late payment on an ended request"; N: "T-25/T-34" (`expirado` + `late.reason = after_expiry`) | I, E | coberto, PR |
-| T-26 | Pagamento válido, autônomo e aprovado | N: "T-26 autonomous", "T-26/T-36 approved" (saldos do vault e do destino, `mode`, intent e action hash, consentimento e pagamento no pedido) | E | PR |
-| T-27 | Recibo de outra cobrança | N: "T-27/T-32" (`NONCE_MISMATCH`, pedido intacto; depois `SIGNATURE_IN_USE`) | E | PR |
-| T-28 | Valor maior e menor | N: "T-28" (`AMOUNT_NOT_EXACT`, `AMOUNT_TOO_LOW`) | E | PR |
-| T-29 | Destino, mint, programa, cluster, authority trocados | N: "T-29" (`RECIPIENT_MISMATCH`, `AUTHORITY_NOT_ACCEPTED` com a policy de outro humano, `CLUSTER_MISMATCH`); mint e programa em rec ("another mint", "another program") e RA 4c/12 | I, E | **parcial**: `MINT_MISMATCH` e `NOT_PULSO_TRANSFER` por programa trocado não rodam no E2E da rede (exigiria segundo mint com vault) |
-| T-30 | Transferência SPL direta fora do programa | N: "T-30" (o agente não move o vault por SPL; transferência direta de mesmo valor à conta de destino chega, e recebe `NOT_PULSO_TRANSFER`) | E | PR |
-| T-31 | RPC falha em A e B | rec: "RPC down at step A", "RPC down at step B"; N: "T-31" (RPC morto real: segue `enviado`, depois verifica) | I, E | coberto, PR |
-| T-32 | Dois POST concorrentes; mesma assinatura em dois pedidos | rec: "two concurrent verifications...", "signature already used by another request..."; N: "T-32" (4 reconciliações em paralelo, 1 verificação, sem duplicata; mesma assinatura em dois pedidos ao mesmo tempo) | I, E | coberto, PR |
-| T-33 | Restart entre `enviado`, `confirmado`, `verificado` | N: "T-16/T-33" (`enviado` com RPC fora, restart, `verificado`, restart, repetição idempotente) | E | PR. `confirmado` só em rec ("RPC down at step B"), sem restart |
-| T-34 | Cancelar e pagar depois; expirar e pagar depois | N: "T-34" (`cancelado` + `late.reason = after_cancel`, dinheiro saiu, sem `payment`) e "T-25/T-34" (`expirado` + `after_expiry`); `after_refusal` e `after_expiry_landed` em rec | E | PR |
-| T-35 | Ramo autônomo, duas execuções, mesmo nonce | N: "T-35": a 2ª execução **acontece on-chain** (o vault perde 10, não 5) e vira `duplicates`. **Não há proteção on-chain do nonce autônomo**: é o limite declarado. A trava do adapter é só local (arquivo de estado) | E | PR |
-| T-36 | Ramo aprovado, repetir | N: "T-26/T-36": `PULSO_005_INTENT_ALREADY_USED`, vault inalterado | E | PR |
-| T-37 | Agente: pacote adulterado, `approved` falso, intent expirada, RPC falha, retry | pkg e ad (campos adulterados, "refuses an approved intent that is not exactly the snapshot", "does not resend..."); N: "T-37" (amount/destino/nonce adulterados, inclusive com digest recalculado; backend que diz `approved` sem intent: timeout, `executeApproved` direto falha, vault inalterado) | I, E | **parcial**: intent expirada só em ad ("package that expired meanwhile") e no cenário F (LiteSVM); agente com RPC indisponível durante `execute`: lacuna (só timeout de envio, em ad) |
-| T-38 | Cenários A–G | `pnpm test:e2e` (agent-demo: A–E e demo completo; RA e scenario-g; sdk e2e), cenário F em LiteSVM; resultado na PR | E | coberto. Achado: o CI roda só RA, scenario-g, sdk e mcp; os cenários A–E do `agent-demo` não estão no CI |
-| T-39 | Sem chave, token ou dado pessoal | N: "no secret in anything stored..." (seeds e chaves em hex, base64, base58 e array JSON, e tokens de sessão: nada em `dir`, `stateDir` nem no pacote). As libs e rotas de rede não têm `console.*` | I | PR. Logs do servidor Next real não são varridos |
-| T-40 | Texto de UI e docs | N: "what the network UI claims" (varredura de `Network*.tsx` e das páginas de rede); `network-*-ui.test.ts` conferem os avisos | I | **parcial**: docs e README não são varridos |
+| T-01 | `pulso-b2b-terms-v1` vectors | sdk: "vector file declares...", "covers both kinds and amount 2^64-1"; req: "matches shared vector" | U | **partial**: `agent-demo` does not read the vectors, it reuses the SDK `computeTermsDigest` in `validatePackage` |
+| T-02 | Changing a field changes the digest | sdk: "every changed-field vector differs"; req: "submit integrity"; N: "T-19/T-23" | U, E | covered, PR |
+| T-03 | Handle: case, `@`, space, non-ASCII, length, reserved | store: "normalizes per spec section 3", "creates, rejects duplicates by case, reserved..."; N: "T-04/T-08/T-18" (Cyrillic, case) | U, E | covered, PR |
+| T-04 | Near-identical handles | store: "two lookalike handles..."; N: "T-04/T-08/T-18" | I, E | covered, PR |
+| T-05 | Login: replay | auth: "rejects replay of a consumed nonce"; N: "T-05/T-07 login" | I, E | covered, PR |
+| T-06 | Invalid signature consumes the challenge | auth: "consumes the nonce even when the first attempt is invalid"; N: "T-05/T-07 login" | I, E | covered, PR |
+| T-07 | Login: expired, domain, cluster, wrong key | auth: "rejects an expired challenge", "wrong domain", "wrong cluster", "another wallet"; N: "T-05/T-07 login" (expired, cluster, key); wrong Origin in N: "T-10" and "real route handlers" | I, E | covered, PR. Deviation from the spec: the route returns a generic 401 (spec section 13), the specific reason cannot be told apart in the response |
+| T-08 | Body `authority` ignored | auth: "rejects a signature over a tampered message"; store: "uses the session authority, not the body"; the body does not even have that field | I | covered |
+| T-09 | Concurrent verification of the same challenge | auth: "lets only one of two concurrent verifications win" | I | covered |
+| T-10 | Expired session, logout, another org's cookie, no Origin | auth: "network session", "request helpers"; N: "T-10", "real route handlers" (HttpOnly/SameSite=Strict cookie, 401 without cookie, 403 with foreign or missing Origin) | I, E | covered, PR |
+| T-11 | Agent tries to log in / take over an organization | N: "T-11" (the agent key does not sign the authority's challenge; its own session sees nothing of A; `AGENT_IS_AUTHORITY`; it does not reassign `payerAgent`) | E | PR |
+| T-12 | Receiving account: owner, mint, nonexistent, RPC down | store: "refuses wrong owner field, program, size, state, missing account..."; req: "payer agent, receiving account, policy, vault and mint preconditions", "RPC unavailable refuses with 503"; N: happy path only, with a real account | I | **partial**: negatives only with a test account, not with real accounts |
+| T-13 | Invite tampered, reused, expired, own, duplicate, crossed | store: "refuses a tampered, replayed, wrong-signer or expired invite", "a reused invite signature...", "duplicate and crossed invites...", "expires lazily..."; N: "T-13/T-14" | I, E | covered, PR |
+| T-14 | Accept by a third party | store: "third parties and the inviter cannot accept..."; N: "T-13/T-14" (404, another's signature: 401, stays `pendente`) | I, E | covered, PR |
+| T-15 | Accept and decline at the same time | store: "accept x decline race" | I | covered |
+| T-16 | Restart between invite and accept, and between accept and payment | store: "survives a restart"; req: "lazy expiry... restart keeps everything"; N: "T-16/T-33" (new modules over the same `dir`, new agent over the same `stateDir`) | I, E | covered, PR |
+| T-17 | IDOR: request, connection, package of another org | store: "isolates organizations", "third parties get 404 everywhere"; req: "lists only the caller's requests..."; N: "IDOR" (C with a valid session and an active connection to A gets 404 on everything of A↔B, state intact) and "real route handlers" | I, E | covered, PR |
+| T-18 | Exact search, minimal response | store: "exact match only, minimal result..."; N: "T-04/T-08/T-18" (equality with the 3 fields) | I, E | covered, PR |
+| T-19 | Charge without signature / from another authority / digest of another request | req: "consent with the wrong action, signer or terms is refused; replay is refused"; N: "T-19/T-23" | I, E | covered, PR |
+| T-20 | Proposal: payment path only after `send.accept`; accept with another digest | req: "accept: only the receiver..."; N: "T-20" (`ready:false` until signed; accept of another digest: 401) | I, E | covered, PR |
+| T-21 | Edit becomes a new request, old one `cancelado` with `supersededBy` | req: "edit = cancel with reason edited..." | I | covered |
+| T-22 | Repeated nonce; amount 0, negative, fractional, `>= 2^64` | req: "a request id (nonce) is unique inside the lock", "amount %j is refused", "amount 2^64-1 is accepted" | I | covered |
+| T-23 | Client sends `status: verificado` or false consent | req: "the client cannot reach 10-13..."; rec: "ignores status, mode, amount and result in the body"; N: "T-19/T-23" and "T-23" (nonexistent signature leaves `enviado`, never green) | I, E | covered, PR |
+| T-24 | Forbidden transitions | req: "line %i...", "terminal states do not leave, and every other combination is a 409" | U | covered |
+| T-25 | Expired request, signature reported | rec: "cannot be reported on a live request once it expired...", "late payment on an ended request"; N: "T-25/T-34" (`expirado` + `late.reason = after_expiry`) | I, E | covered, PR |
+| T-26 | Valid payment, autonomous and approved | N: "T-26 autonomous", "T-26/T-36 approved" (vault and destination balances, `mode`, intent and action hash, consent and payment on the request) | E | PR |
+| T-27 | Receipt of another charge | N: "T-27/T-32" (`NONCE_MISMATCH`, request intact; then `SIGNATURE_IN_USE`) | E | PR |
+| T-28 | Higher and lower amount | N: "T-28" (`AMOUNT_NOT_EXACT`, `AMOUNT_TOO_LOW`) | E | PR |
+| T-29 | Destination, mint, program, cluster, authority swapped | N: "T-29" (`RECIPIENT_MISMATCH`, `AUTHORITY_NOT_ACCEPTED` with another human's policy, `CLUSTER_MISMATCH`); mint and program in rec ("another mint", "another program") and RA 4c/12 | I, E | **partial**: `MINT_MISMATCH` and `NOT_PULSO_TRANSFER` for a swapped program do not run in the network E2E (it would need a second mint with a vault) |
+| T-30 | Direct SPL transfer outside the program | N: "T-30" (the agent cannot move the vault by SPL; a direct transfer of the same amount to the destination account arrives, and gets `NOT_PULSO_TRANSFER`) | E | PR |
+| T-31 | RPC fails at A and B | rec: "RPC down at step A", "RPC down at step B"; N: "T-31" (real dead RPC: stays `enviado`, then verifies) | I, E | covered, PR |
+| T-32 | Two concurrent POSTs; same signature on two requests | rec: "two concurrent verifications...", "signature already used by another request..."; N: "T-32" (4 reconciliations in parallel, 1 verification, no duplicate; same signature on two requests at once) | I, E | covered, PR |
+| T-33 | Restart between `enviado`, `confirmado`, `verificado` | N: "T-16/T-33" (`enviado` with RPC down, restart, `verificado`, restart, idempotent repeat) | E | PR. `confirmado` only in rec ("RPC down at step B"), without restart |
+| T-34 | Cancel then pay; expire then pay | N: "T-34" (`cancelado` + `late.reason = after_cancel`, money left, no `payment`) and "T-25/T-34" (`expirado` + `after_expiry`); `after_refusal` and `after_expiry_landed` in rec | E | PR |
+| T-35 | Autonomous branch, two executions, same nonce | N: "T-35": the 2nd execution **happens on-chain** (the vault loses 10, not 5) and becomes `duplicates`. **There is no on-chain protection of the autonomous nonce**: that is the declared limit. The adapter lock is local only (state file) | E | PR |
+| T-36 | Approved branch, repeat | N: "T-26/T-36": `PULSO_005_INTENT_ALREADY_USED`, vault unchanged | E | PR |
+| T-37 | Agent: tampered package, false `approved`, expired intent, RPC fails, retry | pkg and ad (tampered fields, "refuses an approved intent that is not exactly the snapshot", "does not resend..."); N: "T-37" (amount/destination/nonce tampered, including with the digest recomputed; backend that says `approved` without an intent: timeout, direct `executeApproved` fails, vault unchanged) | I, E | **partial**: expired intent only in ad ("package that expired meanwhile") and in scenario F (LiteSVM); agent with RPC unavailable during `execute`: gap (only send timeout, in ad) |
+| T-38 | Scenarios A–G | `pnpm test:e2e` (agent-demo: A–E and full demo; RA and scenario-g; sdk e2e), scenario F on LiteSVM | E | covered. The CI workflow runs these suites in the `anchor` and `agent-demo-e2e` jobs |
+| T-39 | No key, token or personal data | N: "no secret in anything stored..." (seeds and keys as hex, base64, base58 and JSON array, and session tokens: nothing in `dir`, `stateDir` or the package). The network libs and routes have no `console.*` | I | PR. The logs of a real Next server are not scanned |
+| T-40 | UI text and docs | N: "what the network UI claims" (scan of `Network*.tsx` and the network pages); `network-*-ui.test.ts` check the warnings | I | **partial**: docs and README are not scanned |
 
-Itens da issue #311, mapeados aos IDs acima:
+Items from issue #311, mapped to the IDs above:
 
 | Item | IDs | Status |
 |---|---|---|
-| Impersonação (handles parecidos, nome igual, chave sempre visível) | T-03, T-04, T-18 | coberto, PR (a UI mostrar a chave é conferida em `network-ui.test.ts`) |
-| Agente como admin | T-11 | PR |
-| IDOR entre organizações | T-17, T-10 | coberto, PR (também pelos handlers) |
-| Convite e consentimento forjado | T-13, T-14, T-19, T-20 | coberto, PR |
-| Nonce expirado e replay | T-05 a T-09; replay de consentimento em N "T-13/T-14" e "T-19/T-23" | coberto, PR |
-| Troca de carteira, mint, valor, cluster | T-19, T-28, T-29 | coberto, PR. Mint trocado na verificação: parcial (T-29) |
-| Backend `approved` falsificado | T-23, T-37 | PR |
-| Concorrência, retry, restart | T-15, T-16, T-32, T-33 | coberto, PR |
-| Transferência direta externa ao programa | T-30 | PR |
-| Recibo de outra cobrança | T-27 | PR |
-| Cancelamento e pagamento tardio | T-34, T-25 | PR |
-| Regressão A–G | T-38 | coberto |
+| Impersonation (lookalike handles, same name, key always visible) | T-03, T-04, T-18 | covered, PR (the UI showing the key is checked in `network-ui.test.ts`) |
+| Agent as admin | T-11 | PR |
+| IDOR between organizations | T-17, T-10 | covered, PR (also through the handlers) |
+| Forged invite and consent | T-13, T-14, T-19, T-20 | covered, PR |
+| Expired nonce and replay | T-05 to T-09; consent replay in N "T-13/T-14" and "T-19/T-23" | covered, PR |
+| Swapped wallet, mint, amount, cluster | T-19, T-28, T-29 | covered, PR. Swapped mint at verification: partial (T-29) |
+| Forged backend `approved` | T-23, T-37 | PR |
+| Concurrency, retry, restart | T-15, T-16, T-32, T-33 | covered, PR |
+| Direct transfer outside the program | T-30 | PR |
+| Receipt of another charge | T-27 | PR |
+| Cancellation and late payment | T-34, T-25 | PR |
+| A–G regression | T-38 | covered |
 
-Limites que estes testes mostram, e que nenhum texto público deve esconder:
+Limits these tests show, and that no public text should hide:
 
-- **Nonce no ramo autônomo:** só o ramo aprovado tem garantia on-chain de uso único. No autônomo o programa apenas transporta o nonce; o pedido aceita um pagamento e registra os outros como `duplicates`, e o dinheiro já saiu (T-35).
-- **Cancelar, recusar ou expirar um pedido não impede o gasto:** o agente não lê `status` nem `ready` do pacote (T-34). O pagamento tardio é registrado, nunca aceito.
-- **Quem tem a chave do agente fica dentro da policy, não do pedido:** pode pagar valor ou destino diferentes do pedido; o pedido não é satisfeito, mas o programa autoriza (T-28, T-29).
-- **Recusa é determinística por assinatura:** uma assinatura recusada para um pedido não é reavaliada para esse pedido (nem se a recusa veio de um RPC no cluster errado). Um novo pagamento é necessário.
+- **Nonce on the autonomous branch:** only the approved branch has an on-chain single-use guarantee. On the autonomous branch the program only carries the nonce; the request accepts one payment and records the others as `duplicates`, and the money has already left (T-35).
+- **Cancelling, refusing or expiring a request does not prevent spending:** the agent does not read the package `status` or `ready` (T-34). A late payment is recorded, never accepted.
+- **Whoever holds the agent key stays inside the policy, not the request:** they can pay a different amount or destination than the request; the request is not satisfied, but the program authorizes it (T-28, T-29).
+- **Refusal is deterministic per signature:** a signature refused for a request is not re-evaluated for that request (not even if the refusal came from an RPC on the wrong cluster). A new payment is required.

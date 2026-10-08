@@ -12,7 +12,7 @@ const ENDED: RequestOut["status"][] = ["cancelado", "expirado", "recusado"];
 const reasonCode = (reason: string) => (reason.includes(": ") ? reason.slice(0, reason.indexOf(": ")) : reason);
 const reasonDetail = (reason: string) => (reason.includes(": ") ? reason.slice(reason.indexOf(": ") + 2) : "");
 
-/** Spec 14 section 8, fixed text: never claim a receiver co-signature or a double authorization on-chain. */
+/** docs/B2B_NETWORK_SPEC.md section 8, fixed text: never claim a receiver co-signature or a double authorization on-chain. */
 export function NoDoubleAuthorization() {
   return (
     <p className="net-note" role="note">

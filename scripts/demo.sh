@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Bootstrap e demo completa A–G. Dependências de máquina: pnpm, Anchor, Solana CLI e Cargo.
-# Passe --scenario C para rodar um cenário isolado; sem argumentos roda todos em sequência.
+# Bootstrap and full A–G demo. Machine dependencies: pnpm, Anchor, Solana CLI and Cargo.
+# Pass --scenario C to run a single scenario; with no arguments it runs all of them in sequence.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 

@@ -108,7 +108,7 @@ AGENT_AUTHORITY must never be able to increase AGENT_AUTHORITY
 
 Only the human authority widens a policy.
 
-See [`docs/ONCHAIN_ARCHITECTURE.md`](docs/ONCHAIN_ARCHITECTURE.md), [`docs/POLICY_AND_INTENT_SPEC.md`](docs/POLICY_AND_INTENT_SPEC.md) (PULSO-RFC-0001, an open RFC: comments welcome as issues) and [`docs/SECURITY_MODEL.md`](docs/SECURITY_MODEL.md). The receipt format is in [`docs/AUTHORITY_RECEIPT_SPEC.md`](docs/AUTHORITY_RECEIPT_SPEC.md).
+See [`docs/ONCHAIN_ARCHITECTURE.md`](docs/ONCHAIN_ARCHITECTURE.md), [`docs/POLICY_AND_INTENT_SPEC.md`](docs/POLICY_AND_INTENT_SPEC.md) (PULSO-RFC-0001, an open RFC: comments welcome as issues) and [`docs/SECURITY_MODEL.md`](docs/SECURITY_MODEL.md). The receipt format is in [`docs/AUTHORITY_RECEIPT_SPEC.md`](docs/AUTHORITY_RECEIPT_SPEC.md) and the B2B network protocol in [`docs/B2B_NETWORK_SPEC.md`](docs/B2B_NETWORK_SPEC.md).
 
 ## SDK
 
@@ -203,11 +203,12 @@ Open [http://localhost:3000](http://localhost:3000) for the landing, or [http://
 | `/simulation` → **Workspace** or **Lab pages** | Open the available operational routes. They remain separate from simulation. |
 | `/policy`, `/wallet` | Create a policy/vault with a test wallet; inspect an agent's public key, vault balance and activity. |
 | `/approvals`, `/approvals/<id>` | Review the exact payload requested by the agent. Use the approval URL printed by `pnpm demo -- --approve ui`; signing requires the matching localnet test wallet. |
+| `/network`, `/network/requests/<id>` | The B2B network: sign in with a wallet, create an organization, connect to a counterparty, exchange a charge or send proposal and verify the payment. Needs RPC and two test wallets; see [B2B network](#b2b-network). |
 | `/receipt/<signature>` | Verify an existing PULSO payment's authority receipt against the configured RPC. |
 | `/docs`, `/integration` | Read authorization notes and the available MCP/SDK setup prompts. |
 | `/waitlist` | Submit pilot interest to the local server. This does not deploy a public waitlist. |
 
-Operational routes need a matching RPC, and signing needs a test wallet. The default RPC is devnet. For localnet, set `NEXT_PUBLIC_RPC_URL=http://127.0.0.1:8899` before starting the app (PowerShell: `$env:NEXT_PUBLIC_RPC_URL = 'http://127.0.0.1:8899'`). See [app/README.md](app/README.md) for configuration and trust boundaries. B2B workspace availability follows the release scope; the local commercial-terms rehearsal is not evidence of a real B2B settlement.
+Operational routes need a matching RPC, and signing needs a test wallet. The default RPC is devnet. For localnet, set `NEXT_PUBLIC_RPC_URL=http://127.0.0.1:8899` before starting the app (PowerShell: `$env:NEXT_PUBLIC_RPC_URL = 'http://127.0.0.1:8899'`). See [app/README.md](app/README.md) for configuration and trust boundaries. The B2B network lives at `/network`; see [B2B network](#b2b-network). The commercial-terms rehearsal in the Simulation Lab is local only and is not evidence of a real B2B settlement.
 
 Run the complete reproducible on-chain suite with `bash scripts/demo.sh` above; on Windows, use Linux/WSL with the listed Solana toolchain. The Live demo activity panel reads reports for one selected policy and verifies recent transaction signatures against RPC; it does not turn a partial feed into a suite result. Scenario F is a LiteSVM test and has no RPC transaction signature. **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
 
@@ -220,7 +221,7 @@ bash scripts/demo.sh --scenario AB # runs the automatic and approval cases
 
 ### Local MCP client
 
-The [MCP Inspector quickstart](docs/MCP_QUICKSTART.md) covers the policy/transfer flow through local stdio tools, operator configuration, test policy/funds, exact approval and measured execution. The [real terminal capture](docs/MCP_INSPECTOR_CAPTURE.txt) uses a local authority fixture; it does not claim manual wallet approval or external partner validation. The release allowlist includes the MCP package and CI; older releases may omit it. **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
+The [MCP Inspector quickstart](docs/MCP_QUICKSTART.md) covers the policy/transfer flow through local stdio tools, operator configuration, test policy/funds, exact approval and measured execution. The [real terminal capture](docs/MCP_INSPECTOR_CAPTURE.txt) uses a local authority fixture; it does not claim manual wallet approval or external partner validation. The MCP server lives in `mcp-server/`; its contract is [`docs/MCP_CONTRACT.md`](docs/MCP_CONTRACT.md). **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
 
 ## Authority receipt
 
@@ -250,6 +251,57 @@ The app has a read-only page for any transaction, at `/receipt/<signature>`. It 
 
 This uses the HTTP 402 status with its own scheme, `pulso-receipt-v1`. It is not compatible with x402. **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
 
+## B2B network
+
+Two companies, each administered by its own wallet, exchange a signed commercial consent (a payment charge or a send proposal) and settle it through an agent that can only pay through the PULSO program. Consent is not spending authority: the consent is a wallet signature over exact text (`NOT A TRANSACTION · grants no spending authority`), and the program, not the app, accepts or refuses the payment. If the policy requires a human above a threshold, the paying human still records an exact intent on-chain. There is no KYC, no "verified company" claim, and the receiver does not co-sign on-chain. App state (connection, request status) is a record of what the chain showed. Protocol: [`docs/B2B_NETWORK_SPEC.md`](docs/B2B_NETWORK_SPEC.md). Walkthrough and a recorded devnet run: [`docs/B2B_DEMO.md`](docs/B2B_DEMO.md).
+
+### Run it locally
+
+Build the program once (`anchor build --arch v0`; `bash scripts/demo.sh` also builds it), then:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm --filter @pulso/agent-demo b2b-demo -- --cluster localnet
+```
+
+The rehearsal starts a local validator if port 8899 is free and narrates sign-in, two organizations (`@demo_acme`, `@demo_globex`), the connection, a charge, a proposal, a 100-unit charge above the agent's autonomous limit (agent blocked, human signs the exact payload, agent executes, the counterparty verifies the receipt) and the failures (program cap, tampered package, replay, missing consent, expired request). The human signature in the rehearsal comes from a fixture wallet, labeled `WALLET FIXTURE, not the agent`; it is not a real wallet.
+
+To run the agent on one request package exported from the app (`/network/requests/<id>` → "Copy agent package"). Unlike the rehearsal, this command does not start a validator: keep a localnet validator with the program loaded answering on port 8899 (or pass `--cluster devnet`). A package that fails validation ends with `REFUSED <code>` and nothing is sent:
+
+```bash
+pnpm --filter @pulso/agent-demo b2b -- --package request.json --cluster localnet
+```
+
+The app route is `/network` (`pnpm --filter @pulso/app dev`). It needs `NEXT_PUBLIC_RPC_URL` set before starting the app (for example `http://127.0.0.1:8899` on localnet; the default is devnet) and two test wallets in two browser profiles. Optional: `NEXT_PUBLIC_MINT` (test mint used by the policy screen), `PULSO_NETWORK_DIR` (where the network state files are written; default `app/.data/network/`, ignored by Git) and `PULSO_NETWORK_COMMITMENT` (`confirmed` by default, or `finalized`). The full live procedure with two wallets is in [`docs/B2B_DEMO.md`](docs/B2B_DEMO.md).
+
+### Tests
+
+```bash
+pnpm test:sdk                       # includes the b2b-terms digest vectors
+pnpm test:app                       # network-* tests
+pnpm --filter @pulso/agent-demo test   # package validation and adapter, no validator
+```
+
+End-to-end tests need the built program (`anchor build --arch v0`) and `solana-test-validator`:
+
+```bash
+pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts test/b2b.e2e.test.ts
+pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts ../tests/b2b-network.e2e.test.ts
+pnpm --filter @pulso/agent-demo exec vitest run --config vitest.e2e.config.ts test/b2b-demo.e2e.test.ts
+```
+
+`tests/b2b-network.e2e.test.ts` covers the T-01 to T-40 matrix of the spec (see [`tests/README.md`](tests/README.md)); `agent-demo/test/b2b*.e2e.test.ts` cover the agent adapter and the rehearsal.
+
+### Limits
+
+- Devnet and localnet only. No mainnet, no escrow, no billing.
+- No KYC and no verified-company claim. Names and handles are self-declared; the full authority key is always shown next to them.
+- Cancelling, refusing or expiring a request does not revoke an intent or stop a transfer; a late payment is recorded as a fact, never accepted as a new settlement.
+- On the autonomous branch the program only carries the request nonce, so nothing on-chain stops an agent from paying the same request twice. The approved branch is single-use and enforced by the program.
+- The receiver does not co-sign or veto on-chain.
+- The rehearsal signs for the human with a fixture key. A live browser run with real wallets is described in the demo guide but has not been recorded here.
+- One server process with a writable disk; no database. **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
+
 ## Authorization trail
 
 Every scenario that runs against a local validator ends by reading the policy's trail back from the chain. You can also run the reader on its own; it is read-only and never signs or sends anything:
@@ -278,7 +330,7 @@ Built for the **Crypto World's Fair** hackathon (Colosseum × Superteam Brasil),
 |:--|:--|
 | Program ID | [`4jdHys9YsHTbVQxB6YAr7R8jsmoEy7wqcpxC9tk2dqQi`](https://explorer.solana.com/address/4jdHys9YsHTbVQxB6YAr7R8jsmoEy7wqcpxC9tk2dqQi?cluster=devnet) |
 | Devnet status | Deployed on Devnet on 1 October 2026 (upgradeable; redeploy with `scripts/devnet-deploy.sh`). `bash scripts/setup-demo.sh devnet` creates the test mint, policy and vault there and is idempotent; it needs a funded Devnet wallet at `~/.config/solana/id.json`. The reproducible A–G demo runs locally. |
-| What works today | `bash scripts/demo.sh` runs local scenarios A–G with test accounts. |
+| What works today | `bash scripts/demo.sh` runs local scenarios A–G with test accounts. The local MCP server passes the measured Inspector flow ([quickstart](docs/MCP_QUICKSTART.md)). The B2B network rehearsal runs on localnet and has one recorded devnet run ([B2B demo](docs/B2B_DEMO.md)). |
 | Not in scope | mainnet custody, token, NFT, DAO, KYC, fiat bridge, multi-chain, recommendation or procurement |
 
 **Public demo video:** [A–F demo capture](assets/pulso-demo.mp4) · [English captions](assets/pulso-demo.en.srt). The video is generated in CI from real local-validator runs for A–E; F is labeled as a LiteSVM simulation, not an RPC receipt. **NOT AUDITED · DEVNET DEMONSTRATION ONLY.**
@@ -295,8 +347,8 @@ PULSO is being built as a B2B product: human authorization for AI agents, aimed 
 
 | | |
 |:--|:--|
-| **Available today** | This repository: a reproducible devnet and localnet demonstration. The Anchor program, the TypeScript SDK source in `sdk/`, the agent demo (scenarios A–G) and the approval app. |
-| **Integration interfaces** | The on-chain program and its IDL, the [policy and intent spec](docs/POLICY_AND_INTENT_SPEC.md), and the SDK source. The SDK is not published to a package registry. A local stdio MCP server is included in the prepared release tree; see the [measured Inspector quickstart](docs/MCP_QUICKSTART.md) for setup and fixture limitations. |
+| **Available today** | This repository: a reproducible devnet and localnet demonstration. The Anchor program, the TypeScript SDK source in `sdk/`, the agent demo (scenarios A–G), the approval app, the local MCP server (`mcp-server/`) and the B2B network demonstration (two companies, devnet/localnet only). |
+| **Integration interfaces** | The on-chain program and its IDL, the [policy and intent spec](docs/POLICY_AND_INTENT_SPEC.md), and the SDK source. The SDK is not published to a package registry. A local stdio MCP server is included in `mcp-server/`; see the [measured Inspector quickstart](docs/MCP_QUICKSTART.md) for setup and fixture limitations. |
 | **Planned, not available** | A managed commercial service. It is not offered, has no date, and no billing, mainnet, custody, multi-approver or SLA exists. |
 
 If you build agents or payments on Solana and want to try PULSO in a devnet pilot or as a design partner, open an issue in this repository.

@@ -38,11 +38,11 @@ export default async function IntegrationPage() {
         </section>
         <section id="mcp" className="doc-section" aria-labelledby="mcp-title">
           <h2 id="mcp-title">Connect via MCP</h2>
-          <p className="preview-stamp">Local Inspector validated · public release pending</p>
+          <p className="preview-stamp">Local Inspector validated · included in the public release</p>
           <p>Choose MCP when your existing host supports MCP tools over local stdio. MCP Inspector CLI 2.9.0 was tested on localnet, negotiating MCP 2025-11-25. The run observed discovery, permitted and pending transfers, UI HTTP 200 and execution after a fixture-signed intent. Manual browser-wallet approval and other agent hosts were not validated. No remote endpoint or published install package is available.</p>
           <p>Requirements: Node 22, pnpm 12, a checkout containing mcp-server/ (public availability depends on the release update), a local agent signer and an operator-configured devnet/localnet environment. Identity, RPC, signer path and URLs belong in the operator environment outside model-controlled arguments. Preserve existing tools.</p>
-          <p>Manual preparation: identify your host/version, read mcp-server/README.md and docs/MCP_CONTRACT.md, then prepare a private configuration for review. Follow docs/MCP_QUICKSTART.md in a released public checkout, or public/docs/MCP_QUICKSTART.md in private source. Older public releases omit MCP; verify source availability first.</p>
-          <p><a href="https://github.com/MarioMatheusPombal/pulso-solana/blob/main/docs/MCP_QUICKSTART.md">MCP quickstart and measured evidence (available after public release)</a></p>
+          <p>Manual preparation: identify your host/version, read mcp-server/README.md and docs/MCP_CONTRACT.md, then prepare a private configuration for review. Follow docs/MCP_QUICKSTART.md in the public checkout. Verify that mcp-server/ exists in your checkout first.</p>
+          <p><a href="https://github.com/MarioMatheusPombal/pulso-solana/blob/main/docs/MCP_QUICKSTART.md">MCP quickstart and measured evidence</a></p>
           <SetupInstructions path="mcp" instructions={mcp} />
         </section>
         <section id="sdk" className="doc-section" aria-labelledby="sdk-title">

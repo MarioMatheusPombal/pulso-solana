@@ -3,7 +3,7 @@
 // authorize spending. Enforcement stays in the on-chain program (policy + record_intent +
 // execute_transfer). Cancelling, expiring or declining a request does NOT revoke an intent and does
 // NOT stop a transfer. The client never sends a status: lines 10-13 of the transition table are
-// reachable only through `systemTransition`, which no route exposes (spec 14 sections 5-8).
+// reachable only through `systemTransition`, which no route exposes (docs/B2B_NETWORK_SPEC.md sections 5-8).
 //
 // Agent package `pulso-b2b-package-v1` (GET requests/[id]/package), stable JSON; the agent must NOT
 // trust the backend: recompute the digest, check `terms:` in the message, verify Ed25519 offline.
@@ -48,7 +48,7 @@ const SNAPSHOT_KEYS: (keyof Snapshot)[] = ["kind", "genesis", "programId", "poli
 
 export interface Transition { from: Status | "criado" | null; to: Status | "criado"; actor: string; at: string }
 export interface Attempt { signature: string; reason: string; at: string }
-/** Spec 14 section 6, "Pagamento tardio": a fact recorded beside a terminal state; never changes it. */
+/** docs/B2B_NETWORK_SPEC.md section 6, "Late payment": a fact recorded beside a terminal state; never changes it. */
 export interface Late { reason: "after_cancel" | "after_refusal" | "after_expiry" | "after_expiry_landed"; signature: string; commitment: string; verified: boolean }
 
 /** Written by reconciliation (#310) in the same write that makes the request `verificado`. */
@@ -89,7 +89,7 @@ export const digestOf = (s: Snapshot) => Buffer.from(computeTermsDigest(toTerms(
 const digestOk = (r: B2BRequest) => r.kind === r.snapshot.kind && r.id === r.snapshot.nonce && digestOf(r.snapshot) === r.digest && r.evidence.digest === r.digest;
 const digestBroken: Fail = { error: "stored request does not match its digest", status: 500, code: "DIGEST_MISMATCH" };
 
-// ---------- the transition table (spec 14 section 6), pure ----------
+// ---------- the transition table (docs/B2B_NETWORK_SPEC.md section 6), pure ----------
 
 export type TransitionEvent =
   | { type: "create"; base: { snapshot: Snapshot; digest: string; evidence: ConsentEvidence; description: string | null } } // lines 1-3
@@ -279,7 +279,7 @@ async function read(deps: OrgDeps, key: string): Promise<AccountData | null | Fa
   }
 }
 
-/** Every creation precondition (spec 14 section 5). Convenience only: the program is what enforces. Pure of the client: all chain-derived fields come from the server. */
+/** Every creation precondition (docs/B2B_NETWORK_SPEC.md section 5). Convenience only: the program is what enforces. Pure of the client: all chain-derived fields come from the server. */
 async function buildSnapshot(deps: OrgDeps, me: string, kind: Kind, counterparty: unknown, amount: unknown, expiry: unknown, nonce: string): Promise<Snapshot | Fail> {
   const other = parsePubkey(counterparty)?.toBase58();
   if (!other) return bad("counterparty must be a base58 public key", "INVALID_PUBKEY");
@@ -501,7 +501,7 @@ export interface AgentPackage {
   consent: { action: string; message: string; signature: string; signer: string; at: string }[];
 }
 
-/** Export for the agent (spec 14 section 7). Participants only; no private description; `ready` = terms agreed and not yet paid/ended. */
+/** Export for the agent (docs/B2B_NETWORK_SPEC.md section 7). Participants only; no private description; `ready` = terms agreed and not yet paid/ended. */
 export async function requestPackage(deps: { dir: string; now: number }, me: string, id: string): Promise<AgentPackage | Fail> {
   const found = await find(deps.dir, me, id);
   if (!found) return notFound;

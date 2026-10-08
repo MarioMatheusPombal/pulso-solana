@@ -3,9 +3,9 @@
 // authorize spending and does NOT stop it; the money moves (or not) in the on-chain program. `verificado`
 // means "this transaction matches the terms of this request", not a second authorization: the receiver's
 // signature is application consent, the transaction proves what the program enforced, and there is NO
-// receiver co-signature and NO double authorization on-chain (spec 14 section 8).
+// receiver co-signature and NO double authorization on-chain (docs/B2B_NETWORK_SPEC.md section 8).
 //
-// Flow of POST (spec 14 section 8): line 9 (bind the reported signature) under the collection lock, then
+// Flow of POST (docs/B2B_NETWORK_SPEC.md section 8): line 9 (bind the reported signature) under the collection lock, then
 // RPC reads with no lock held, then ONE compare-and-set write under the lock (`systemTransition` with
 // `expectRev`): state + payment evidence together. A refusal never burns the request.
 // The client sends only a signature. It never sends a status, a mode, an amount or a result.
@@ -70,7 +70,7 @@ export function defaultReconcileDeps(): ReconcileDeps {
 
 // ---------- the wrapper checks the base receipt does not make ----------
 
-/** Compares the receipt with the snapshot (spec 14 section 8 table). Returns the refusal, or null when everything matches. */
+/** Compares the receipt with the snapshot (docs/B2B_NETWORK_SPEC.md section 8 table). Returns the refusal, or null when everything matches. */
 async function mismatch(deps: ReconcileDeps, r: B2BRequest, receipt: AuthorityReceipt): Promise<Reconcile | null> {
   const s = r.snapshot;
   if (receipt.amount !== s.amount) return refusal("AMOUNT_NOT_EXACT", `paid ${receipt.amount}, the request is for exactly ${s.amount}`);

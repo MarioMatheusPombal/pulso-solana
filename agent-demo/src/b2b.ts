@@ -11,7 +11,7 @@ import { loadKeypair, type Cluster } from "./setup.js";
 const { BN } = anchor;
 
 // NOT AUDITED · DEVNET DEMONSTRATION ONLY
-// B2B agent adapter (solana/14_B2B_NETWORK_SPEC.md, section 7). It reads a `pulso-b2b-package-v1` file,
+// B2B agent adapter (docs/B2B_NETWORK_SPEC.md, section 7). It reads a `pulso-b2b-package-v1` file,
 // validates it offline (b2b-package.ts) and runs the existing PulsoClient flow with the EXACT snapshot
 // values. It has no backend session. It holds only the agent key; the human's key is never read here
 // (the localnet `--approve auto` fixture is the one exception, same as the A/B demo).

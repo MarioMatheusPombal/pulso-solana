@@ -106,7 +106,7 @@ export function TwoPayloads({ r, message }: { r: RequestOut; message?: ReactNode
   );
 }
 
-/** Spec 14 section 6, verbatim in spirit. */
+/** docs/B2B_NETWORK_SPEC.md section 6, verbatim in spirit. */
 export function HonestyNote() {
   return (
     <div className="net-boundary" role="note">

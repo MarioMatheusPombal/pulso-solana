@@ -132,7 +132,7 @@ const ev = (type: string, r: B2BRequest): TransitionEvent => {
   }
 };
 
-describe("applyTransition: the whole table of spec 14 section 6", () => {
+describe("applyTransition: the whole table of docs/B2B_NETWORK_SPEC.md section 6", () => {
   it("lines 1-3: create goes straight past criado, only the form's creator", () => {
     const c = fresh("charge");
     expect(c.status).toBe("aguardando autorização");

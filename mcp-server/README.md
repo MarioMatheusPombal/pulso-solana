@@ -6,7 +6,7 @@ Local stdio adapter for the PULSO SDK. The program controls the vault and enforc
 
 Requires Node 22 and pnpm 12. The official MCP TypeScript SDK is pinned to `@modelcontextprotocol/server@2.2.0`. The stdio entry serves MCP `2026-07-28` and legacy clients; the automated client smoke test pins and records `2026-07-28`. A host's negotiated version must be checked rather than assumed. No HTTP listener starts.
 
-From the private repository root:
+From the repository root:
 
 ```sh
 pnpm install --frozen-lockfile
@@ -50,7 +50,7 @@ The config's `mcpServers.pulso` entry needs `type: "stdio"`, `command: "node"`, 
       "type": "stdio",
       "command": "node",
       "args": ["--import", "tsx", "dist/index.js"],
-      "cwd": "/absolute/path/to/private/pulso/mcp-server",
+      "cwd": "/absolute/path/to/pulso/mcp-server",
       "env": {
         "PULSO_NETWORK": "localnet",
         "PULSO_RPC_URL": "http://127.0.0.1:8899",
@@ -75,4 +75,4 @@ The tool names are `get_policy`, `request_transfer`, `pay_receipt_challenge`, `g
 
 NOT AUDITED · DEVNET DEMONSTRATION ONLY. Pays a `pulso-receipt-v1` 402 challenge that the client already read. Input (strict, no extra fields, no URL): `scheme` (`pulso-receipt-v1`), `programId`, `recipient` (token account), `mint`, `minAmount` (u64 decimal string), `nonce` (32 hex), `expiresAt` (Unix seconds), optional `cluster` (informative). It pays exactly `minAmount` to `recipient` through the same path as `request_transfer`, with the challenge nonce. Output: `{ status: "executed", signature, challengeNonce }`, then re-present to the receiver with `X-PULSO-Receipt: <signature>` and `X-PULSO-Challenge: <challengeNonce>`; or the same `pending` payload as `request_transfer`, resumed only by `execute_approved`; a pending approval never outlives the challenge `expiresAt`. Errors: `CHALLENGE_INVALID`, `CHALLENGE_CONTEXT_MISMATCH` (program or mint differs from configuration), `CHALLENGE_EXPIRED` (on-chain clock; ask the receiver for a new challenge), plus the `request_transfer` codes. It does not fetch URLs, read the resource, choose what to buy or how much to pay, or offer any shortcut to reuse a receipt.
 
-In the exported release tree, the [measured MCP Inspector quickstart](../docs/MCP_QUICKSTART.md) includes complete local test setup, operator config and real transaction evidence, with explicit fixture approval limitations. In the private source checkout its mirror is `public/docs/MCP_QUICKSTART.md`.
+The [measured MCP Inspector quickstart](../docs/MCP_QUICKSTART.md) includes complete local test setup, operator config and real transaction evidence, with explicit fixture approval limitations.

@@ -15,10 +15,9 @@ Help prepare PULSO configuration for my existing MCP client:
    Node and pnpm versions. Inspect existing tools; preserve them. Propose minimal
    changes for review. Do not install anything merely because I visited a page.
 2. Read the current checkout's mcp-server/README.md and docs/MCP_CONTRACT.md.
-   Use docs/MCP_QUICKSTART.md in the released public checkout, or
-   public/docs/MCP_QUICKSTART.md in private source, and its timestamped
-   MCP_INSPECTOR_CAPTURE.txt. Stop if these or mcp-server/ are missing: older
-   public releases omit MCP. Do not infer other host support from Inspector.
+   Use docs/MCP_QUICKSTART.md and its timestamped MCP_INSPECTOR_CAPTURE.txt.
+   Stop if these or mcp-server/ are missing from the checkout. Do not infer
+   other host support from Inspector.
    The workspace @pulso/mcp-server is private, version 0.0.0. Node 22 and pnpm 12
    are CI prerequisites. The observed macOS arm64 run used Node 26.10.0, pnpm
    12.8.1, Anchor 1.2.0 and Solana CLI 4.3.0; Rust 1.89.0 is also needed for setup.

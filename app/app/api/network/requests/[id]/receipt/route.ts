@@ -1,6 +1,6 @@
 // NOT AUDITED · DEVNET DEMONSTRATION ONLY
 // Reconciliation reads the chain and records the fact. It authorizes nothing and stops nothing;
-// `verificado` is not a second on-chain authorization (spec 14 section 8).
+// `verificado` is not a second on-chain authorization (docs/B2B_NETWORK_SPEC.md section 8).
 import { guarded, readJson, defaultDeps, requireSameOrigin, requireSession } from "../../../../../../lib/network-auth";
 import { defaultReconcileDeps, getReconciliation, reconcileRequest } from "../../../../../../lib/network-reconcile";
 import { reply } from "../../../../../../lib/network-store";

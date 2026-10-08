@@ -1,25 +1,27 @@
-# Inventário de assets PULSO
+# PULSO asset inventory
 
-Este arquivo define qual identidade usar. `inventory.json` registra cada mídia versionada individualmente, com hash, origem, superfície, versão, substituto, status e issue responsável.
+This file defines which identity to use. `inventory.json` records every versioned media file individually, with hash, origin, surface, version, replacement, status and responsible issue.
 
 **NOT AUDITED · DEVNET DEMONSTRATION ONLY**
 
-| Grupo encontrado | Origem / onde aparece | Versão | Substituto | Status |
+Paths below are source-tree paths. In the published repository, `public/` is mirrored to the repository root (for example `public/assets/chalk-v1/` is published as `assets/chalk-v1/`).
+
+| Group found | Origin / where it appears | Version | Replacement | Status |
 |---|---|---|---|---|
-| `public/assets/chalk-v1/` | marca, GitHub/Docs, social e pitch | chalk-v1 | o próprio arquivo | atual |
-| `app/public/assets/chalk-v1/` | landing e Docs do app (#251/#253) | chalk-v1 source | `public/assets/chalk-v1/masters/` para composições públicas | fonte aprovada; aplicação fica em #248 |
-| `public/assets/readme/` | READMEs e docs públicos antigos | brand-v1 | `public/assets/chalk-v1/readme/` | substituído; preservado para histórico |
-| `public/assets/brand-v1/` | kit de marca e campanhas anteriores | brand-v1/v2 | `public/assets/chalk-v1/brand/` e `social/` | substituído; masters preservados |
-| `public/assets/motion-v1/` | motion, poses, posters, GIFs e MP4s | motion-v1 | issue #188 | preservado fora do escopo #255 |
-| `public/assets/pulso-demo.*` | vídeo e legenda da demo | demo atual | issue #188 | preservado fora do escopo #255 |
-| `app/public/assets/approval-ui.png` e `public/assets/approval-ui.png` | captura da interface | app atual | issue #248 após QA da interface | preservado fora do escopo #255 |
-| `app/app/*icon*.png` e `opengraph-image.png` | metadata do app | app atual | issue #248 | preservado fora do escopo #255 |
+| `public/assets/chalk-v1/` | brand, GitHub/Docs, social and pitch | chalk-v1 | the file itself | current |
+| `app/public/assets/chalk-v1/` | app landing and Docs (#251/#253) | chalk-v1 source | `public/assets/chalk-v1/masters/` for public compositions | approved source; application tracked in #248 |
+| `public/assets/readme/` | older READMEs and public docs | brand-v1 | `public/assets/chalk-v1/readme/` | superseded; kept for history |
+| `public/assets/brand-v1/` | earlier brand kit and campaigns | brand-v1/v2 | `public/assets/chalk-v1/brand/` and `social/` | superseded; masters kept |
+| `public/assets/motion-v1/` | motion, poses, posters, GIFs and MP4s | motion-v1 | issue #188 | kept, outside the scope of #255 |
+| `public/assets/pulso-demo.*` | demo video and captions | current demo | issue #188 | kept, outside the scope of #255 |
+| `app/public/assets/approval-ui.png` and `public/assets/approval-ui.png` | interface capture | current app | issue #248 after interface QA | kept, outside the scope of #255 |
+| `app/app/*icon*.png` and `opengraph-image.png` | app metadata | current app | issue #248 | kept, outside the scope of #255 |
 
-## Embeds migrados
+## Migrated embeds
 
-- `README.md` e `public/README.md`: hero, fluxo, primitive, cenários e footer.
-- `app/README.md`, `sdk/README.md`, `agent-demo/README.md` e `public/docs/*.md`: barra de documentação.
-- Social preview e capas: novos masters em `social/`; nenhuma publicação externa foi feita.
-- Pitch: capa e divisor em `pitch/`; nenhum deck ou capability foi inventado.
+- `README.md` and `public/README.md`: hero, flow, primitive, scenarios and footer.
+- `app/README.md`, `sdk/README.md`, `agent-demo/README.md` and `public/docs/*.md`: documentation bar.
+- Social preview and covers: new masters in `social/`; no external publication was made.
+- Pitch: cover and divider in `pitch/`; no deck or capability was invented.
 
-Os diretórios antigos não devem voltar a ser embutidos. Eles permanecem versionados para comparação, procedência e rollback visual.
+The old directories must not be embedded again. They stay versioned for comparison, provenance and visual rollback.

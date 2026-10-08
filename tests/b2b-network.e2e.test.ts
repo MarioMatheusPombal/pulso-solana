@@ -2,7 +2,7 @@
 // Issue 311: the B2B network end to end against a real validator. Two organizations (A pays, B receives),
 // real wallet-style signatures over the server's challenges, the app libs called directly with a temp
 // directory (no Next), the agent adapter paying through PULSO, and reconciliation reading the real chain.
-// Matrix: tests/README.md, section "Rede B2B (#311)". Test names carry the matrix ids (T-xx).
+// Matrix: tests/README.md, section "B2B network (#311)". Test names carry the matrix ids (T-xx).
 // Keys are generated in memory and never printed. Nothing here is authorization: only the program spends.
 import { BN } from "@anchor-lang/core";
 import { createMint, getAccount, getOrCreateAssociatedTokenAccount, mintTo, transfer, TOKEN_PROGRAM_ID } from "@solana/spl-token";

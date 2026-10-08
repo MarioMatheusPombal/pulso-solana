@@ -8,7 +8,7 @@ import { SetupInstructions } from "../components/SetupInstructions";
 describe("integration onboarding", () => {
   it("serves both complete downloadable prompts and states measured MCP compatibility and release availability", async () => {
     const html = renderToStaticMarkup(await IntegrationPage());
-    expect(html).toContain("public release pending");
+    expect(html).toContain("included in the public release");
     expect(html).toContain("MCP 2025-11-25");
     expect(html).toContain("/integration/sdk-setup.md");
     expect(html).toContain("/integration/mcp-setup.md");

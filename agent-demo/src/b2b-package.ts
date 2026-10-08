@@ -3,7 +3,7 @@ import { PublicKey } from "@solana/web3.js";
 import { createPublicKey, verify as edVerify } from "node:crypto";
 
 // NOT AUDITED · DEVNET DEMONSTRATION ONLY
-// Offline validation of a `pulso-b2b-package-v1` (solana/14_B2B_NETWORK_SPEC.md, section 7).
+// Offline validation of a `pulso-b2b-package-v1` (docs/B2B_NETWORK_SPEC.md, section 7).
 // The agent does not trust the backend: it recomputes the digest, re-reads the consent envelope and
 // verifies Ed25519 itself. `status` and `ready` in the package are hints and are never read here.
 // The `expires:` line of a consent is not rechecked: it bounded the server's acceptance window.

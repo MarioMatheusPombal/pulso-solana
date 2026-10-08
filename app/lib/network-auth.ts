@@ -47,7 +47,7 @@ export function loginMessage(r: { domain: string; authority: string; cluster: st
   ].join("\n");
 }
 
-/** Actions a commercial consent may sign (spec 14 section 4). Login is not one of them. */
+/** Actions a commercial consent may sign (docs/B2B_NETWORK_SPEC.md section 4). Login is not one of them. */
 export const CONSENT_ACTIONS = ["network.connect.invite", "network.connect.accept", "network.charge.issue", "network.send.propose", "network.send.accept"] as const;
 export type ConsentAction = (typeof CONSENT_ACTIONS)[number];
 

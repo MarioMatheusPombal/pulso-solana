@@ -2,7 +2,7 @@ import { PublicKey } from "@solana/web3.js";
 import { sha256 } from "@noble/hashes/sha2.js";
 
 // NOT AUDITED · DEVNET DEMONSTRATION ONLY
-// B2B terms digest `pulso-b2b-terms-v1` (solana/14_B2B_NETWORK_SPEC.md, section 5).
+// B2B terms digest `pulso-b2b-terms-v1` (docs/B2B_NETWORK_SPEC.md, section 5).
 // Pure function, 307-byte preimage. Distinct from the action hash v1 (tag and length differ).
 export const TERMS_TAG = "PULSO_B2B_TERMS_V1";
 

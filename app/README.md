@@ -65,7 +65,7 @@ To report live agent outcomes, configure the SDK with `activityUrl: "http://loca
 
 ## Brand and motion
 
-The app uses the approved chalkboard identity: slate texture, warm chalk, amber attention, the original Guardian illustration, and local Caveat, Crimson Pro, and JetBrains Mono fonts. Shared tokens come from `app/app/globals.css`; brand sources and asset rules are documented in `docs/BRAND_SYSTEM_V1.md` and `public/assets/chalk-v1/README.md`.
+The app uses the approved chalkboard identity: slate texture, warm chalk, amber attention, the original Guardian illustration, and local Caveat, Crimson Pro, and JetBrains Mono fonts. Shared tokens come from `app/app/globals.css`; brand sources and asset rules are documented in `assets/chalk-v1/README.md`.
 
 `/docs` explains the authority flow and links to `/integration` for the available MCP/SDK setup review prompts. Those prompts describe validated local scenarios and their measured limits; they do not install software or claim universal host support.
 
@@ -134,3 +134,7 @@ Materials live in `app/public/integration/` and are included by the release app/
 ## Humanist identity
 
 The header uses the approved compact Guardian face and lowercase `pulso` lettering. Editable SVGs are in `public/assets/humanist-v1/`; Nunito/Nunito Sans WOFF2 fonts and their OFL licenses live in `app/fonts/`. They are served locally. Technical values retain JetBrains Mono; reduced motion and exact approval payloads are preserved. To inspect the typography, open Home, Simulation (all three tabs), Docs, Policy and Network at desktop/mobile sizes.
+
+## B2B network
+
+`/network` is the B2B network UI (wallet sign-in, organizations, connections, charges and send proposals, payment verification). It is application state only: it never authorizes spending. Environment: `NEXT_PUBLIC_RPC_URL` (set before `next build`/`next dev`; the genesis hash of this RPC enters the signed sign-in message, so it must match the wallets' cluster), `PULSO_NETWORK_DIR` (state directory, default `app/.data/network/`, ignored by Git), `PULSO_NETWORK_COMMITMENT` (`confirmed` or `finalized`) and `NEXT_PUBLIC_MINT`. Protocol: [`docs/B2B_NETWORK_SPEC.md`](../docs/B2B_NETWORK_SPEC.md); run guide: [`docs/B2B_DEMO.md`](../docs/B2B_DEMO.md). Mutating requests need `Origin` equal to `Host` and the session cookie is `Secure` in production, so use HTTPS behind a proxy that preserves `Host`.

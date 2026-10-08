@@ -1,46 +1,46 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Galeria local de estudos de movimento da identidade PULSO.">
-  <title>PULSO · Movimento da marca</title>
+  <meta name="description" content="Local gallery of motion studies for the PULSO identity.">
+  <title>PULSO · Brand motion</title>
   <link rel="stylesheet" href="gallery.css">
 </head>
 <body>
   <header class="masthead">
-    <a class="wordmark" href="#top" aria-label="PULSO — início">PULSO<span> / MOTION</span></a>
+    <a class="wordmark" href="#top" aria-label="PULSO — home">PULSO<span> / MOTION</span></a>
     <a class="guide-link" href="../brand-v1/README.md">Design system v2 ↗</a>
   </header>
   <main id="top">
     <section class="intro" aria-labelledby="title">
       <p class="eyebrow">IDENTIDADE EXPRESSIVA · ESTUDOS DE MOVIMENTO</p>
-      <h1 id="title">Um sinal vivo.<br><span>Uma decisão humana.</span></h1>
-      <p class="lede">Loops de marca e estudos de pose do Guardião. São recursos visuais independentes, não uma gravação da demonstração nem evidência de um resultado na chain.</p>
+      <h1 id="title">A living signal.<br><span>A human decision.</span></h1>
+      <p class="lede">Brand loops and pose studies of the Guardian. They are independent visual assets, not a recording of the demonstration or evidence of an on-chain result.</p>
       <p class="notice">NOT AUDITED · DEVNET DEMONSTRATION ONLY</p>
     </section>
 
-    <section class="controls" aria-label="Controles da galeria">
-      <div class="filters" role="group" aria-label="Filtrar por família" id="filters">
-        <button class="filter active" type="button" data-family="all" aria-pressed="true">Tudo</button>
+    <section class="controls" aria-label="Gallery controls">
+      <div class="filters" role="group" aria-label="Filter by family" id="filters">
+        <button class="filter active" type="button" data-family="all" aria-pressed="true">All</button>
       </div>
       <div class="view-controls">
-        <label class="select-label" for="surface">Fundo de prévia</label>
+        <label class="select-label" for="surface">Preview background</label>
         <select id="surface">
-          <option value="light">Claro</option><option value="dark">Escuro</option><option value="amber">Âmbar</option>
+          <option value="light">Light</option><option value="dark">Dark</option><option value="amber">Amber</option>
         </select>
-        <label class="motion-toggle"><input id="motion" type="checkbox" checked> <span>Reproduzir movimento</span></label>
+        <label class="motion-toggle"><input id="motion" type="checkbox" checked> <span>Play motion</span></label>
       </div>
       <p class="motion-note" id="motion-note" aria-live="polite"></p>
     </section>
 
-    <section class="gallery" id="gallery" aria-label="Ativos de movimento" aria-live="polite">
-      <p class="loading">Carregando inventário…</p>
+    <section class="gallery" id="gallery" aria-label="Motion assets" aria-live="polite">
+      <p class="loading">Loading inventory…</p>
     </section>
     <footer>
-      <p>Cor e movimento são linguagem visual. Estados de produto continuam explícitos em texto; âmbar significa revisão pendente, nunca aprovação.</p>
-      <p><a href="README.md">Como usar, editar e exportar</a> · <a href="inventory.json">Inventário e metadados</a></p>
+      <p>Color and motion are visual language. Product states stay explicit in text; amber means pending review, never approval.</p>
+      <p><a href="README.md">How to use, edit and export</a> · <a href="inventory.json">Inventory and metadata</a></p>
       <p class="notice">NOT AUDITED · DEVNET DEMONSTRATION ONLY</p>
     </footer>
   </main>
@@ -65,7 +65,7 @@
       const card = item => {
         const src = sourceOf(item), poster = posterOf(item);
         const title = item.title || item.name || src.split('/').pop();
-        const alt = item.alt || `Estudo de movimento: ${title}`;
+        const alt = item.alt || `Motion study: ${title}`;
         const preview = isVideo(item)
           ? `<video class="media" controls playsinline preload="none" poster="${esc(poster)}" data-motion-media src="${esc(src)}" aria-label="${esc(title)}"></video>`
           : isGif(item)
@@ -95,13 +95,13 @@
         });
         motionInput.checked = play;
         motionInput.disabled = reduced.matches;
-        note.textContent = reduced.matches ? 'Movimento reduzido do sistema ativo; prévias animadas estão pausadas.' : play ? 'Loops reproduzidos somente quando visíveis.' : 'Prévia estática selecionada.';
+        note.textContent = reduced.matches ? 'System reduced motion is on; animated previews are paused.' : play ? 'Loops play only while visible.' : 'Static preview selected.';
       }
       function applyFilter() {
         gallery.querySelectorAll('.asset-card').forEach(el => { el.hidden = selectedFamily !== 'all' && el.dataset.family !== selectedFamily; });
       }
       function setSurface() { document.body.dataset.surface = surfaceSelect.value; }
-      fetch('inventory.json').then(response => { if (!response.ok) throw new Error('Inventário indisponível'); return response.json(); }).then(data => {
+      fetch('inventory.json').then(response => { if (!response.ok) throw new Error('Inventory unavailable'); return response.json(); }).then(data => {
         inventory = Array.isArray(data) ? data : data.assets || data.items || [];
         const families = [...new Set(inventory.map(familyOf))];
         families.forEach(family => {
@@ -115,7 +115,7 @@
           filterBar.querySelectorAll('button').forEach(b => { const active = b === button; b.classList.toggle('active', active); b.setAttribute('aria-pressed', String(active)); });
           applyFilter();
         });
-        gallery.innerHTML = inventory.filter(item => item.type !== 'poster-png').map(card).join('') || '<p>Nenhum recurso registrado no inventário.</p>';
+        gallery.innerHTML = inventory.filter(item => item.type !== 'poster-png').map(card).join('') || '<p>No asset registered in the inventory.</p>';
         const observer = new IntersectionObserver(entries => entries.forEach(entry => {
           const media = entry.target;
           media.dataset.visible = String(entry.isIntersecting);
@@ -127,7 +127,7 @@
           if (!motionInput.checked || reduced.matches || video.dataset.visible !== 'true') video.pause();
         }));
         applyMotion();
-      }).catch(error => { gallery.innerHTML = `<p role="alert">${esc(error.message)}. Abra esta galeria por um servidor HTTP local para carregar os arquivos.</p>`; });
+      }).catch(error => { gallery.innerHTML = `<p role="alert">${esc(error.message)}. Open this gallery through a local HTTP server to load the files.</p>`; });
       motionInput.addEventListener('change', applyMotion);
       reduced.addEventListener?.('change', applyMotion);
       surfaceSelect.addEventListener('change', setSurface);

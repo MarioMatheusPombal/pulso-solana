@@ -95,7 +95,7 @@ const MESSAGES: Record<string, string> = {
   SIGNATURE_IN_USE: "That transaction is already linked to another request.",
 };
 
-/** Plain-language result of a reconciliation code (spec 14 section 8). Unknown codes show as they are. */
+/** Plain-language result of a reconciliation code (docs/B2B_NETWORK_SPEC.md section 8). Unknown codes show as they are. */
 const RECONCILE_TEXT: Record<string, string> = {
   VERIFIED: "Verified: this transaction matches the terms of this request.",
   PENDING: "Payment reported. Not checked against the chain yet.",
@@ -141,7 +141,7 @@ export const VIEW_LABEL: Record<Connection["view"], string> = {
   recusado: "Declined", cancelado: "Cancelled", expirado: "Expired", desconectado: "Disconnected",
 };
 
-// ---------- requests (spec 14): application state, never spending authorization ----------
+// ---------- requests (docs/B2B_NETWORK_SPEC.md): application state, never spending authorization ----------
 
 /** Plain-language state: text, never only color. */
 export const STATUS_LABEL: Record<Status, string> = {

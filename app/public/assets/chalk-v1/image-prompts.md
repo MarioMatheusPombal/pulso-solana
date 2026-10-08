@@ -1,6 +1,6 @@
 # Blackboard raster assets
 
-Generated with the built-in ImageGen tool on 2026-10-02. Original Guardião identity preserved; no existing assets overwritten. These images are decorative and are not authorization evidence.
+Generated with the built-in ImageGen tool on 2026-10-02. Original Guardian identity preserved; no existing assets overwritten. These images are decorative and are not authorization evidence.
 
 NOT AUDITED · DEVNET DEMONSTRATION ONLY
 

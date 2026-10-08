@@ -1,16 +1,16 @@
-# PULSO — prompts de exploração
+# PULSO — exploration prompts
 
-## Revisão v2 — preservar rosto e expressão
+## Revision v2 — preserve face and expression
 
-O usuário descartou a simplificação geométrica em SVG. A referência preferida é a arte gerada de `guardian-contrast-study.png`. A ferramenta integrada editou essa referência para produzir os dois arquivos em `raster-v2/`: `guardian-mark-transparent.png` (máscara) e `guardian-heart-transparent.png` (guardião com coração). Ambos medem **1254 × 1254 px**, com canal alpha contendo valores de 0 a 255. São edições generativas da referência; não são um recorte pixel a pixel, um upscale sem perdas ou novos masters vetoriais. A solicitação de tamanho no prompt não determina o tamanho final retornado.
+The user rejected the geometric SVG simplification. The preferred reference is the generated art in `guardian-contrast-study.png`. The built-in tool edited that reference to produce the two files in `raster-v2/`: `guardian-mark-transparent.png` (mark) and `guardian-heart-transparent.png` (guardian with heart). Both measure **1254 × 1254 px**, with an alpha channel holding values from 0 to 255. They are generative edits of the reference; they are not a pixel-exact cutout, a lossless upscale or new vector masters. The size requested in the prompt does not determine the final size returned.
 
-### Máscara — prompt exato
+### Mark — exact prompt
 
 ```text
 Use case: background-extraction. EDIT THE SUPPLIED IMAGE, preserve identity exactly. Extract ONLY the compact PULSO guardian logo in the first LIGHT tile in the middle row (leftmost of the four icon tiles). Output that one hooded plague-doctor HEAD logo alone as a large clean high-resolution transparent PNG with genuine alpha. Preserve the original rounded hood contours, charcoal outer cloak shape, amber inner trim, ivory long curved/tapered beak mask, BLACK almond eye sockets with AMBER expressive pupils, original facial expression, asymmetrical shading and line detail. The eye expression is critical: do not replace eyes with geometric triangles, do not remove pupils, do not redraw as a simplified SVG/polygon. Faithful extraction and edge cleanup/upscale of the existing generated logo, not a redesign. Remove the ivory background tile entirely, remove rounded-square tile, all board text, wordmarks, other logos, palette, frames, labels and full-body guardian. Keep small natural shading already inside the selected mark. No added effects, no new gradients, no glow or shadows outside the mark. The selected black/amber/ivory silhouette is the only visible subject. Center the extracted mark on a transparent square canvas, about 84% canvas height, all hood and beak edges fully visible. Render high resolution around 2048x2048 if available. No text or watermark.
 ```
 
-### Guardião com coração — prompt exato
+### Guardian with heart — exact prompt
 
 ```text
 Use case: background-extraction. EDIT THE SUPPLIED IMAGE, preserve identity exactly. Extract ONLY the full bust guardian illustration at upper left of the board: hooded plague doctor wearing charcoal cloak with amber trim, ivory beak mask, BLACK round eye lenses with expressive AMBER eyelids/pupils, gloved hands holding a CORAL heart at chest. Output that one existing illustration as a large high-resolution transparent PNG with genuine alpha. Preserve face, eye expression, mask shape, hood folds, cloak, hands, coral heart, color and original contour exactly. Faithful extraction/edge cleanup/upscale of the existing illustration, not a redesigned vector. Remove the ivory board background, ALL text including PULSO and subtitles, frames, logo tile row, swatches and other designs. Include entire original bust and shoulders, clean edges without clipping. No added objects, no new pose, no new light, no shadow outside subject, no glow, no typography or watermark. Center isolated subject on transparent square canvas occupying about84% height. Around2048x2048 resolution if available.
@@ -18,30 +18,30 @@ Use case: background-extraction. EDIT THE SUPPLIED IMAGE, preserve identity exac
 
 NOT AUDITED · DEVNET DEMONSTRATION ONLY
 
-Histórico da revisão v1: painéis gerados com a ferramenta integrada `image_gen.imagegen`, em 01/10/2026. O usuário escolheu a direção 03, guardião, e pediu uma marca compacta e variantes de fundo. Os SVGs posteriores foram descartados por perder a expressão. Na revisão v2, os PNGs expressivos acima substituem essa tentativa; os tokens continuam editáveis. Nenhuma aplicação ao produto foi feita nesta exploração.
+History of revision v1: boards generated with the built-in `image_gen.imagegen` tool, on 2026-10-01. The user chose direction 03, guardian, and asked for a compact mark and background variants. The later SVGs were discarded because they lost the expression. In revision v2, the expressive PNGs above replace that attempt; the tokens remain editable. No application to the product was made in this exploration.
 
-## Painel inicial — concept-board.png
+## Initial board — concept-board.png
 
 ```text
 Use case: logo-brand. Asset type: editorial brand exploration board for PULSO, a startup human-authorization layer for AI agents on Solana. Create a highly polished wide landscape Swiss editorial branding presentation, 3 distinct comparable plague-doctor inspired logo concepts and one refined mascot cameo. Design direction: heart/pulse plus human protection/authority, calm watchful plague-doctor mask with long characteristic beak, no horror. ROUTE A: bold geometric side-profile plague doctor mask, heart-shaped negative space eye, minimal silhouette, elegant distinctive simple graphic black and amber emblem. ROUTE B: frontal plague doctor mask inside open shield with a restrained pulse line, geometric, black/ivory and amber. ROUTE C: softer hooded plague doctor guardian with subtle coral heart at chest, warm approachable elegant illustrated not childish. All should be identifiable as plague doctor, no generic bird. Palette charcoal #0A0E13, ivory #F6F4EF, amber #FFB020, coral #E97968 accent. Generous whitespace, exact large wordmark 'PULSO' in clean geometric uppercase sans-serif, careful typography; small concept labels '01 / MASK', '02 / PULSE', '03 / GUARDIAN'. Small neat lower palette strip with actual swatches, avoid fake hex codes. Include exact subtitle 'HUMAN AUTHORIZATION FOR AI AGENTS'. Include exact footer 'NOT AUDITED · DEVNET DEMONSTRATION ONLY'. Flat/vector-friendly concepts, no gradients or metallic 3D, no product screenshot, no certification seals, no medical claims, no skulls, no gore, no coins, no token symbol. Make board feel like outstanding original designer presentation, suitable for evaluating a proposed direction not an approved existing brand.
 ```
 
-## Guardião compacto — guardian-contrast-study.png
+## Compact guardian — guardian-contrast-study.png
 
-Referência de entrada: `concept-board.png`. Fundo opaco solicitado. Prompt:
+Input reference: `concept-board.png`. Opaque background requested. Prompt:
 
 ```text
 Use case: logo-brand. Create a refined PULSO brand design board specifically based on route 03 / GUARDIAN in reference image. User selected this hooded plague doctor with heart as character but needs an actual compact startup logo suitable for social avatar and favicon. Reference is brand inspiration, not image to preserve layout. TOP: one elegant larger bust illustration of the selected guardian (ivory long beak mask, charcoal hood with amber trim, subtle coral heart), alongside exact wordmark 'PULSO'. MAIN ROW: four large square app/social icon variations of ONE consistent simplified hooded plague doctor mask mark derived from that guardian. Icon is just hood outline plus mask with distinct long tapered beak and two restrained eye cutouts, no torso or hands, no heart if too small. No shield, no hat, no circle certification, no extra detail. Same precise silhouette on each background: ivory background with charcoal mark+amber eyes; charcoal background with ivory mark+amber eyes; amber background with charcoal mark; charcoal background with entirely ivory one-color mark. Rounded tile corners used for mockup only. BOTTOM: same compact logo tiny-size comparison representing favicon and avatar, plus light and dark horizontal logo lockups. Flat bold geometric vector-friendly mark, truly coherent between all versions, strong positive/negative contrast, not generic owl, distinctly plague doctor long beak. Restrained editorial grid, generous margin, premium modern technology infrastructure brand. Exact labels 'GUARDIAN / COMPACT MARK', 'LIGHT', 'DARK', 'AMBER', 'MONO'. Palette charcoal #0A0E13, warm ivory #F6F4EF, amber #FFB020, coral #E97968 only large illustration heart. Include exact legible footer 'NOT AUDITED · DEVNET DEMONSTRATION ONLY'. No invented claims, no extra marketing paragraphs, no horror, no medical claims, no security certification, no gradients, no 3D, no coins, no tokens. This is logo exploration and contrast study, with illustration clearly distinct from compact logo.
 ```
 
-As comparações de tamanho nos painéis gerados são ilustrativas. Confira os PNGs de favicon em seus tamanhos reais. A ilustração e a marca compacta pertencem à mesma direção, mas são desenhos distintos; não trate o painel como especificação de geometria ou de texto.
+The size comparisons in the generated boards are illustrative. Check the favicon PNGs at their real sizes. The illustration and the compact mark belong to the same direction but are distinct drawings; do not treat the board as a geometry or text specification.
 
-## Variante de impressão — guardian-mark-monochrome-transparent.png
+## Print variant — guardian-mark-monochrome-transparent.png
 
-Gerada em 01/10/2026 com `image_gen.imagegen`, usando `raster-v2/guardian-mark-transparent.png` como referência e fundo transparente. PNG RGBA de 1254 × 1254 px. A edição preserva a expressão em escala de cinza; impressão em uma tinta exige meios-tons. Não é um vetor monocromático de cor chapada.
+Generated on 2026-10-01 with `image_gen.imagegen`, using `raster-v2/guardian-mark-transparent.png` as the reference and a transparent background. RGBA PNG of 1254 × 1254 px. The edit preserves the expression in grayscale; one-ink printing requires halftones. It is not a flat-color monochrome vector.
 
 ```text
 Use case: precise-object-edit. Create only a monochrome PRINT color variant of the supplied expressive PULSO guardian head PNG. Change color only to neutral grayscale black, white and gray shading, suitable for one black ink with halftones. Preserve the exact silhouette, face, beak, hood folds, expressive almond eye sockets AND pupil/eyelid shapes. Former amber trim becomes light gray/white contrasting the black cloak; former amber pupils become light gray/white contrasting the black sockets. No geometric simplification, no tracing redraw, no new face, no triangular eyes, no removing eye expression, no new pose. Keep same proportions and centered square framing. Keep genuine transparent background and clean alpha edges. No square tile, no background, no logo text, no watermark, no additional objects. Preserve shading and full details. This is the same expressive illustration with a grayscale palette only; NOT a new vector mark. Output one monochrome guardian head alone.
 ```
 
-O kit final usa esses PNGs como arte incorporada nos SVGs de composição. Os textos e layouts são editáveis; a face continua raster. As composições não são novos masters vetoriais nem um upscale sem perdas.
+The final kit uses these PNGs as art embedded in the composition SVGs. Texts and layouts are editable; the face remains raster. The compositions are not new vector masters or a lossless upscale.

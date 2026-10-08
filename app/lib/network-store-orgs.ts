@@ -1,7 +1,7 @@
 // NOT AUDITED · DEVNET DEMONSTRATION ONLY
 // Trust boundary: an organization is a self-declared name bound to a wallet that signed a login.
 // It does NOT authorize spending; enforcement stays in the on-chain program. Handle and name are
-// unverified claims, so the full authority key must always be shown beside them (spec 14 section 3).
+// unverified claims, so the full authority key must always be shown beside them (docs/B2B_NETWORK_SPEC.md section 3).
 import { Connection, PublicKey } from "@solana/web3.js";
 import { RPC_URL } from "./config";
 import { defaultDeps, parsePubkey, type AuthDeps } from "./network-auth";
@@ -47,7 +47,7 @@ export async function defaultOrgDeps(): Promise<OrgDeps> {
 
 // ---------- validation ----------
 
-/** Spec 14 section 3, in order: trim, one leading @, reject any non-ASCII (no Unicode folding), lowercase, pattern. */
+/** docs/B2B_NETWORK_SPEC.md section 3, in order: trim, one leading @, reject any non-ASCII (no Unicode folding), lowercase, pattern. */
 export function normalizeHandle(input: unknown): string | null {
   if (typeof input !== "string") return null;
   let h = input.trim();
@@ -66,7 +66,7 @@ export function validDisplayName(input: unknown): string | null {
 }
 
 /**
- * Spec 14 section 2. Legacy Token program, 165 bytes, initialized, owner field == authority.
+ * docs/B2B_NETWORK_SPEC.md section 2. Legacy Token program, 165 bytes, initialized, owner field == authority.
  * SPL layout: mint 0..32, owner 32..64, state byte 108 (1 = initialized). RPC failure refuses.
  * A point-in-time check: SetAuthority can change the owner later.
  */

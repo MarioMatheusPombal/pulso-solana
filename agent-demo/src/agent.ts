@@ -66,7 +66,7 @@ const fmt = (base: bigint, decimals = 6) => {
 };
 const short = (s: string) => `${s.slice(0, 12)}…`;
 
-// Plain-language reading of each error, next to its technical code (docs/ELEMENTOS_DE_CORACAO.md).
+// Plain-language reading of each error, next to its technical code.
 const PHRASES: Record<string, string> = {
   PolicyNotFound: "no resting rhythm defined",
   PolicyDisabled: "policy switched off by the human",
